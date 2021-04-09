@@ -5,14 +5,14 @@ function LandingPage() {
     return (
         <div className="row center horizontal">
             <div className="col-xl-9 col-lg-8 col-sm-7">
-                <h1 id="title">Because the <span className="red">early birds</span> get the worm 💸</h1>
+                <h1 id="title">Because the <span className="text-red">early birds</span> get the worm 💸</h1>
                 <p id="description">Too much time on your hands? Parents stressing you to get a job?
                 Want to look fly but the sneakers are too expensive?
             You’ve come to the right place.</p>
-                <button>Learn More</button>
-                <button>Start your hustle</button>
+                <button className="round mr-4 bg-pink text-red py-2 px-3 text-bold">Learn More</button>
+                <button className="round bg-red text-white py-2 px-2">Start your hustle</button>
             </div>
-            <div className="col-xl-3 col-lg-4 col-sm-5">
+            <div className="col-xl-3 col-lg-4 col-sm-5 d-flex justify-content-center align-items-center">
                 <img className="logo" src={logo}></img>
             </div>
         </div>
