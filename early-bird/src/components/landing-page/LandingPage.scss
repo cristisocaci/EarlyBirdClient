@@ -32,6 +32,8 @@ $pink-color:#FFEEEF;
 
 #title{
     font-size:xx-large;
+    font-weight: bold;
+
 }
 #description{
     font-size:large;
@@ -47,5 +49,11 @@ $pink-color:#FFEEEF;
     .center{
         padding-left: 20%;
         padding-right: 20%;
+    }
+    #title{
+        font-size:3vw;
+    }
+    #description{
+        font-size:1.3vw;
     }
 }

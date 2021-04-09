@@ -5,8 +5,8 @@ function LandingPage() {
     return (
         <div className="row center horizontal">
             <div className="col-xl-9 col-lg-8 col-sm-7">
-                <h1 id="title">Because the <span className="text-red">early birds</span> get the worm 💸</h1>
-                <p id="description">Too much time on your hands? Parents stressing you to get a job?
+                <h1 id="title" className="mb-3">Because the <span className="text-red">early birds</span> get the worm 💸</h1>
+                <p id="description" className="mb-3">Too much time on your hands? Parents stressing you to get a job?
                 Want to look fly but the sneakers are too expensive?
             You’ve come to the right place.</p>
                 <button className="round mr-4 bg-pink text-red py-2 px-3 text-bold">Learn More</button>
