@@ -1,0 +1,26 @@
+$red-color: #FB3640;
+
+.red {
+    color: $red-color;
+}
+.center{
+    padding-left: 15em;
+    padding-right: 15em;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+.left-elem{
+    align-self: center;
+}
+.logo{
+    width: 100%
+}
+
+#title{
+    font-size:xx-large;
+}
+#description{
+    font-size:large;
+}
