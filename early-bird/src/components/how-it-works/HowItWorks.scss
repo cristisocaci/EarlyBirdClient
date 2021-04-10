@@ -5,9 +5,17 @@
     align-items: center;
 }
 .grid{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    display: flex;
+    width: 80%;
+    gap:2em;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .grid-item{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
