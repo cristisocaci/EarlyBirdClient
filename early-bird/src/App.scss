@@ -1,0 +1,15 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+
+.text-bold{
+    font-weight: bold;
+}
+.text-red {
+    color: $red-color;
+}
+.bg-pink{
+    background-color: $pink-color;
+}
+.bg-red{
+    background-color: $red-color;
+}
