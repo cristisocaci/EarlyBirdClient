@@ -1,0 +1,13 @@
+.center-how-it-works{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.grid-item{
+}
