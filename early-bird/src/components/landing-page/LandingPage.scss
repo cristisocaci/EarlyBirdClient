@@ -1,10 +1,13 @@
-
+#center{
+    display: flex;
+    justify-content: center;
+}
 .center-landing-page{
-    padding-left: 5%;
     display:flex;
     align-items: center;
     justify-content: center;
     height: 90vh;
+    width: 80%;
 }
 
 .logo{
@@ -25,21 +28,9 @@
     font-size:large;
 }
 
-@media only screen and (min-width: 900px){
+@media only screen and (max-width: 900px){
     .center-landing-page{
-        padding-left: 15%;
-        padding-right: 15%;
+        width: 90%;
     }
-}
-@media only screen and (min-width: 1175px){
-    .center-landing-page{
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-    #title{
-        font-size:3vw;
-    }
-    #description{
-        font-size:1.3vw;
-    }
+    
 }
