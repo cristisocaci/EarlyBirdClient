@@ -4,7 +4,7 @@ import HowItWorks from './components/how-it-works/HowItWorks';
 function App() {
   return (
     <div>
-      {/* <LandingPage></LandingPage> */}
+      <LandingPage></LandingPage>
       <HowItWorks></HowItWorks>
     </div>
   );
