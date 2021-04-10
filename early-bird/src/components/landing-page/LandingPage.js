@@ -3,7 +3,7 @@ import logo from '../../illustrations/Saly-landing-page.svg';
 
 function LandingPage() {
     return (
-        <div id="center">
+        <div id="center-lp">
         <div className="row center-landing-page">
             <div className="col-xl-9 col-lg-8 col-md-7  mr-3 mr-sm-0">
                 <h1 id="title" className="mb-4">Because the <span className="text-red">early birds</span> get the worm 💸</h1>
