@@ -1,0 +1,43 @@
+#navbar{
+    width: 100%;
+    box-shadow: 0px 1px 0px #E5E9F2;
+    display: flex;
+    justify-content: center;
+}
+#center-nav{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+#links-left{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    align-items: center;
+}
+
+#title-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#btn-right{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: end;
+    align-items: center;
+}
+.text-black{
+    color: black;
+}
+.text-black:hover{
+    color: black;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 900px){
+    #center-nav{
+        width: 90%;
+    }
+    
+}
