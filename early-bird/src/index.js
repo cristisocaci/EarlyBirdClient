@@ -8,6 +8,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import $ from 'jquery';
 import Popper from 'popper.js';
 
+sessionStorage.setItem('server', 'https://localhost:5001') 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
