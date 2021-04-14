@@ -13,7 +13,7 @@ function getContentLeft(page) {
     )
 }
 function redirectTo(page){
-    window.location.replace(page);
+    window.location.href = page;
 }
 function getContentRight(page) {
     let content = [];
