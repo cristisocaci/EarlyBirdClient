@@ -11,6 +11,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import LoginPage from './components/login-component/LoginPage';
 function App() {
   return (
 
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route path="/login" exact>
               <Navbar page="login-page"></Navbar>
+              <LoginPage></LoginPage>
           </Route>
 
           <Route path="/" exact>
