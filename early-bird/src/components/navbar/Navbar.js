@@ -13,13 +13,13 @@ function getContentLeft(page) {
     )
 }
 function redirectTo(page){
-    window.location.replace(page);
+    window.location.href = page;
 }
 function getContentRight(page) {
     let content = [];
     if (page == 'landing-page') {
         content.push(<button className="round bg-pink text-red text-bold text-small px-4 py-1" key="1" onClick={() => redirectTo('/login')}>Login</button>);
-        content.push(<button id="signup" className="round bg-red text-white text-small px-4 py-1" key="2">Sign up</button>);
+        content.push(<button id="signup" className="round bg-red text-white text-small px-3 py-1" key="2">Sign up</button>);
     }
     else if(page == 'main'){
         content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1" key="1">Log out</button>)
