@@ -11,7 +11,6 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Footer from './components/footer/Footer';
 function App() {
   return (
 
@@ -26,7 +25,6 @@ function App() {
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
             <HowItWorks></HowItWorks>
-            <Footer></Footer>
           </Route>
           <Route path="*">
             <Redirect to="/"></Redirect>

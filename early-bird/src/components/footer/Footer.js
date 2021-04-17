@@ -6,14 +6,16 @@ import yt from "../../illustrations/footer/yt.svg";
 
 function Footer(){
     return (
-        <div className="bg-black text-white row">
-            <h2 className="col-md-4">Early Bird</h2>
-            <p className="col-md-4">© 2021 Early Bird Ltd. All rights reserved</p>
+        <div className="bg-black text-white m-0 footer">
+            <div className="f-container row">
+            <h2 className="col-md-4 f-title">Early Bird</h2>
+            <p className="col-md-4 f-text">© 2021 Early Bird Ltd. All rights reserved</p>
             <div className="f-icons col-md-4">
                 <img src={insta} className="f-icon"></img>
                 <img src={twitter} className="f-icon"></img>
                 <img src={web} className="f-icon"></img>
                 <img src={yt} className="f-icon"></img>
+            </div>
             </div>
         </div>
     );
