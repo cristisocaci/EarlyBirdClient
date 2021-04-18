@@ -2,7 +2,8 @@ import './App.scss';
 import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
-
+import LoginPage from './components/login-component/LoginPage';
+import KeyFeatures from './components/key-features/KeyFeatures';
 
 import React from "react";
 import {
@@ -11,7 +12,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import LoginPage from './components/login-component/LoginPage';
+
 function App() {
   return (
 
@@ -27,6 +28,7 @@ function App() {
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
             <HowItWorks></HowItWorks>
+            <KeyFeatures></KeyFeatures>
           </Route>
           <Route path="*">
             <Redirect to="/"></Redirect>
