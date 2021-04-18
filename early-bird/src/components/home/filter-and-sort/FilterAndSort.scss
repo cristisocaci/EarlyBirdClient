@@ -1,0 +1,35 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+
+.fas-input{
+    max-width:19em;
+    margin-top: 0.5em;
+    border-color: $pink-color;
+}
+.fas-input.form-control{
+    border: solid 0.1875rem $pink-color;
+}
+
+.fas-dropdown{
+    max-width:9.5em;
+}
+
+.Dropdown-control.fas-dropdown-control{
+    border-color: $red-color;
+    color: $red-color;
+    font-weight: bold;
+}
+.fas-arrow-closed{
+    border-color: $red-color transparent transparent;
+    border-top-color: $red-color;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+}
+.fas-arrow-open{
+    border-color: transparent transparent $red-color;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: $red-color;
+    border-left-color: transparent;
+}

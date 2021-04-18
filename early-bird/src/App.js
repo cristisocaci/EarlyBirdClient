@@ -6,6 +6,8 @@ import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
+import Home from './components/home/Home';
+
 
 import React from "react";
 import {
@@ -24,7 +26,10 @@ function App() {
               <Navbar page="login-page"></Navbar>
               <LoginPage></LoginPage>
           </Route>
-
+          <Route path="/home" exact>
+              <Navbar page="main"></Navbar>
+              <Home></Home>
+          </Route>
           <Route path="/" exact>
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
