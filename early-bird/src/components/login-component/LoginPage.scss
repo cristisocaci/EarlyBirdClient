@@ -1,0 +1,45 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+$pale-red-color: #ff999e;
+
+.center-login-page{
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+// .login-form.form-control:focus{
+//     border-color: $pale-red-color;
+//     box-shadow: 0 0px 2px $pale-red-color inset, 0px 0px 8px $pale-red-color;
+// }
+
+#title{
+    color: black;
+    font-size: xxx-large;
+}
+.first-form{
+    margin-top: 2em;
+}
+.login-form{
+    max-width:19em;
+    margin-top: 0.5em;
+    border-color: $pink-color;
+}
+.login-form.form-control{
+    border: solid 0.1875rem $pink-color;
+}
+.login-button{
+    margin-top: 2.8em;
+    padding: .7em 3em;
+}
+
+.invalid-login{
+    color: $red-color;
+    font-size: x-large;
+}
+
+.page-div{
+    width: 70%;
+}

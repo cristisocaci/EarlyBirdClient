@@ -1,0 +1,47 @@
+.center-call-to-action{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5em;
+}
+
+.cta-join-btn{
+    padding: 0.8em 3.5em;
+    margin-top: 2em;
+}
+
+.checks{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2em;
+}
+.check{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.cta-text{
+    display: flex;
+    margin: 0;
+    margin-left: 0.7em;
+    align-items: center;
+}
+.cta-icon{
+    width: 1.1em;
+}
+@media only screen and (max-width: 764px){
+    .checks{
+        width: 90%;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr;
+        margin-top: 2em;
+        justify-content: center;
+    }
+    .check{
+        justify-content: left;
+    }
+}
