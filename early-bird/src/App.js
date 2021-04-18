@@ -2,7 +2,8 @@ import './App.scss';
 import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
-
+import LoginPage from './components/login-component/LoginPage';
+import KeyFeatures from './components/key-features/KeyFeatures';
 
 import React from "react";
 import {
@@ -11,7 +12,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import KeyFeatures from './components/key-features/KeyFeatures';
+
 function App() {
   return (
 
@@ -20,6 +21,7 @@ function App() {
         <Switch>
           <Route path="/login" exact>
               <Navbar page="login-page"></Navbar>
+              <LoginPage></LoginPage>
           </Route>
 
           <Route path="/" exact>
