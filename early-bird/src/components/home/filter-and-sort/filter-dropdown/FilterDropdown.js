@@ -43,10 +43,8 @@ function FilterDropdown(){
                     <p>Max Cost</p>
                     <input type="number" className="form-control"></input>
                     <div className="divider"></div>
-                    <button className="fas-filter-btn round">
-                        City
-                        <img src={arrowDown} className="fas-icon-btn"></img>
-                    </button>
+                    <p>City</p>
+                    <input type="text" className="form-control"></input>
                     <div className="divider"></div>
                     <button className="fas-filter-btn round mb-2">
                         Category
