@@ -5,18 +5,28 @@
 .center-landing-page{
     display:flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 90vh;
     width: 80%;
+}
+#right-text{
+    width: 60%;
 }
 
 .logo{
     width: 90%
 }
 
-.round{
-    border:none;
-    border-radius: 8px;
+
+
+#btn-landing{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    align-items: center;
+    #lm{
+        margin-right: 1em;
+    }
 }
 
 #title{
@@ -28,9 +38,19 @@
     font-size:large;
 }
 
-@media only screen and (max-width: 900px){
-    .center-landing-page{
-        width: 90%;
+@media only screen and(max-width: 361px){
+    #btn-landing{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        #lm{
+            margin-right: 0em;
+            margin-bottom: 0.5em;
+        }
     }
-    
+}
+@media only screen and (max-width: 767px){
+    #right-text{
+        width: 100%;
+    }
 }

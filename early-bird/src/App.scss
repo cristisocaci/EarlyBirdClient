@@ -19,6 +19,16 @@ $pink-color:#FFEEEF;
 .bg-red{
     background-color: $red-color;
 }
+
 .bg-white{
     background-color: white;
+}
+
+.round{
+    border:none;
+    border-radius: 8px;
+}
+
+.bg-black{
+    background-color: black;
 }
