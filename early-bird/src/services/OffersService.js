@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function GetAllUsers(queryParams) {
+async function GetAllOffers(queryParams) {
     let path = sessionStorage.getItem("server") + "/api/offers";
     try {
         let response = await axios.get(path, {
@@ -13,4 +13,4 @@ async function GetAllUsers(queryParams) {
     }
 }
 
-export { GetAllUsers };
+export { GetAllOffers };
