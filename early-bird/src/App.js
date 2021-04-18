@@ -11,6 +11,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import KeyFeatures from './components/key-features/KeyFeatures';
 function App() {
   return (
 
@@ -25,6 +26,7 @@ function App() {
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
             <HowItWorks></HowItWorks>
+            <KeyFeatures></KeyFeatures>
           </Route>
           <Route path="*">
             <Redirect to="/"></Redirect>
