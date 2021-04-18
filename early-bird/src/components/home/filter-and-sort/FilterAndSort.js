@@ -1,13 +1,15 @@
 import "./FilterAndSort.scss";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { GetAllOffers } from "../../../services/OffersService.js";
 import FilterDropdown from "./filter-dropdown/FilterDropdown";
 import SortDropdown from "./sort-dropdown/SortDropdown";
+import {GetAllCategories } from "../../../services/CategoriesService.js";
 
 
 function FilterAndSort(props) {
     const cities = ["Mojo", "Lubei"];
     const [query, setQuery] = useState({});
+    const [categories, setCategories] = useState([]);
 
     function saveText(event) {
         let q = Object.assign({}, query);
@@ -21,6 +23,12 @@ function FilterAndSort(props) {
         console.log(offers);
     }
 
+    useEffect(async ()=>{
+        let value = await GetAllCategories();
+        setCategories(value);
+        }, [query])
+
+
     return (
         <div className="fas">
             <div className="fas-filter">
@@ -29,10 +37,10 @@ function FilterAndSort(props) {
                 </div>
                 <div className="dropdowns">
                     <div className="pos-relative">
-                        <FilterDropdown setQuery={setQuery} query={query}></FilterDropdown>
+                        <FilterDropdown setQuery={setQuery} query={query} categories={categories}></FilterDropdown>
                     </div>
                     <div className="pos-relative">
-                        <SortDropdown setQuery={setQuery}></SortDropdown>
+                        <SortDropdown setQuery={setQuery} query={query}></SortDropdown>
                     </div>
                 </div>
             </div>

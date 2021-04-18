@@ -1,11 +1,33 @@
 import "./FilterDropdown.scss";
 import arrowDown from "../../../../illustrations/filter-and-sort/arrow-down.svg";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function FilterDropdown(props){
     let filterPressed = false;
     const filterRef = useRef();
     const btnRef = useRef();
+    const catRefs = useRef(new Array());
+
+    const [catPressed, setCatPressed] = useState([]);
+    
+    function togglePressed(index){
+        if(!catPressed[index])
+            catRefs.current[index].style.border = "1px solid red"
+        else
+            catRefs.current[index].style.border = "none"
+        let aux = [...catPressed];
+        aux[index] = !aux[index];
+        setCatPressed(aux);
+
+        let q = Object.assign({}, props.query);
+        let ids =[];
+        for(let i=0; i < aux.length; ++i){
+            if(aux[i])
+                ids.push(props.categories[i].id)
+        }
+        q.categoryIds = ids;
+        props.setQuery(q);
+    }
 
     function toggle(event) {
         if (!filterPressed) {
@@ -28,6 +50,7 @@ function FilterDropdown(props){
             filterPressed = false;
         }
     });
+
 
     function save(event) {
         let q = Object.assign({}, props.query);
@@ -52,10 +75,19 @@ function FilterDropdown(props){
                     <p>City</p>
                     <input type="text" className="form-control" onChange={save} id="city"></input>
                     <div className="divider"></div>
-                    <button className="fas-filter-btn round mb-2">
-                        Category
-                        <img src={arrowDown} className="fas-icon-btn"></img>
-                    </button>
+                    <div className="fas-filter-btn round mb-2 py-2 px-3">
+                        <div className="fas-btn-text">
+                            Category
+                        </div>
+                        <div className="fas-btn-elem">
+                            {props.categories.map((x, index) => 
+                                <button key={index} 
+                                        onClick={()=> togglePressed(index)} 
+                                        ref={element =>catRefs.current.push(element)}>
+                                    {x.name}
+                                </button>)}
+                        </div>
+                    </div>
                 </div>
             </div>
     )
