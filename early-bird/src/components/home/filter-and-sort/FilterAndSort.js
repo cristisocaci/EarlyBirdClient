@@ -2,6 +2,7 @@ import "./FilterAndSort.scss";
 import React from "react";
 import 'react-dropdown/style.css';
 import arrowClosed from "../../../illustrations/filter-and-sort/arrow-closed.svg";
+import {GetAllUsers} from "../../../services/OffersService.js";
 
 function FilterAndSort(){
     const options = [
