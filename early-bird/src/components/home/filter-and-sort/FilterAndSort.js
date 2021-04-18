@@ -17,10 +17,8 @@ function FilterAndSort(props) {
         setQuery(q);
     }
     async function getOffers(){
-        console.log(query);
         let offers = await GetAllOffers(query);
         props.setOffers(offers);
-        console.log(offers);
     }
 
     useEffect(async ()=>{
