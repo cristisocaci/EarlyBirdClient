@@ -7,10 +7,11 @@ import {useState} from "react";
 function Home(){
     const [offers, setOffers] = useState([]);
     return(
-        <div>
-            <Hello name="Cristian" role="worker"></Hello>
-            <FilterAndSort setOffers={setOffers}></FilterAndSort>
-            <p style={{marginTop:"5em"}}>asd</p>
+        <div className="home-center">
+            <div className="home-top">
+                <Hello name="Cristian" role="worker"></Hello>
+                <FilterAndSort setOffers={setOffers}></FilterAndSort>
+            </div>
         </div>
     );
 }

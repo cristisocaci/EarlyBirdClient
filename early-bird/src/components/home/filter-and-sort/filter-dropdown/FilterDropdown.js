@@ -36,7 +36,7 @@ function FilterDropdown(){
                     <img src={arrowDown} className="fas-icon" ref={btnRef}></img>
                 </div>
                 <div className="fas-filter-content"  ref={filterRef}>
-                <div className="divider"></div>
+                    <div className="divider"></div>
                     <p>Min Cost</p>
                     <input type="number" className="form-control"></input>
                     <div className="divider"></div>
