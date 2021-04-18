@@ -8,7 +8,6 @@ import SortDropdown from "./sort-dropdown/SortDropdown";
 function FilterAndSort() {
     const cities = ["Mojo", "Lubei"];
     const [query, setQuery] = useState({});
-
     return (
         <div className="fas">
             <div className="fas-filter">

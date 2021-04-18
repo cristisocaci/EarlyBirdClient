@@ -7,9 +7,9 @@ async function GetAllUsers(queryParams) {
             headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")},
             params:queryParams
         });
-        console.log(response);
+        return response.data;
     } catch {
-        console.log("false");
+        console.log("Error");
     }
 }
 
