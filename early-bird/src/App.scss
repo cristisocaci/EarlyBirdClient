@@ -4,6 +4,9 @@ $pink-color:#FFEEEF;
 .text-bold{
     font-weight: bold;
 }
+.text-ligther{
+    font-weight:lighter;
+}
 .text-small{
     font-size: small;
 }
@@ -15,6 +18,10 @@ $pink-color:#FFEEEF;
 }
 .bg-red{
     background-color: $red-color;
+}
+
+.bg-white{
+    background-color: white;
 }
 
 .round{
