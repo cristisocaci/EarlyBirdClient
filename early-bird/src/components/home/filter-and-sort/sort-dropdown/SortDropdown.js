@@ -2,7 +2,7 @@ import "./SortDropdown.scss";
 import arrowDown from "../../../../illustrations/filter-and-sort/arrow-down.svg";
 import { useState, useRef } from "react";
 
-function SortDropdown(){
+function SortDropdown(props){
     let sortPressed = false;
     const [buttonPressed, setButtonPressed] = useState([false,false, false, false])
     const sortRef = useRef();
@@ -18,6 +18,18 @@ function SortDropdown(){
         let items = [...buttonPressed];
         items[index] = !items[index];
         setButtonPressed(items);
+
+        let q = Object.assign({}, props.query);
+        if(items[1])
+            q.titleAscending = false;
+        if(items[0])
+            q.titleAscending = true;
+        if(items[3])
+            q.costAscending = false;
+        if(items[2])
+            q.costAscending = true;
+
+        props.setQuery(q);
     }
 
     function toggle(event) {

@@ -2,7 +2,7 @@ import "./FilterDropdown.scss";
 import arrowDown from "../../../../illustrations/filter-and-sort/arrow-down.svg";
 import { useRef } from "react";
 
-function FilterDropdown(){
+function FilterDropdown(props){
     let filterPressed = false;
     const filterRef = useRef();
     const btnRef = useRef();

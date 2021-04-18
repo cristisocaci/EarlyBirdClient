@@ -5,7 +5,7 @@ import FilterDropdown from "./filter-dropdown/FilterDropdown";
 import SortDropdown from "./sort-dropdown/SortDropdown";
 
 
-function FilterAndSort() {
+function FilterAndSort(props) {
     const cities = ["Mojo", "Lubei"];
     const [query, setQuery] = useState({});
 
@@ -15,7 +15,10 @@ function FilterAndSort() {
         setQuery(q);
     }
     async function getOffers(){
-        console.log(await GetAllOffers(query));
+        console.log(query);
+        let offers = await GetAllOffers(query);
+        props.setOffers(offers);
+        console.log(offers);
     }
 
     return (
@@ -26,7 +29,7 @@ function FilterAndSort() {
                 </div>
                 <div className="dropdowns">
                     <div className="pos-relative">
-                        <FilterDropdown setQuery={setQuery}></FilterDropdown>
+                        <FilterDropdown setQuery={setQuery} query={query}></FilterDropdown>
                     </div>
                     <div className="pos-relative">
                         <SortDropdown setQuery={setQuery}></SortDropdown>
