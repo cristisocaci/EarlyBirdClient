@@ -10,6 +10,7 @@ function Home(){
         <div>
             <Hello name="Cristian" role="worker"></Hello>
             <FilterAndSort setOffers={setOffers}></FilterAndSort>
+            <p style={{marginTop:"5em"}}>asd</p>
         </div>
     );
 }
