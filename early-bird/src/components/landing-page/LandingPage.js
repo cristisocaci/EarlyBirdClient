@@ -2,6 +2,9 @@ import './LandingPage.scss';
 import logo from '../../illustrations/Saly-landing-page.svg';
 
 function LandingPage() {
+    function redirectTo(page){
+        window.location.href = page;
+    }
     return (
         <div id="center-lp">
         <div className="center-landing-page">
@@ -11,8 +14,8 @@ function LandingPage() {
                 Want to look fly but the sneakers are too expensive?
             You’ve come to the right place.</p>
                 <div id="btn-landing">
-                    <button id="lm" className="round bg-pink text-red py-2 px-3 text-bold">Learn More</button>
-                    <button className="round bg-red text-white py-2 px-2">Start your hustle</button>
+                    <a id="lm" className="round bg-pink text-red py-2 px-3 text-bold btn-hover" href="#HowItWorks">Learn More</a>
+                    <button className="round bg-red text-white py-2 px-2 btn-hover"  onClick={() => redirectTo('/register')}>Start your hustle</button>
                 </div>
             </div>
             <div id="logo-div" className="d-none d-md-flex justify-content-center align-items-center">
