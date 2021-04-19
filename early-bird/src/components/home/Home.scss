@@ -1,0 +1,25 @@
+.home-center{
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+.home-top{
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content:space-between;
+}
+
+@media only screen and (max-width:1068px) {
+    .home-top{
+        grid-template-columns: 1fr 1fr;
+
+    }
+}
+
+@media only screen and (max-width:766px) {
+    .home-top{
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto;
+    }
+}

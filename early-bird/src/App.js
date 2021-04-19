@@ -2,9 +2,15 @@ import './App.scss';
 import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
+import Home from './components/home/Home';
+
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
+import CallToAction from './components/call-to-action/CallToAction';
+import Footer from './components/footer/Footer';
+
+
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -23,6 +29,10 @@ function App() {
               <Navbar page="login-page"></Navbar>
               <LoginPage></LoginPage>
           </Route>
+          <Route path="/home" exact>
+              <Navbar page="main"></Navbar>
+              <Home></Home>
+          </Route>
 
           <Route path="/register" exact>
               <Navbar page="register-page"></Navbar>
@@ -32,8 +42,11 @@ function App() {
           <Route path="/" exact>
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
+            <div id="HowItWorks"></div>
             <HowItWorks></HowItWorks>
             <KeyFeatures></KeyFeatures>
+            <CallToAction></CallToAction>
+            <Footer></Footer>
           </Route>
           <Route path="*">
             <Redirect to="/"></Redirect>

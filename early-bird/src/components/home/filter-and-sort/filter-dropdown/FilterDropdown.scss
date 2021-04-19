@@ -1,0 +1,91 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+
+.fas-filter-dropdown{
+    border: 1px solid $red-color;
+    border-radius: 8px;
+    width: 100%;
+    color: $red-color;
+    font-weight: bold;
+    padding: 0.3em 0.7em;
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+}
+.fas-filter-dropdown:hover{
+    box-shadow: 0 0 3px $red-color;
+}
+
+.fas-filter-content{
+    display: none;
+}
+.fas-dropdown-display{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.divider{
+    width: 100%;
+    height: 2px;
+    background-color: $pink-color;
+    overflow: hidden;
+    margin: 0.7em 0em;
+}
+.fas-filter-content input{
+    width: 100%;
+}
+
+.fas-filter-btn{
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto;   
+    background-color: $pink-color;
+}
+.fas-btn-text{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+.fas-btn-elem{
+    font-weight: normal;
+    max-height: 10em;
+    overflow: scroll;
+    overflow-x: hidden;
+    button{
+        display: flex;
+        flex-direction: row;
+        border:none;
+        background-color: $pink-color;
+        width: 90%;
+        margin: 0.5em 0;
+        color: $red-color;
+        border-radius: 8px;
+    }
+}
+.fas-icon{
+    transition:transform 0.5s;
+}
+.fas-icon-btn{
+    transform: rotate(-90deg);
+    margin:0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.2em;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $red-color; 
+    border-radius: 10px;
+  }
+  
+  
