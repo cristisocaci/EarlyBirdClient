@@ -15,6 +15,9 @@ function getContentLeft(page) {
 function redirectTo(page){
     window.location.href = page;
 }
+function logout(){
+    localStorage.removeItem("jwt");
+}
 function getContentRight(page) {
     let content = [];
     if (page == 'landing-page') {
@@ -22,7 +25,7 @@ function getContentRight(page) {
         content.push(<button id="signup" className="round bg-red text-white text-small px-3 py-1" key="2" onClick={() => redirectTo('/register')}>Sign up</button>);
     }
     else if(page == 'main'){
-        content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1" key="1">Log out</button>)
+        content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1" key="1" onClick={() => logout()}>Log out</button>)
     }
     return (
         <div id="btn-right" className="col-md-4 col-6">
