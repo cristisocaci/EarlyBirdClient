@@ -2,6 +2,8 @@ import './App.scss';
 import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
+import Home from './components/home/Home';
+
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
@@ -26,7 +28,10 @@ function App() {
               <Navbar page="login-page"></Navbar>
               <LoginPage></LoginPage>
           </Route>
-
+          <Route path="/home" exact>
+              <Navbar page="main"></Navbar>
+              <Home></Home>
+          </Route>
           <Route path="/" exact>
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>

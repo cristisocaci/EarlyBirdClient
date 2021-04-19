@@ -1,0 +1,52 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+
+.fas-sort-dropdown{
+    border: 1px solid $red-color;
+    border-radius: 8px;
+    width: 100%;
+    color: $red-color;
+    font-weight: bold;
+    padding: 0.3em 0.7em;
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+}
+.fas-sort-dropdown:hover{
+    box-shadow: 0 0 3px $red-color;
+}
+
+.fas-sort-content{
+    display:none;
+}
+.fas-sort-display{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.divider{
+    width: 100%;
+    height: 2px;
+    background-color: $pink-color;
+    overflow: hidden;
+    margin: 0.7em 0em;
+}
+.fas-sort-content input{
+    width: 100%;
+}
+
+.fas-icon{
+    transition:transform 0.5s;
+}
+
+.fas-sort-content button{
+    display: flex;
+    flex-direction: row;
+    border:none;
+    background-color: $pink-color;
+    width: 100%;
+    margin: 0.5em 0;
+    color: $red-color;
+    border-radius: 8px;
+}
