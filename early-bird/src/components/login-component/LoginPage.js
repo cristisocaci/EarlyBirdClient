@@ -53,7 +53,7 @@ function LoginPage() {
             ></input>
           </div>
           <button
-            className="login-button round bg-red text-bold text-white"
+            className="login-button round bg-red text-bold text-white btn-hover"
             onClick={login}
           >
             Log In
