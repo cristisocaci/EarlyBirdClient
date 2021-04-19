@@ -30,7 +30,7 @@ function App() {
           <Route path="/" exact>
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
-            <div id="hiw-scroll"></div>
+            <div id="HowItWorks"></div>
             <HowItWorks></HowItWorks>
             <KeyFeatures></KeyFeatures>
             <CallToAction></CallToAction>
