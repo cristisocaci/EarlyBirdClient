@@ -15,4 +15,23 @@ async function Login(username, password) {
   }
 }
 
-export { Login };
+
+async function Register(username, password, firstname, lastname, email, role) {
+  let path = sessionStorage.getItem("server") + "/api/Register";
+  try {
+    let response = await axios.post(path, {
+      username: username,
+      password: password,
+      firstname: firstname,
+      lastname: lastname,
+      role: role
+    });
+    console.log("cusescc");
+    localStorage.setItem("jwt", response.data["token"]);
+    return true; 
+  } catch  {
+    return false;
+  }
+}
+
+export { Login, Register };

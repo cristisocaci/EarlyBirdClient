@@ -4,7 +4,7 @@ import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
-
+import RegisterPage from './components/register-component/RegisterPage';
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -22,6 +22,11 @@ function App() {
           <Route path="/login" exact>
               <Navbar page="login-page"></Navbar>
               <LoginPage></LoginPage>
+          </Route>
+
+          <Route path="/register" exact>
+              <Navbar page="register-page"></Navbar>
+              <RegisterPage></RegisterPage>
           </Route>
 
           <Route path="/" exact>

@@ -1,0 +1,78 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+$pale-red-color: #ff999e;
+
+.center-register-page {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#forms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2em;
+}
+
+.logo {
+  width: 100%;
+}
+
+#logo-div {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.register-page-div {
+  width: 80%;
+}
+
+.register-button {
+  margin-top: 2.8em;
+  padding: 0.7em 3em;
+  max-width: 12em;
+}
+
+.radio-button {
+  display: flex;
+  align-items: flex-start;
+  
+
+}
+
+.radio-style{
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        cursor:pointer;
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+    }
+    &:hover input ~ .check-mark{
+        background-color: $red-color;
+    } 
+}
+.check-mark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2em;
+    width: 2em;
+    border: 2.5px solid $red-color;
+    border-radius: 50%;
+}
