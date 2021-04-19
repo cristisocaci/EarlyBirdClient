@@ -1,6 +1,6 @@
 import "./FilterAndSort.scss";
 import React from "react";
-import 'react-dropdown/style.css';
+// import 'react-dropdown/style.css';
 import arrowClosed from "../../../illustrations/filter-and-sort/arrow-closed.svg";
 
 function FilterAndSort(){
