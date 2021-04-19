@@ -14,8 +14,8 @@ function LandingPage() {
                 Want to look fly but the sneakers are too expensive?
             You’ve come to the right place.</p>
                 <div id="btn-landing">
-                    <a id="lm" className="round bg-pink text-red py-2 px-3 text-bold" href="#hiw-scroll">Learn More</a>
-                    <button className="round bg-red text-white py-2 px-2"  onClick={() => redirectTo('/register')}>Start your hustle</button>
+                    <a id="lm" className="round bg-pink text-red py-2 px-3 text-bold btn-hover" href="#hiw-scroll">Learn More</a>
+                    <button className="round bg-red text-white py-2 px-2 btn-hover"  onClick={() => redirectTo('/register')}>Start your hustle</button>
                 </div>
             </div>
             <div id="logo-div" className="d-none d-md-flex justify-content-center align-items-center">

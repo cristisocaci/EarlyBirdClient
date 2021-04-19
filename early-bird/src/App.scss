@@ -32,3 +32,6 @@ $pink-color:#FFEEEF;
 .bg-black{
     background-color: black;
 }
+.btn-hover:hover{
+    box-shadow: 0 0 5px $red-color;
+}
