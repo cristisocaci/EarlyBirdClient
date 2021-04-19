@@ -4,6 +4,9 @@ import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
+import CallToAction from './components/call-to-action/CallToAction';
+import Footer from './components/footer/Footer';
+
 
 import React from "react";
 import {
@@ -29,6 +32,8 @@ function App() {
             <LandingPage></LandingPage>
             <HowItWorks></HowItWorks>
             <KeyFeatures></KeyFeatures>
+            <CallToAction></CallToAction>
+            <Footer></Footer>
           </Route>
           <Route path="*">
             <Redirect to="/"></Redirect>
