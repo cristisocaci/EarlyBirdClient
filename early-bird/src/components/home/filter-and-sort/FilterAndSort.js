@@ -43,7 +43,7 @@ function FilterAndSort(props) {
                 </div>
             </div>
             <div className="fas-button">
-                <button className="bg-red text-white round py-2 px-4" onClick={getOffers}>Search Offers</button>
+                <button className="bg-red text-white round py-2 px-4 btn-hover" onClick={getOffers}>Search Offers</button>
             </div>
         </div>
     );
