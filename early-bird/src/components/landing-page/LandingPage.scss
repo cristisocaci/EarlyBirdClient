@@ -1,3 +1,5 @@
+$red-color: #FB3640;
+
 #center-lp{
     display: flex;
     justify-content: center;
@@ -17,7 +19,10 @@
     width: 90%
 }
 
-
+#lm:hover{
+    color: $red-color;
+    text-decoration: none;
+}
 
 #btn-landing{
     display: grid;
