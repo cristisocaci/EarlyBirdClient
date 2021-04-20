@@ -27,6 +27,7 @@
     grid-template-columns: repeat(auto-fill, minmax(7em, 7em));
     gap: 1em;
     margin: 1.5em 0;
+    margin-right: 0.8em;
 }
 .category-pill{
     border-radius: 2em;
@@ -40,5 +41,6 @@
 .ao-lower{
     display: grid;
     grid-template-columns: auto auto;
+    gap:1em;
 }
 
