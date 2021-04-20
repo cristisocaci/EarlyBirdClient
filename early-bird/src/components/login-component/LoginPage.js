@@ -11,7 +11,7 @@ function LoginPage() {
     let password = document.getElementById("password").value;
     let isLoggedIn = await Login(username, password);
     if(isLoggedIn)
-      window.location.href = "/main"
+      window.location.href = "/home"
     else
       setFail(true);
   }
