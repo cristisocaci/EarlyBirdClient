@@ -17,6 +17,7 @@ function redirectTo(page){
 }
 function logout(){
     localStorage.removeItem("jwt");
+    redirectTo('/');
 }
 function getContentRight(page) {
     let content = [];
