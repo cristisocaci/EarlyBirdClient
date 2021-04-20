@@ -130,8 +130,8 @@ function RegisterPage() {
             Sign Up
           </button>
         </div>
-        <div id="logo-div" className="d-none d-md-flex col-0 col-md-4">
-          <img className="logo" src={logo}></img>
+        <div id="register-logo-div" className="d-none d-md-flex col-0 col-md-4">
+          <img className="register-page-logo" src={logo}></img>
         </div>
       </div>
     </div>
