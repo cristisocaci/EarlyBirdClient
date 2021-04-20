@@ -20,7 +20,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-  console.log(IsUserLoggedIn());
   return (
 
     <div>

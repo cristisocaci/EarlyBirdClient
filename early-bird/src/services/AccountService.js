@@ -30,7 +30,6 @@ function IsUserLoggedIn(){
 
 function GetRole(){
   let jwt = jwt_decode(localStorage.getItem("jwt"));
-  console.log(jwt);
   if(jwt === null)
     return null;
   if(jwt.Admin === "true")
@@ -42,7 +41,7 @@ function GetRole(){
   return null;
 }
 
-async function GetUserName(){
+function GetUserName(){
   let jwt = jwt_decode(localStorage.getItem("jwt"));
   if(jwt == null) return null;
   return jwt.userName;
