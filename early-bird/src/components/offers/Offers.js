@@ -15,15 +15,17 @@ function Offers(){
         setOffer(o);
     }, [id])
     return (
-        <div>
-            <AboutOffer
-                title = {offer.title}
-                categories = {offer.categories}
-                cost = {offer.cost}
-                description = {offer.description}
-                prerequisites = {offer.prerequisites}
-                location = {offer.location}
-            />
+        <div className="center-offer">
+            <div className="offer">
+                <AboutOffer
+                    title = {offer.title}
+                    categories = {offer.categories}
+                    cost = {offer.cost}
+                    description = {offer.description}
+                    prerequisites = {offer.prerequisites}
+                    location = {offer.location}
+                />
+            </div>
         </div>
     );
 }
