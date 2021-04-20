@@ -34,14 +34,26 @@ function AboutOffer(props){
                 <p>{props.description}</p>
                 
             </div>
-            <div className="ao-lower">
-                <div>
-                    <h4 className="text-bold">Prerequisites:</h4>
-                    <p>{props.prerequisites}</p>
+            <div>
+                <div className="ao-lower">
+                    <div>
+                        <h4 className="text-bold">Prerequisites:</h4>
+                        <p>{props.prerequisites}</p>
+                    </div>
+                    <div>
+                        <h4 className="text-bold">Location:</h4>
+                        {renderLocation()}
+                    </div>
                 </div>
-                <div>
-                    <h4 className="text-bold">Location:</h4>
-                    {renderLocation()}
+                <div className="offer-buttons">
+                    {function(){
+                            return props.role === "publisher"
+                            ? <button className="bg-red round btn-hover text-white px-4 py-2">Edit this offer</button>
+                            : <div className="worker-offer-btns">
+                                <button className="bg-pink round btn-hover text-red px-4 py-2">Contact publisher</button>
+                                <button className="bg-red round btn-hover text-white px-4 py-2">Apply for this job</button>
+                            </div>
+                        }()}
                 </div>
             </div>
         </div>

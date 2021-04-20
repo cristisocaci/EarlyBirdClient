@@ -44,3 +44,13 @@
     gap:1em;
 }
 
+.offer-buttons{
+    margin-top: 1.5em;
+}
+.worker-offer-btns{
+    width:max-content;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 4em;
+}
+
