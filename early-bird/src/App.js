@@ -9,6 +9,7 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
 
+import { IsUserLoggedIn, GetRole } from "./services/AccountService";
 
 import React from "react";
 import {
@@ -19,28 +20,50 @@ import {
 } from "react-router-dom";
 
 function App() {
+  console.log(IsUserLoggedIn());
   return (
 
     <div>
       <Router>
         <Switch>
-          <Route path="/login" exact>
-              <Navbar page="login-page"></Navbar>
-              <LoginPage></LoginPage>
-          </Route>
-          <Route path="/home" exact>
-              <Navbar page="main"></Navbar>
-              <Home></Home>
-          </Route>
-          <Route path="/" exact>
-            <Navbar page="landing-page"></Navbar>
-            <LandingPage></LandingPage>
-            <div id="HowItWorks"></div>
-            <HowItWorks></HowItWorks>
-            <KeyFeatures></KeyFeatures>
-            <CallToAction></CallToAction>
-            <Footer></Footer>
-          </Route>
+          <Route path="/login" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <Redirect to='/home'></Redirect>
+                : <div>
+                  <Navbar page="login-page"></Navbar>
+                  <LoginPage></LoginPage>
+                </div>
+            )} />
+
+
+          <Route path="/home" exact
+            render={() => (
+              !IsUserLoggedIn()
+                ? <Redirect to='/'></Redirect>
+                : <div>
+                  <Navbar page="main"></Navbar>
+                  <Home></Home>
+                </div>
+            )} />
+
+
+          <Route path="/" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <Redirect to='/home'></Redirect>
+                : <div>
+                    <Navbar page="landing-page"></Navbar>
+                    <LandingPage></LandingPage>
+                    <div id="HowItWorks"></div>
+                    <HowItWorks></HowItWorks>
+                    <KeyFeatures></KeyFeatures>
+                    <CallToAction></CallToAction>
+                    <Footer></Footer>
+                </div>
+            )} />
+
+
           <Route path="*">
             <Redirect to="/"></Redirect>
           </Route>
@@ -48,7 +71,7 @@ function App() {
       </Router>
     </div>
 
-    
+
   );
 }
 
