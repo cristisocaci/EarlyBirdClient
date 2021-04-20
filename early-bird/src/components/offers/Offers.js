@@ -8,17 +8,19 @@ import {useEffect, useState} from "react";
 
 function Offers(){
     let {id} = useParams();
-    let role = GetRole();
-
+    const [role, setRole] = useState("")
     const [offer, setOffer] = useState({});
 
     useEffect(async ()=>{
         let o = await GetOfferById(id);
-        if (role === "publisher" && o.publisherId !== GetUserId())
+        let roleAux = GetRole();
+
+        if (roleAux === "publisher" && o.publisherId !== GetUserId())
             window.location.href = '/home'
-        if (role === "admin") role = "publisher";
-        
+        if (roleAux === "admin") roleAux = "worker";
         o.categories = o.categories.map(x=>x.category)
+
+        setRole(roleAux)
         setOffer(o);
     }, [id])
     return (

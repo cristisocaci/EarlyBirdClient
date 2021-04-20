@@ -1,7 +1,7 @@
 import "./AboutOffer.scss";
 
 function AboutOffer(props){
-
+    console.log(props.role);
     function renderCategories(){
         if(props.categories==null) return;
         return props.categories.map((x,index) =>
@@ -50,8 +50,8 @@ function AboutOffer(props){
                             return props.role === "publisher"
                             ? <button className="bg-red round btn-hover text-white px-4 py-2">Edit this offer</button>
                             : <div className="worker-offer-btns">
-                                <button className="bg-pink round btn-hover text-red px-4 py-2">Contact publisher</button>
-                                <button className="bg-red round btn-hover text-white px-4 py-2">Apply for this job</button>
+                                <button className="bg-pink round btn-hover text-red px-3 py-2 text-bold">Contact publisher</button>
+                                <button className="bg-red round btn-hover text-white px-3 py-2">Apply for this job</button>
                             </div>
                         }()}
                 </div>
