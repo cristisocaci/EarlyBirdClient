@@ -47,4 +47,9 @@ function GetUserName(){
   return jwt.userName;
 }
 
-export { Login, IsUserLoggedIn, GetRole, GetUserName };
+function GetUserId(){
+  let jwt = jwt_decode(localStorage.getItem("jwt"));
+  if(jwt == null) return null;
+  return jwt.sub;
+}
+export { Login, IsUserLoggedIn, GetRole, GetUserName,GetUserId };

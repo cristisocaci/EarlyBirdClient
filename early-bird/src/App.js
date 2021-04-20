@@ -3,6 +3,7 @@ import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
+import Offers from './components/offers/Offers';
 
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
@@ -43,6 +44,16 @@ function App() {
                 : <div>
                   <Navbar page="main"></Navbar>
                   <Home></Home>
+                </div>
+            )} />
+
+          <Route path="/offers/:id" exact
+            render={() => (
+              !IsUserLoggedIn()
+                ? <Redirect to='/'></Redirect>
+                : <div>
+                  <Navbar page="main"></Navbar>
+                  <Offers></Offers>
                 </div>
             )} />
 
