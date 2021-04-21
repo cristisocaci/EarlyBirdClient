@@ -36,6 +36,7 @@ function Offers(){
                     role = {role}
                 />
                 <UserCard 
+                    user = {offer.publisher}
                 />
             </div>
         </div>
