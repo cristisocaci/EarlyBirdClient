@@ -1,13 +1,13 @@
 import "./Home.scss";
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
-import {GetRole, GetUserName} from "../../services/AccountService";
+import {GetFirstName, GetRole, GetUserName} from "../../services/AccountService";
 
 import {useState} from "react";
 
 function Home(){
     const [offers, setOffers] = useState([]);
-    let name = GetUserName();
+    let name = GetFirstName();
     let role = GetRole();
     if (role === "admin") role = "worker";
     return(
