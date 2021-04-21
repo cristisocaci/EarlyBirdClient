@@ -29,7 +29,7 @@ function IsUserLoggedIn(){
 
 
 function GetRole(){
-  let jwt = jwt_decode(localStorage.getItem("jwt"));
+  let jwt = DecodeJwt()
   if(jwt === null)
     return null;
   if(jwt.Admin === "true")
@@ -42,14 +42,21 @@ function GetRole(){
 }
 
 function GetUserName(){
-  let jwt = jwt_decode(localStorage.getItem("jwt"));
-  if(jwt == null) return null;
+  let jwt = DecodeJwt()
   return jwt.userName;
 }
 
 function GetUserId(){
-  let jwt = jwt_decode(localStorage.getItem("jwt"));
-  if(jwt == null) return null;
+  let jwt = DecodeJwt()
   return jwt.sub;
 }
-export { Login, IsUserLoggedIn, GetRole, GetUserName,GetUserId };
+
+function GetFirstName(){
+  let jwt = DecodeJwt()
+  return jwt.firstName;
+}
+
+function DecodeJwt(){
+  return jwt_decode(localStorage.getItem("jwt"));
+}
+export { Login, IsUserLoggedIn, GetRole, GetUserName,GetUserId, GetFirstName };
