@@ -18,11 +18,20 @@
     align-items: center;
     justify-content: center;
     width: 45%;
-
+    padding-bottom: 3em;
 }
 
 @media only screen and(min-width: 1120px) {
     .offer{
         width: 70%;
+    }
+}
+@media only screen and (max-width: 750px){
+    .offer{
+        flex-direction: column;
+    }
+    .center-user-card-offer{
+        padding-top: 3em;
+        width: 100%;
     }
 }

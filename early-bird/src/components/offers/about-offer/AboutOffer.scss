@@ -54,3 +54,17 @@
     gap: 2.5em;
 }
 
+@media only screen and (max-width: 440px) {
+    .worker-offer-btns{
+        font-size: small;
+    }
+    .ao-cost{
+        padding: 0.3em 0.7em;
+    }
+}
+@media only screen and (max-width: 750px){
+    .about-offer{
+        width: 100%;
+    }
+}
+
