@@ -5,6 +5,7 @@ import {GetRole, GetUserId} from "../../services/AccountService";
 
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import UserCard from "../user-card/UserCard";
 
 function Offers(){
     let {id} = useParams();
@@ -34,6 +35,8 @@ function Offers(){
                     prerequisites = {offer.prerequisites}
                     location = {offer.location}
                     role = {role}
+                />
+                <UserCard 
                 />
             </div>
         </div>
