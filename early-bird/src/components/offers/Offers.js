@@ -35,10 +35,12 @@ function Offers(){
                     location = {offer.location}
                     role = {role}
                 />
-                <UserCard 
-                    user = {offer.publisher}
-                    header = "About the publisher"
-                />
+                <div className="center-user-card-offer">
+                    <UserCard 
+                        user = {offer.publisher}
+                        header = "About the publisher"
+                    />
+                </div>
             </div>
         </div>
     );

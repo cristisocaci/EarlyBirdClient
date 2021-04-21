@@ -12,6 +12,15 @@
     min-height: 75%;
     display: flex;
 }
+
+.center-user-card-offer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+
+}
+
 @media only screen and(min-width: 1120px) {
     .offer{
         width: 70%;
