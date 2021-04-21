@@ -37,6 +37,7 @@ function Offers(){
                 />
                 <UserCard 
                     user = {offer.publisher}
+                    header = "About the publisher"
                 />
             </div>
         </div>
