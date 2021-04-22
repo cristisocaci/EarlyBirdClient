@@ -58,7 +58,7 @@ function SortDropdown(props){
         <div className="fas-sort-dropdown" onClick={toggle}>
                 <div className="fas-sort-display">
                     <p className="m-0" >Sort by</p>
-                    <img src={arrowDown} className="fas-icon" ref={btnRef}></img>
+                    <img src={arrowDown} className="fas-icon" ref={btnRef} alt=""></img>
                 </div>
                 <div className="fas-sort-content"  ref={sortRef}>
                     <div className="divider"></div>

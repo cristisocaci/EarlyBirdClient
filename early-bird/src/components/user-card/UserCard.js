@@ -1,10 +1,9 @@
 import "./UserCard.scss";
 import {useRef, useEffect} from "react";
-import Offers from "../offers/Offers";
 
 function UserCard(props){
     let avatarRef = useRef();
-    let dotRefs = useRef(new Array());
+    let dotRefs = useRef([]);
 
     function getUserId(){
         if(props.user == null) return;

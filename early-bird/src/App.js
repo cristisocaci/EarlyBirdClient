@@ -11,7 +11,7 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
 
-import { IsUserLoggedIn, GetRole } from "./services/AccountService";
+import { IsUserLoggedIn } from "./services/AccountService";
 
 import React from "react";
 import {

@@ -7,7 +7,6 @@ import {GetAllCategories } from "../../../services/CategoriesService.js";
 
 
 function FilterAndSort(props) {
-    const cities = ["Mojo", "Lubei"];
     const [query, setQuery] = useState({});
     const [categories, setCategories] = useState([]);
 
