@@ -8,7 +8,6 @@ import Reviews from "./reviews/Reviews";
 
 function UserProfile(){
     const [user, setUser] = useState(null);
-    const [reviews, setReviews] = useState([]);
     const [view, setView] = useState("");
     let {id} = useParams();
     
@@ -43,7 +42,9 @@ function UserProfile(){
                         />
                 </div>
                 <div className="user-profile__reviews">
-                    <Reviews></Reviews>
+                    <Reviews
+                        userId = {id}
+                    />
                 </div>
             </div>
         </div>
