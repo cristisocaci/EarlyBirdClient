@@ -5,6 +5,7 @@ import {GetRole, GetUserId} from "../../services/AccountService";
 
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import UserCard from "../user-card/UserCard";
 
 function Offers(){
     let {id} = useParams();
@@ -14,7 +15,6 @@ function Offers(){
     useEffect(async ()=>{
         let o = await GetOfferById(id);
         let roleAux = GetRole();
-
         if (roleAux === "publisher" && o.publisherId !== GetUserId())
             window.location.href = '/home'
         if (roleAux === "admin") roleAux = "worker";
@@ -35,6 +35,12 @@ function Offers(){
                     location = {offer.location}
                     role = {role}
                 />
+                <div className="center-user-card-offer">
+                    <UserCard 
+                        user = {offer.publisher}
+                        header = "About the publisher"
+                    />
+                </div>
             </div>
         </div>
     );

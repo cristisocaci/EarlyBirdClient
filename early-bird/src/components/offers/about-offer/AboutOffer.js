@@ -1,7 +1,6 @@
 import "./AboutOffer.scss";
 
 function AboutOffer(props){
-    console.log(props.role);
     function renderCategories(){
         if(props.categories==null) return;
         return props.categories.map((x,index) =>
