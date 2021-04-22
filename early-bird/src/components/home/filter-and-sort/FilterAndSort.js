@@ -21,9 +21,12 @@ function FilterAndSort(props) {
         props.setOffers(offers);
     }
 
-    useEffect(async ()=>{
-        let value = await GetAllCategories();
-        setCategories(value);
+    useEffect(()=>{
+        async function fetchData(){
+            let value = await GetAllCategories();
+            setCategories(value);
+        }
+        fetchData();
         }, [query])
 
 

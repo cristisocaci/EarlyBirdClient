@@ -12,20 +12,23 @@ function Offers(){
     const [role, setRole] = useState("")
     const [offer, setOffer] = useState({});
 
-    useEffect(async ()=>{
-        let o = await GetOfferById(id);
-        if(o == null){
-            window.location.href ="/404";
-            return;
-        }
-        let roleAux = GetRole();
-        if (roleAux === "publisher" && o.publisherId !== GetUserId())
-            window.location.href = '/home'
-        if (roleAux === "admin") roleAux = "worker";
-        o.categories = o.categories.map(x=>x.category)
+    useEffect(()=>{
+        async function fetchData(){
+            let o = await GetOfferById(id);
+            if(o == null){
+                window.location.href ="/404";
+                return;
+            }
+            let roleAux = GetRole();
+            if (roleAux === "publisher" && o.publisherId !== GetUserId())
+                window.location.href = '/home'
+            if (roleAux === "admin") roleAux = "worker";
+            o.categories = o.categories.map(x=>x.category)
 
-        setRole(roleAux)
-        setOffer(o);
+            setRole(roleAux)
+            setOffer(o);
+        }
+        fetchData();
     }, [id])
     return (
         <div className="center-offer">
