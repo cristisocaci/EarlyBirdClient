@@ -14,6 +14,10 @@ function Offers(){
 
     useEffect(async ()=>{
         let o = await GetOfferById(id);
+        if(o == null){
+            window.location.href ="/404";
+            return;
+        }
         let roleAux = GetRole();
         if (roleAux === "publisher" && o.publisherId !== GetUserId())
             window.location.href = '/home'
