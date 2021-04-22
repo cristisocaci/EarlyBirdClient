@@ -1,0 +1,53 @@
+.reviews{
+    &-inner{
+        max-height: 28em;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    &__title{
+        font-size: large;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+}
+
+
+.review-card{
+    margin: 2em 2em 2em 0.3em;
+    box-shadow: 0px 4px 10px 2px rgba(140, 140, 140, 0.25);
+    border-radius: 10px;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+
+    &__dots{
+
+        display: grid;
+        grid-template-rows: repeat(5, 1fr);
+        gap: 0.4em;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1em;
+
+        &__dot{
+            background: #C4C4C4;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+        }
+    }
+
+    &__rating{
+        font-size: xx-large;
+        font-weight: bold;
+        margin-right: 2rem;
+    }
+
+    &__text{
+        &__description{
+            font-weight: 500;
+            margin-bottom: 0.5em;
+        }
+    }
+}

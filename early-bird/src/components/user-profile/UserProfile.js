@@ -40,6 +40,17 @@ function UserProfile(){
                     <UserCard
                         user = {user}
                         />
+                    <div className="user-profile__buttons">
+                        {function(){
+                                return view === "viewer"
+                                ? <div className="w-100">
+                                    <button className="round bg-pink text-red btn-hover px-3 py-2 w-100">Contact this user</button>
+                                    <button className="round bg-red text-white btn-hover px-3 py-2 mt-3 w-100">Write a review</button>
+                                    </div>
+                                : <button className="round bg-red text-white btn-hover px-3 py-2">Edit profile</button>
+                            }()}
+
+                    </div>
                 </div>
                 <div className="user-profile__reviews">
                     <Reviews
