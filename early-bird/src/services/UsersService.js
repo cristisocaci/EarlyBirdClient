@@ -6,7 +6,7 @@ async function GetUserById(id) {
     let response = await axios.get(path, {
       headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")}
     });
-    return response;
+    return response.data;
   } catch  {
     console.log("Error");
   }
