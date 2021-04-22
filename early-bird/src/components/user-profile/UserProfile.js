@@ -24,14 +24,29 @@ function UserProfile(){
             if(loggedInUserId === id)
                 setView("owner");
             else{
-                if(loggedInUserRole === u.role)
+                if(loggedInUserRole === getRole(u.role)){
                     window.location.href="/404"
+                    return;
+                }
                 setView("viewer");
             }
             setUser(u);
         }
         fetchData();
     }, [id]);
+
+    function getRole(nb){
+        switch(nb){
+            case 1:
+                return "admin";
+            case 2:
+                return "worker";
+            case 3:
+                return "publisher";
+            default:
+                return "";
+        }
+    }
 
     return(
         <div className="user-profile--center">
