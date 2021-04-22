@@ -7,11 +7,11 @@ import UserCard from "../user-card/UserCard";
 import Reviews from "./reviews/Reviews";
 
 function UserProfile(){
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [view, setView] = useState("");
     let {id} = useParams();
-
+    
     useEffect(()=>{
         async function fetchData(){
             let u = await GetUserById(id);
@@ -35,14 +35,16 @@ function UserProfile(){
     }, [id]);
 
     return(
-        <div className="center-user-profile">
-            <div className="user-profile__card">
-                <UserCard
-                    user = {user}
-                    />
-            </div>
-            <div className="user-profile__reviews">
-                <Reviews></Reviews>
+        <div className="user-profile--center">
+            <div className="user-profile">
+                <div className="user-profile__card">
+                    <UserCard
+                        user = {user}
+                        />
+                </div>
+                <div className="user-profile__reviews">
+                    <Reviews></Reviews>
+                </div>
             </div>
         </div>
     );
