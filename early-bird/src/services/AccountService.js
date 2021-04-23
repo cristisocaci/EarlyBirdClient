@@ -7,7 +7,6 @@ async function Login(username, password) {
       username: username,
       password: password,
     });
-    console.log("cusescc");
     localStorage.setItem("jwt", response.data["token"]);
     return true; 
   } catch  {
@@ -24,9 +23,9 @@ async function Register(username, password, firstname, lastname, email, role) {
       password: password,
       firstname: firstname,
       lastname: lastname,
+      email: email,
       role: role
     });
-    console.log("cusescc");
     localStorage.setItem("jwt", response.data["token"]);
     return true; 
   } catch  {

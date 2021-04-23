@@ -41,38 +41,12 @@ $pale-red-color: #ff999e;
   max-width: 12em;
 }
 
-.radio-button {
+.register-role-option{
   display: flex;
+  justify-content: flex-start;
   align-items: flex-start;
-  
-
+  margin-top: 1em;
 }
 
-.radio-style{
-    display: block;
-    position: relative;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    input {
-        cursor:pointer;
-        position: absolute;
-        opacity: 0;
-        height: 0;
-        width: 0;
-    }
-    &:hover input ~ .check-mark{
-        background-color: $red-color;
-    } 
-}
-.check-mark{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2em;
-    width: 2em;
-    border: 2.5px solid $red-color;
-    border-radius: 50%;
-}
+
+
