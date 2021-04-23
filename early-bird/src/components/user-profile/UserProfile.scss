@@ -37,3 +37,35 @@
         width: 70%;
     }
 }
+
+@media only screen and(max-width: 850px) {
+    .user-profile{
+        flex-direction: column;
+        align-items: center;
+
+        &__card{
+            flex-direction: row;
+            width: max-content;
+            margin: 2em 0;
+        }
+        &__buttons{
+            margin-left: 2em;
+        }
+        &__reviews{
+            width: 100%;
+            padding-bottom: 2em;
+        }
+
+    }
+}
+
+@media only screen and(max-width: 550px) {
+    .user-profile{
+        &__card{
+            flex-direction: column;
+        }
+        &__buttons{
+            margin-left: 0em;
+        }
+    }
+}
