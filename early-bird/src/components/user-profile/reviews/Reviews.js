@@ -1,9 +1,11 @@
 import "./Reviews.scss";
 import {useState, useEffect} from "react";
 import {GetReviewsForUser} from "../../../services/ReviewsService";
+import Saly from "../../../illustrations/Saly-no-reviews.svg";
 
 function Reviews(props){
     const [reviews, setReviews] = useState(null);
+    const [useSaly, setUseSaly] = useState(false);
 
     function getRole(nb){
         switch(nb){
@@ -21,6 +23,8 @@ function Reviews(props){
     useEffect(()=>{
         async function fetchData(){
             let r = await GetReviewsForUser(props.userId);
+            if(r.length === 0)
+                setUseSaly(true);
             setReviews(r);
         }
         fetchData();
@@ -53,12 +57,22 @@ function Reviews(props){
     }
 
     return (
-        <div className="reviews">
-            <div className="reviews__title">User reviews:</div>
-            <div className="reviews-inner">
-                {renderReviews()}
+        function(){
+            return useSaly 
+            ? 
+            <div className="reviews__placeholder">
+                <img className="reviews__placeholder__img" src={Saly} alt=""></img>
             </div>
-        </div>
+            : 
+            <div className="reviews">
+                <div className="reviews__title">User reviews:</div>
+                <div className="reviews-inner">
+                    {renderReviews()}
+                </div>
+            </div>
+
+        }()
+
     );
 }
 

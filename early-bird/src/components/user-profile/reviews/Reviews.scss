@@ -4,6 +4,24 @@
         overflow-y: scroll;
         overflow-x: hidden;
     }
+
+    &__placeholder{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &__img{
+            max-width: 100%;
+            background: rgba(255, 165, 2, 0.5);
+
+        }
+        &__title{
+            font-size: large;
+            font-weight: bold;
+        }
+    }
+
     &__title{
         font-size: large;
         font-weight: bold;
@@ -59,8 +77,6 @@
         &__dots{
             display: flex;
             flex-direction: row-reverse;
-            // grid-template-columns: repeat(5, 1fr);
-            // grid-template-rows: auto;
             margin:0;
         }
         &__rating{
