@@ -54,7 +54,7 @@ function UserCard(props){
         }
     },[props.user])
     return (
-        <div className="user-card" onClick={()=>redirectTo("/user/"+getUserId())}>
+        <div className="user-card" onClick={()=>redirectTo("/users/"+getUserId())}>
             <div className="user-card__header">{props.header}</div>
             <div className="user-card__avatar" ref={avatarRef}>{renderInitials()}</div>
             <div className="user-card__name">{renderName()}</div>
