@@ -19,7 +19,7 @@ $pale-red-color: #ff999e;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
-  gap: 2em;
+  gap: 1em;
 }
 
 .register-page-logo {
@@ -48,5 +48,14 @@ $pale-red-color: #ff999e;
   margin-top: 1em;
 }
 
+.form-test{
+  max-width: 25em;
 
+}
+.register-text-title{
+  margin-bottom: 1em;
+}
+.form-test__label{
+  color:white !important;
+}
 

@@ -27,9 +27,13 @@ async function Register(username, password, firstname, lastname, email, role) {
       role: role
     });
     localStorage.setItem("jwt", response.data["token"]);
-    return true; 
-  } catch  {
-    return false;
+    return ['', true]; 
+  } catch (err) {
+    console.log(err, err.response);
+    if(err.response.status == 403)
+      return ['User already existing!', false];
+      
+    return ['', false];
   }
 }
 
