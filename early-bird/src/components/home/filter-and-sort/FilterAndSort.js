@@ -7,7 +7,6 @@ import {GetAllCategories } from "../../../services/CategoriesService.js";
 
 
 function FilterAndSort(props) {
-    const cities = ["Mojo", "Lubei"];
     const [query, setQuery] = useState({});
     const [categories, setCategories] = useState([]);
 
@@ -21,9 +20,12 @@ function FilterAndSort(props) {
         props.setOffers(offers);
     }
 
-    useEffect(async ()=>{
-        let value = await GetAllCategories();
-        setCategories(value);
+    useEffect(()=>{
+        async function fetchData(){
+            let value = await GetAllCategories();
+            setCategories(value);
+        }
+        fetchData();
         }, [query])
 
 

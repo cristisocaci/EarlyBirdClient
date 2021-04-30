@@ -1,10 +1,9 @@
 import "./UserCard.scss";
 import {useRef, useEffect} from "react";
-import Offers from "../offers/Offers";
 
 function UserCard(props){
     let avatarRef = useRef();
-    let dotRefs = useRef(new Array());
+    let dotRefs = useRef([]);
 
     function getUserId(){
         if(props.user == null) return;
@@ -55,7 +54,7 @@ function UserCard(props){
         }
     },[props.user])
     return (
-        <div className="user-card" onClick={()=>redirectTo("/user/"+getUserId())}>
+        <div className="user-card" onClick={()=>redirectTo("/users/"+getUserId())}>
             <div className="user-card__header">{props.header}</div>
             <div className="user-card__avatar" ref={avatarRef}>{renderInitials()}</div>
             <div className="user-card__name">{renderName()}</div>

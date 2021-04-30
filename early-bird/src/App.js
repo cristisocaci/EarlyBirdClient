@@ -4,13 +4,14 @@ import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
 import Offers from './components/offers/Offers';
+import UserProfile from './components/user-profile/UserProfile';
 
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
 
-import { IsUserLoggedIn, GetRole } from "./services/AccountService";
+import { IsUserLoggedIn } from "./services/AccountService";
 
 import React from "react";
 import {
@@ -57,6 +58,15 @@ function App() {
                 </div>
             )} />
 
+          <Route path="/users/:id" exact
+            render={() => (
+              !IsUserLoggedIn()
+                ? <Redirect to='/'></Redirect>
+                : <div>
+                  <Navbar page="main"></Navbar>
+                  <UserProfile></UserProfile>
+                </div>
+            )} /> 
 
           <Route path="/" exact
             render={() => (

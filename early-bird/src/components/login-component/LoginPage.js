@@ -62,7 +62,7 @@ function LoginPage() {
           {validCredentials()}
         </div>
         <div id="logo-div" className="d-none d-md-flex col-0 col-md-6">
-          <img className="logo" src={logo}></img>
+          <img className="logo" src={logo} alt=""></img>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import "./Home.scss";
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
-import {GetFirstName, GetRole, GetUserName} from "../../services/AccountService";
+import {GetFirstName, GetRole} from "../../services/AccountService";
 
 import {useState} from "react";
 
