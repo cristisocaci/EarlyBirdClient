@@ -14,7 +14,7 @@ const Test = () => {
     console.log(GetUserId());
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:5001/chat',{
+            .withUrl(sessionStorage.getItem("server") + '/chat',{
                 accessTokenFactory: () =>localStorage.getItem("jwt")
             })
             .withAutomaticReconnect()
@@ -47,7 +47,7 @@ const Test = () => {
         };
 
         try {
-            await  fetch('https://localhost:5001/api/chat/messages', { 
+            await  fetch(sessionStorage.getItem("server") + '/api/chat/messages', { 
                 method: 'POST', 
                 body: JSON.stringify(chatMessage),
                 headers: {
