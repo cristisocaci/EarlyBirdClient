@@ -123,7 +123,7 @@ function RegisterPage() {
       setUsernameError(message);
       setFlag(3);
     }
-    //if (isRegisteredSuccesfully) window.location.href = "/home";
+    if (isRegisteredSuccesfully) window.location.href = "/home";
   }
   return (
     <div className="center-register-page">
