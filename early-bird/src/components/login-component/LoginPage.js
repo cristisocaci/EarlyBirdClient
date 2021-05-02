@@ -11,7 +11,7 @@ function LoginPage() {
     let password = document.getElementById("password").value;
     let isLoggedIn = await Login(username, password);
     if(isLoggedIn)
-      window.location.href = "/main"
+      window.location.href = "/home"
     else
       setFail(true);
   }
@@ -61,8 +61,8 @@ function LoginPage() {
 
           {validCredentials()}
         </div>
-        <div id="login-logo-div" className="d-none d-md-flex col-0 col-md-6">
-          <img className="logo" src={logo}></img>
+        <div id="logo-div" className="d-none d-md-flex col-0 col-md-6">
+          <img className="logo" src={logo} alt=""></img>
         </div>
       </div>
     </div>

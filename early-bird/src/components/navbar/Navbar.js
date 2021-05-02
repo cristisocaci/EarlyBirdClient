@@ -2,9 +2,9 @@ import './Navbar.scss';
 
 function getContentLeft(page) {
     let content = [];
-    if (page == 'landing-page') {
-        content.push(<a className="text-bold text-black m-0 mr-4 " key="1">About</a>);
-        content.push(<a className="text-bold text-black m-0" key="2">Contact</a>);
+    if (page === 'landing-page') {
+        content.push(<a className="text-bold text-black m-0 mr-4 " key="1" href="/about">About</a>);
+        content.push(<a className="text-bold text-black m-0" key="2" href="/contact">Contact</a>);
     }
     return (
         <div id="links-left" className="col-md-4 col-0">
@@ -17,14 +17,15 @@ function redirectTo(page){
 }
 function logout(){
     localStorage.removeItem("jwt");
+    redirectTo('/');
 }
 function getContentRight(page) {
     let content = [];
-    if (page == 'landing-page') {
+    if (page === 'landing-page') {
         content.push(<button className="round bg-pink text-red text-bold text-small px-4 py-1 btn-hover" key="1" onClick={() => redirectTo('/login')}>Login</button>);
         content.push(<button id="signup" className="round bg-red text-white text-small px-3 py-1 btn-hover" key="2" onClick={() => redirectTo('/register')}>Sign up</button>);
     }
-    else if(page == 'main'){
+    else if(page === 'main'){
         content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1 btn-hover" key="1" onClick={() => logout()}>Log out</button>)
     }
     return (
