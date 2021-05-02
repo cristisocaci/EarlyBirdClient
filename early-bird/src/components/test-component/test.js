@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import {GetUserId} from '../../services/AccountService';
 
 import ChatWindow from './ChatWindow';
 import ChatInput from './ChatInput';
@@ -10,7 +11,7 @@ const Test = () => {
     const latestChat = useRef(null);
 
     latestChat.current = chat;
-
+    console.log(GetUserId());
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
             .withUrl('https://localhost:5001/chat',{
@@ -46,7 +47,7 @@ const Test = () => {
         };
 
         try {
-            await  fetch('https://localhost:5001/chat/messages', { 
+            await  fetch('https://localhost:5001/api/chat/messages', { 
                 method: 'POST', 
                 body: JSON.stringify(chatMessage),
                 headers: {
