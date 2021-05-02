@@ -11,6 +11,8 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
 
+import Test from './components/test-component/test';
+
 import { IsUserLoggedIn } from "./services/AccountService";
 
 import React from "react";
@@ -67,6 +69,8 @@ function App() {
                   <UserProfile></UserProfile>
                 </div>
             )} /> 
+
+          <Route path="/test" exact><Test /></Route>
 
           <Route path="/" exact
             render={() => (
