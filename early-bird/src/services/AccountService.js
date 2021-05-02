@@ -33,7 +33,7 @@ async function Register(username, password, firstname, lastname, email, role) {
     if(err.response.status == 403)
       return ['User already existing!', false];
       
-    return ['', false];
+    return ['Cannot be empty!', false];
   }
 }
 

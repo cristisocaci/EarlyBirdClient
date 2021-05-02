@@ -19,52 +19,77 @@ function RegisterPage() {
     false,
     false,
   ]);
-  const[usernameError, setUsernameError] = useState("Cannot be empty!")
+  let errorFlagsAux = [...errorFlags];
+  const [usernameError, setUsernameError] = useState("Cannot be empty!");
   function enterSubmit(event) {
     if (event.code === "Enter" || event.code === "NumpadEnter")
-      window.location.href = "/main";
+      register();
   }
-  function setFlag(index){
-    let flags = [...errorFlags];
-    flags[index] = true;
-    setErrorFlag(flags);
+  function setFlag(index) {
+    errorFlagsAux[index] = true;
+    setErrorFlag(errorFlagsAux);
+  }
+  function setFlags(indexList) {
+    indexList.forEach((index) => {
+      if (index !== null) errorFlagsAux[index] = true;
+    });
+    setErrorFlag(errorFlagsAux);
+    
   }
 
-  function resetFlags(){
-    let flags = [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ];
-    setErrorFlag(flags);
+  function resetFlags() {
+    errorFlagsAux = [false, false, false, false, false, false];
+    setErrorFlag(errorFlagsAux);
   }
-  function validateEmail(email){
-    if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      setFlag(3);
-      return false;
+
+  function validateFirstName(firstName) {
+    if (firstName == "") {
+      return 0;
     }
-    return true;
+    return null;
   }
+
+  function validateLastName(lastName) {
+    if (lastName == "") {
+      return 1;
+    }
+    return null;
+  }
+
+  
+  function validateEmail(email) {
+    if (!(email.includes(".com") && email.includes("@"))) {
+      return 2;
+    }
+    return null;
+  }
+
+  function validateUsername(userName){
+    if (userName == ""){
+      return 3;
+    }
+    return null;
+  }
+
   function validatePasswordFields(password, confirmPassword) {
-    if (password == ''){
-      setFlag(4)
-      return false;
+    if (password == "") {
+      return 4;
     }
     if (password != confirmPassword) {
-      setFlag(5)
-      return false;
+      return 5;
     }
-    return true;
+    return null;
   }
-  function validateAllFields(fields){
-    if(
-    validatePasswordFields(fields.password, fields.confirmPassword) &&
-    validateEmail(fields.email)
-    ) return true;
-    return false;
+  function validateAllFields(fields) {
+    let indexList = [
+      validateFirstName(fields.firstname),
+      validateLastName(fields.lastname),
+      validateEmail(fields.email),
+      validateUsername(fields.username),
+      validatePasswordFields(fields.password, fields.confirmPassword),
+    ];
+    setFlags(indexList);
+    return !indexList.some(x => Number.isInteger(x));
   }
   async function register() {
     resetFlags();
@@ -76,12 +101,16 @@ function RegisterPage() {
     let confirmPassword = document.getElementById("register-confirm-password")
       .value;
     let roleId = role === "worker" ? 2 : 3;
-    let success =  validateAllFields({
+    let success = validateAllFields({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      username: username,
       password: password,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
     });
-   
-    if(!success) return;
+
+    if (!success) return;
     let [message, isRegisteredSuccesfully] = await Register(
       username,
       password,
@@ -90,7 +119,7 @@ function RegisterPage() {
       email,
       roleId
     );
-    if (!isRegisteredSuccesfully && message !== ''){
+    if (!isRegisteredSuccesfully && message !== "") {
       setUsernameError(message);
       setFlag(3);
     }
@@ -103,7 +132,7 @@ function RegisterPage() {
           <h3 className="register-text-title text-bold">Register</h3>
           <div className="forms">
             <TextField
-              required 
+              required
               id="register-firstname"
               label="First Name"
               variant="outlined"
@@ -111,17 +140,19 @@ function RegisterPage() {
               onChange={(e) => setTextValue(e.target.value)}
               className="form-test"
               error={errorFlags[0]}
-              helperText={errorFlags[0] ? "Passwords must be the same!" : " "}
+              helperText={errorFlags[0] ? "Cannot be empty!" : " "}
+              onKeyPress={enterSubmit}
             />
 
             <TextField
-              required 
+              required
               id="register-lastname"
               label="Last Name"
               variant="outlined"
               className="form-test"
               error={errorFlags[1]}
               helperText={errorFlags[1] ? "Cannot be empty!" : " "}
+              onKeyPress={enterSubmit}
             />
 
             <TextField
@@ -131,7 +162,8 @@ function RegisterPage() {
               variant="outlined"
               className="form-test"
               error={errorFlags[2]}
-              helperText={errorFlags[2] ? "Cannot be empty!" : " "}
+              helperText={errorFlags[2] ? "Wrong email format!" : " "}
+              onKeyPress={enterSubmit}
             />
 
             <TextField
@@ -142,6 +174,7 @@ function RegisterPage() {
               className="form-test"
               error={errorFlags[3]}
               helperText={errorFlags[3] ? usernameError : " "}
+              onKeyPress={enterSubmit}
             />
 
             <TextField
@@ -153,6 +186,7 @@ function RegisterPage() {
               type="password"
               error={errorFlags[4]}
               helperText={errorFlags[4] ? "Cannot be empty!" : " "}
+              onKeyPress={enterSubmit}
             />
 
             <TextField
@@ -164,6 +198,7 @@ function RegisterPage() {
               variant="outlined"
               error={errorFlags[5]}
               helperText={errorFlags[5] ? "Passwords must be the same!" : " "}
+              onKeyPress={enterSubmit}
             />
           </div>
 
