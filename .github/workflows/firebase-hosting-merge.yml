@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm --prefix '/early-bird/' ci && npm --prefix '/early-bird/' run build
+      - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EARLY_BIRD_384DC }}'
           channelId: live
           projectId: early-bird-384dc
+          entryPoint: "./early-bird" 
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
