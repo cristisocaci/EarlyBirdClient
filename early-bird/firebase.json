@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "early-bird/build",
+    "public": "build",
     "site": "early-birds",
     "ignore": [
       "firebase.json",
