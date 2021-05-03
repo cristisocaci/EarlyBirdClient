@@ -8,6 +8,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import $ from 'jquery';
 import Popper from 'popper.js';
 
+if($==null);
+if(Popper == null);
+
 sessionStorage.setItem('server', 'https://early-bird-api.herokuapp.com') 
 
 ReactDOM.render(
