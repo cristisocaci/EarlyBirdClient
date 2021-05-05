@@ -15,6 +15,28 @@ async function Login(username, password) {
   }
 }
 
+async function Register(username, password, firstname, lastname, email, role) {
+  let path = sessionStorage.getItem("server") + "/api/Register";
+  try {
+    let response = await axios.post(path, {
+      username: username,
+      password: password,
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      role: role
+    });
+    localStorage.setItem("jwt", response.data["token"]);
+    return ['', true]; 
+  } catch (err) {
+    console.log(err, err.response);
+    if(err.response.status == 403)
+      return ['User already existing!', false];
+      
+    return ['Cannot be empty!', false];
+  }
+}
+
 function IsUserLoggedIn(){
   let jwt = localStorage.getItem("jwt");
   if(jwt === null)
@@ -59,4 +81,5 @@ function GetFirstName(){
 function DecodeJwt(){
   return jwt_decode(localStorage.getItem("jwt"));
 }
-export { Login, IsUserLoggedIn, GetRole, GetUserName,GetUserId, GetFirstName };
+
+export { Login, Register, IsUserLoggedIn, GetRole, GetUserName,GetUserId, GetFirstName };

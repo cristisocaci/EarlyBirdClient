@@ -29,12 +29,12 @@ function LoginPage() {
 
   return (
     <div className="center-login-page">
-      <div className="page-div row">
+      <div className="login-page-div row">
         <div id="right-text" className="mr-3 mr-sm-0 col-12 col-md-6">
-          <h1 id="title" className="mb-4">
+          <h1 id="login-title" className="mb-4">
             Welcome back!
           </h1>
-          <div className="first-form">
+          <div className="login-first-form">
             <p className="text-bold">Username</p>
             <input
               id="username"
@@ -43,7 +43,7 @@ function LoginPage() {
               onKeyPress={enterSubmit}
             ></input>
           </div>
-          <div className="first-form">
+          <div className="login-first-form">
             <p className="text-bold">Password</p>
             <input
               id="password"

@@ -8,6 +8,7 @@ import UserProfile from './components/user-profile/UserProfile';
 
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
+import RegisterPage from './components/register-component/RegisterPage';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
 
@@ -38,6 +39,17 @@ function App() {
                   <LoginPage></LoginPage>
                 </div>
             )} />
+            
+             <Route path="/register" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <Redirect to='/home'></Redirect>
+                : <div>
+                  <Navbar page="register-page"></Navbar>
+                  <RegisterPage></RegisterPage>
+                </div>
+            )} />
+
 
 
           <Route path="/home" exact
