@@ -30,7 +30,7 @@ async function Register(username, password, firstname, lastname, email, role) {
     return ['', true]; 
   } catch (err) {
     console.log(err, err.response);
-    if(err.response.status == 403)
+    if(err.response.status === 403)
       return ['User already existing!', false];
       
     return ['Cannot be empty!', false];
