@@ -241,7 +241,7 @@ function RegisterPage() {
           </button>
         </div>
         <div id="register-logo-div" className="d-none d-md-flex col-0 col-md-4">
-          <img className="register-page-logo" src={logo}></img>
+          <img className="register-page-logo" src={logo} alt=""></img>
         </div>
       </div>
     </div>
