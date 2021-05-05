@@ -43,14 +43,14 @@ function RegisterPage() {
   }
 
   function validateFirstName(firstName) {
-    if (firstName == "") {
+    if (firstName === "") {
       return 0;
     }
     return null;
   }
 
   function validateLastName(lastName) {
-    if (lastName == "") {
+    if (lastName === "") {
       return 1;
     }
     return null;
@@ -65,17 +65,17 @@ function RegisterPage() {
   }
 
   function validateUsername(userName){
-    if (userName == ""){
+    if (userName === ""){
       return 3;
     }
     return null;
   }
 
   function validatePasswordFields(password, confirmPassword) {
-    if (password == "") {
+    if (password === "") {
       return 4;
     }
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       return 5;
     }
     return null;
