@@ -7,6 +7,7 @@ import {useState} from "react";
 
 function Home(){
     const [offers, setOffers] = useState([]);
+    if(offers == null);
     let name = GetFirstName();
     let role = GetRole();
     if (role === "admin") role = "worker";
