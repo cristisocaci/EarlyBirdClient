@@ -1,9 +1,11 @@
 import './LandingPage.scss';
 import logo from '../../illustrations/Saly-landing-page.svg';
+import {useHistory} from 'react-router-dom';
 
 function LandingPage() {
+    const history = useHistory();
     function redirectTo(page){
-        window.location.href = page;
+        history.push(page);
     }
     return (
         <div id="center-lp">
