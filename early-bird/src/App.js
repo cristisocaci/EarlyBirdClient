@@ -2,11 +2,11 @@ import './App.scss';
 import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
+import Home from './components/home/Home';
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
-import Home from './components/home/Home';
 
 
 import React from "react";
@@ -33,6 +33,7 @@ function App() {
           <Route path="/" exact>
             <Navbar page="landing-page"></Navbar>
             <LandingPage></LandingPage>
+            <div id="HowItWorks"></div>
             <HowItWorks></HowItWorks>
             <KeyFeatures></KeyFeatures>
             <CallToAction></CallToAction>

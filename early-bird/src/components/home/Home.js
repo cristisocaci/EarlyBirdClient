@@ -3,73 +3,80 @@ import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
 import DisplayOffers from "./display-offers/DisplayOffers";
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 function Home(){
     const [offers, setOffers] = useState([]);
-    let data = [
-        {
-            title: "Mow the lawn",
-            publisher: {
-                firstName: "Flaviu",
-                lastName: "Raita"
+    useEffect(() => {
+        let data = [
+            {
+                title: "Mow the lawn",
+                publisher: {
+                    firstName: "Flaviu",
+                    lastName: "Raita"
+                },
+                cost: 500,
+                categories: ["Outdoor", "Easy Money"]
             },
-            cost: 500,
-            categories: ["Outdoor", "Easy Money"]
-        },
-        {
-            title: "Mow the lawn",
-            publisher: {
-                firstName: "Flaviu",
-                lastName: "Raita"
+            {
+                title: "Mow the lawn",
+                publisher: {
+                    firstName: "Flaviu",
+                    lastName: "Raita"
+                },
+                cost: 500,
+                categories: ["Outdoor", "Easy Money"]
             },
-            cost: 500,
-            categories: ["Outdoor", "Easy Money"]
-        },
-        {
-            title: "Mow the lawn",
-            publisher: {
-                firstName: "Flaviu",
-                lastName: "Raita"
+            {
+                title: "Mow the lawn",
+                publisher: {
+                    firstName: "Flaviu",
+                    lastName: "Raita"
+                },
+                cost: 500,
+                categories: ["Outdoor", "Easy Money"]
             },
-            cost: 500,
-            categories: ["Outdoor", "Easy Money"]
-        },
-        {
-            title: "Mow the lawn",
-            publisher: {
-                firstName: "Flaviu",
-                lastName: "Raita"
+            {
+                title: "Mow the lawn",
+                publisher: {
+                    firstName: "Flaviu",
+                    lastName: "Raita"
+                },
+                cost: 500,
+                categories: ["Outdoor", "Easy Money"]
             },
-            cost: 500,
-            categories: ["Outdoor", "Easy Money"]
-        },
-        {
-            title: "Mow the lawn",
-            publisher: {
-                firstName: "Flaviu",
-                lastName: "Raita"
+            {
+                title: "Mow the lawn",
+                publisher: {
+                    firstName: "Flaviu",
+                    lastName: "Raita"
+                },
+                cost: 500,
+                categories: ["Outdoor", "Easy Money"]
             },
-            cost: 500,
-            categories: ["Outdoor", "Easy Money"]
-        },
-        {
-            title: "Mow the lawn",
-            publisher: {
-                firstName: "Flaviu",
-                lastName: "Raita"
-            },
-            cost: 500,
-            categories: ["Outdoor", "Easy Money"]
-        }
-    ]
+            {
+                title: "Mow the lawn",
+                publisher: {
+                    firstName: "Flaviu",
+                    lastName: "Raita"
+                },
+                cost: 500,
+                categories: ["Outdoor", "Easy Money"]
+            }
+        ]
+        setOffers(data);
+    }, [])
+
+
+    
 
     return(
-        <div onLoad={() => setOffers(data)}>
-            <Hello name="Cristian" role="worker"></Hello>
-            <FilterAndSort setOffers={setOffers}></FilterAndSort>
-            <DisplayOffers offers={offers} onLoad={() => setOffers(data)}></DisplayOffers>
-            <button onClick={() => setOffers(data)}>Set Offers</button>
+        <div className="home-center">
+            <div className="home-top">
+                <Hello name="Cristian" role="worker"></Hello>
+                <FilterAndSort setOffers={setOffers}></FilterAndSort>
+            </div>
+            <DisplayOffers offers={offers} ></DisplayOffers>
         </div>
     );
 }

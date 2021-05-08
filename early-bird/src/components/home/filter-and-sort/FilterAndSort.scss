@@ -1,8 +1,16 @@
 $red-color: #FB3640;
 $pink-color:#FFEEEF;
 
+.fas{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.fas-filter{
+    width: 50%;  
+}
 .fas-input{
-    max-width:19em;
+    max-width:26em;
     margin-top: 0.5em;
     border-color: $pink-color;
 }
@@ -10,26 +18,55 @@ $pink-color:#FFEEEF;
     border: solid 0.1875rem $pink-color;
 }
 
-.fas-dropdown{
-    max-width:9.5em;
+.dropdowns{
+    margin-top: 1em;
+    max-width: 26em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:2em;
+}
+.pos-relative{
+    width: 100%;
+    position: relative;
+}
+.fas-button{
+    margin-top: 0.45em;
 }
 
-.Dropdown-control.fas-dropdown-control{
-    border-color: $red-color;
-    color: $red-color;
-    font-weight: bold;
+
+@media only screen and (max-width:1600px) {
+    .fas-filter{
+        width: 65%;  
+    }
 }
-.fas-arrow-closed{
-    border-color: $red-color transparent transparent;
-    border-top-color: $red-color;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
+@media only screen and (max-width:1250px) {
+    .fas-filter{
+        width: 75%;  
+    }
 }
-.fas-arrow-open{
-    border-color: transparent transparent $red-color;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: $red-color;
-    border-left-color: transparent;
+
+@media only screen and (max-width:1068px) {
+    .fas{
+        flex-direction: column;
+        align-items: flex-end;  
+    }
+    .fas-button{
+        margin-top: 3.1em;
+    }
+    .fas-filter{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .fas-search{
+        width: 100%;
+    }
+    .dropdowns{
+        width: 100%;
+    }
+    .fas-search{
+        display: flex;
+        justify-content: flex-end;
+    }
 }

@@ -14,8 +14,8 @@ function Card(props){
                     <span>{ props.publisher.lastName }</span>
                 </div>
                 {
-                    props.categories.map(category => (
-                        <span className="categories bg-red round text-white px-2 py-1 m-1">{category}</span>
+                    props.categories.map((category, index) => (
+                        <span className="categories bg-red round text-white px-2 py-1 m-1" key={index}>{category}</span>
                     ))
                 }
             </div>

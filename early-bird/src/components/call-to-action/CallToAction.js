@@ -2,10 +2,13 @@ import "./CallToAction.scss";
 import check from "../../illustrations/check.svg";
 
 function CallToAction(){
+    function redirectTo(page){
+        window.location.href = page;
+    }
     return(
         <div className="center-call-to-action bg-red">
             <h2 className="text-white">Earn more with your time</h2>
-            <button className="bg-white text-red text-bold round cta-join-btn">Join now</button>
+            <button className="bg-white text-red text-bold round cta-join-btn btn-hover-inset" onClick={() => redirectTo('/register')}>Join now</button>
             <div className="checks">
                 <div className="check">
                     <img src={check} className="cta-icon"></img>
