@@ -8,26 +8,17 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function NewOffer() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
+export default function NewOffer(props) {
+  const dialogRef = React.useRef(null);
   const handleClose = () => {
-    setOpen(false);
+    props.setOpen(false);
   };
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog className="dialog-test" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+      <Dialog ref={dialogRef} open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle ref={dialogRef} id="form-dialog-title">Subscribe</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText ref={dialogRef}>
             To subscribe to this website, please enter your email address here. We will send updates
             occasionally.
           </DialogContentText>
@@ -49,6 +40,5 @@ export default function NewOffer() {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
   );
 }
