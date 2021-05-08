@@ -2,16 +2,17 @@ import "./LoginPage.scss";
 import logo from "../../illustrations/Saly-login-page.svg";
 import { Login } from "../../services/AccountService.js";
 import { useState } from "react";
+import {useHistory} from 'react-router-dom';
 
 function LoginPage() {
   const [fail, setFail] = useState(false);
-
+  const history = useHistory();
   async function login() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     let isLoggedIn = await Login(username, password);
     if(isLoggedIn)
-      window.location.href = "/home"
+      history.push("/home");
     else
       setFail(true);
   }

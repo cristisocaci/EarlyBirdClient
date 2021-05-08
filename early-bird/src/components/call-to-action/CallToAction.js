@@ -1,9 +1,11 @@
 import "./CallToAction.scss";
 import check from "../../illustrations/check.svg";
+import {useHistory} from 'react-router-dom';
 
 function CallToAction(){
+    const history = useHistory();
     function redirectTo(page){
-        window.location.href = page;
+        history.push(page);
     }
     return(
         <div className="center-call-to-action bg-red">
