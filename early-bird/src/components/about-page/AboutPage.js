@@ -10,12 +10,6 @@ function AboutPage() {
   
 
     <h1 className="subtitle">Meet the <span className="text-red">team</span>🔥</h1>
-
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" 
-    data-vanity="andrei-popica" data-version="v1">
-    <a className="badge-base__link LI-simple-link" href="https://ro.linkedin.com/in/andrei-popica?trk=profile-badge">Andrei Popica</a></div>
-
     </div>
     )
   
