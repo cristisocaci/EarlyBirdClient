@@ -16,23 +16,18 @@ import { useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
 
 export default function NewOffer(props) {
-  const [category, setCategory] = useState({});
+  const [category, setCategory] = useState(null);
   useEffect(() => {
     async function fetchData() {
-      let o = await GetAllCategories();
-      if (o == null) {
-        window.location.href = "/404";
-        return;
-      }
-      setCategory(o);
-      console.log(o);
+      let c = await GetAllCategories();
+      setCategory(c);
     }
     fetchData();
-  });
+  }, []);
 
   function renderCategories() {
-    if (props.categories == null) return;
-    return props.categories.map((x, index) => (
+    if (category == null) return;
+    return category.map((x, index) => (
       <span key={index} className="bg-red text-white category-pill">
         {x.name}
       </span>
@@ -104,7 +99,7 @@ export default function NewOffer(props) {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <div className="new-offer-categories">{category.name}</div>
+          <div className="new-offer-categories">{renderCategories()}</div>
         </div>
       </DialogContent>
       <DialogActions>
