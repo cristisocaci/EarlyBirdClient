@@ -1,0 +1,24 @@
+.new-offer-top-forms{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+}
+
+.new-offer-bottom-forms{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+#new-offer-description{
+    width: 25em;
+    height: 4em;
+}
+.new-offer-dialog{
+    width: 100%;
+}
+.new-offer-content{
+    width: 100%;
+}
