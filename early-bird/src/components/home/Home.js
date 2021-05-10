@@ -17,14 +17,12 @@ function Home(){
         if (role === "publisher") 
             GetAllOffers({filterByCurrentUser: true}, null).then(result => {
                 setOffers(result);
-                console.log(result);
             })
         else
             GetAllOffers({filterByCurrentUser: false}).then(result => {
                 setOffers(result);
-                console.log(result);
             })
-    }, [])
+    }, [role])
 
     return(
         <div className="home-center">
