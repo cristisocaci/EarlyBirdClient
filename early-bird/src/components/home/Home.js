@@ -1,86 +1,31 @@
 import "./Home.scss";
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
-<<<<<<< HEAD
 import DisplayOffers from "./display-offers/DisplayOffers";
-=======
 import {GetFirstName, GetRole} from "../../services/AccountService";
->>>>>>> 84751e077cb055014de814173896aded1b8cc279
+import {GetAllOffers} from "../../services/OffersService"
 
 import {useState, useEffect} from "react";
 
 function Home(){
     const [offers, setOffers] = useState([]);
-<<<<<<< HEAD
-    useEffect(() => {
-        let data = [
-            {
-                title: "Mow the lawn",
-                publisher: {
-                    firstName: "Flaviu",
-                    lastName: "Raita"
-                },
-                cost: 500,
-                categories: ["Outdoor", "Easy Money"]
-            },
-            {
-                title: "Mow the lawn",
-                publisher: {
-                    firstName: "Flaviu",
-                    lastName: "Raita"
-                },
-                cost: 500,
-                categories: ["Outdoor", "Easy Money"]
-            },
-            {
-                title: "Mow the lawn",
-                publisher: {
-                    firstName: "Flaviu",
-                    lastName: "Raita"
-                },
-                cost: 500,
-                categories: ["Outdoor", "Easy Money"]
-            },
-            {
-                title: "Mow the lawn",
-                publisher: {
-                    firstName: "Flaviu",
-                    lastName: "Raita"
-                },
-                cost: 500,
-                categories: ["Outdoor", "Easy Money"]
-            },
-            {
-                title: "Mow the lawn",
-                publisher: {
-                    firstName: "Flaviu",
-                    lastName: "Raita"
-                },
-                cost: 500,
-                categories: ["Outdoor", "Easy Money"]
-            },
-            {
-                title: "Mow the lawn",
-                publisher: {
-                    firstName: "Flaviu",
-                    lastName: "Raita"
-                },
-                cost: 500,
-                categories: ["Outdoor", "Easy Money"]
-            }
-        ]
-        setOffers(data);
-    }, [])
-
-
-    
-
-=======
-    if(offers == null);
     let name = GetFirstName();
     let role = GetRole();
     if (role === "admin") role = "worker";
->>>>>>> 84751e077cb055014de814173896aded1b8cc279
+
+    useEffect(() => {
+        if (role === "publisher") 
+            GetAllOffers({filterByCurrentUser: true}, null).then(result => {
+                setOffers(result);
+                console.log(result);
+            })
+        else
+            GetAllOffers({filterByCurrentUser: false}).then(result => {
+                setOffers(result);
+                console.log(result);
+            })
+    }, [])
+
     return(
         <div className="home-center">
             <div className="home-top">

@@ -8,6 +8,7 @@ function DisplayOffers(props){
             {props.offers ? props.offers.map ((card, index) => (
                 <Card 
                     className="card-element"
+                    offerId={card.id}
                     title={card.title}
                     cost={card.cost}
                     publisher={card.publisher}

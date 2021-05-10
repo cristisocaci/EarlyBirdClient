@@ -3,12 +3,8 @@ import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
-<<<<<<< HEAD
-=======
 import Offers from './components/offers/Offers';
 import UserProfile from './components/user-profile/UserProfile';
-
->>>>>>> 84751e077cb055014de814173896aded1b8cc279
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
@@ -108,11 +104,6 @@ function App() {
         </Switch>
       </Router>
     </div>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 84751e077cb055014de814173896aded1b8cc279
   );
 }
 

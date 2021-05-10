@@ -1,8 +1,12 @@
 import "./Card.scss";
-
+import {useHistory} from 'react-router-dom';
 function Card(props){
+    const history = useHistory();
+    function redirectTo(page){
+        history.push(page);
+    }
     return(
-        <div className="card-element">
+        <div className="card-element" onClick={() => redirectTo(`/offers/${props.offerId}`)}>
             <div className="card-upper">
                 <div className="title">{ props.title }</div>
                 <div className="cost">{ props.cost } $</div>
@@ -10,12 +14,12 @@ function Card(props){
 
             <div className="card-lower">
                 <div className="publisher">
-                    <span>{ props.publisher.firstName } </span>
-                    <span>{ props.publisher.lastName }</span>
+                    <span>{ props.publisher.firstname } </span>
+                    <span>{ props.publisher.lastname }</span>
                 </div>
                 {
                     props.categories.map((category, index) => (
-                        <span className="categories bg-red round text-white px-2 py-1 m-1" key={index}>{category}</span>
+                        <span className="categories bg-red round text-white px-2 py-1 m-1" key={index}>{category.category.name}</span>
                     ))
                 }
             </div>
