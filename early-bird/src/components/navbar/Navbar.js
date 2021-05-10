@@ -44,7 +44,7 @@ function Navbar(props) {
         <div id="navbar">
             <div id="center-nav" className="row my-3">
                 {getContentLeft(props.page)}
-                <h3 id="title-center" className="col-md-4 col-6 text-bold">Early Bird</h3>
+                <h3 id="title-center" className="col-md-4 col-6 text-bold" onClick={() => redirectTo('/home')}>Early Bird</h3>
                 {getContentRight(props.page)}
             </div>
         </div>
