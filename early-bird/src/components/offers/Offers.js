@@ -20,8 +20,10 @@ function Offers() {
         return;
       }
       let roleAux = GetRole();
-      if (roleAux === "publisher" && o.publisherId !== GetUserId())
+      if (roleAux === "publisher" && o.publisherId !== GetUserId()) {
         history.push("/home");
+        return;
+      }
       if (roleAux === "admin") roleAux = "worker";
       o.categories = o.categories.map((x) => x.category);
 
@@ -29,7 +31,7 @@ function Offers() {
       setOffer(o);
     }
     fetchData();
-  }, [id]);
+  }, [id, history]);
   return (
     <div className="center-offer">
       <div className="offer">

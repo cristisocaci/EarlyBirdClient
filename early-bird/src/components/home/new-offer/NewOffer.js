@@ -14,10 +14,11 @@ import DateFnsUtils from "@date-io/date-fns";
 import "date-fns";
 import { useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
-import { lime, red } from "@material-ui/core/colors";
+import { red } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 export default function NewOffer(props) {
+  
   const [category, setCategory] = useState(null);
   const [selectedDate, setSelectedDate] = React.useState(
     Date().toLocaleString()
