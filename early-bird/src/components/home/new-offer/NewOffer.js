@@ -14,9 +14,15 @@ import DateFnsUtils from "@date-io/date-fns";
 import "date-fns";
 import { useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
+import { lime, red } from "@material-ui/core/colors";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 export default function NewOffer(props) {
   const [category, setCategory] = useState(null);
+  const [selectedDate, setSelectedDate] = React.useState(
+    Date().toLocaleString()
+  );
+  const dialogRef = React.useRef(null);
   useEffect(() => {
     async function fetchData() {
       let c = await GetAllCategories();
@@ -28,16 +34,12 @@ export default function NewOffer(props) {
   function renderCategories() {
     if (category == null) return;
     return category.map((x, index) => (
-      <span key={index} className="bg-red text-white category-pill">
+      <span key={index} className="bg-red text-white text-bold category-pill">
         {x.name}
       </span>
     ));
   }
 
-  const [selectedDate, setSelectedDate] = React.useState(
-    Date().toLocaleString()
-  );
-  const dialogRef = React.useRef(null);
   const handleClose = () => {
     props.setOpen(false);
   };
@@ -45,6 +47,12 @@ export default function NewOffer(props) {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  const defaultMaterialTheme = createMuiTheme({
+    palette: {
+      primary: red,
+    },
+  });
 
   return (
     <Dialog
@@ -55,51 +63,68 @@ export default function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
-        Publish a new offer
+        <h1>Publish a new offer</h1>
       </DialogTitle>
       <DialogContent className="new-offer-content">
         <div className="new-offer-top-forms">
-          <TextField
-            id="new-offer-title"
-            variant="outlined"
-            className="new-offer-form"
-          />
-          <TextField
-            id="new-offer-description"
-            label="Description"
-            variant="outlined"
-            className="new-offer-description-form"
-          />
+          <div className="new-offer-form-container">
+            <div className="new-offer-label text-bold">Title:</div>
+            <TextField
+              id="new-offer-title"
+              variant="outlined"
+              className="new-offer-form"
+            />
+          </div>
+          <div className="new-offer-form-container">
+            <div className="new-offer-label text-bold">Description:</div>
+            <TextField
+              id="new-offer-description"
+              variant="outlined"
+              className="new-offer-description-form"
+            />
+          </div>
         </div>
         <div className="new-offer-bottom-part">
           <div className="new-offer-bottom-forms">
-            <TextField
-              id="new-offer-prerequisites"
-              label="Prerequisites"
-              variant="outlined"
-              className="new-offer-form"
-            />
-            <TextField
-              id="new-offer-location"
-              label="Location"
-              variant="outlined"
-              className="new-offer-form"
-            />
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
+            <div className="new-offer-form-container">
+              <div className="new-offer-label text-bold">Prerequisites:</div>
+              <TextField
+                id="new-offer-prerequisites"
                 variant="outlined"
-                format="dd/MM/yyyy"
-                id="date-picker-inline"
-                label="Deadline"
-                value={selectedDate}
-                onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
+                className="new-offer-form"
               />
-            </MuiPickersUtilsProvider>
+            </div>
+            <div className="new-offer-form-container">
+              <div className="new-offer-label text-bold">Location:</div>
+              <TextField
+                id="new-offer-location"
+                variant="outlined"
+                className="new-offer-form"
+              />
+            </div>
+            <div className="new-offer-form-container">
+              <ThemeProvider theme={defaultMaterialTheme}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <div className="new-offer-category-label text-bold">Deadline:</div>
+                  <KeyboardDatePicker
+                    variant="outlined"
+                    format="dd/MM/yyyy"
+                    id="date-picker-inline"
+                    className="calendar"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </ThemeProvider>
+            </div>
           </div>
-          <div className="new-offer-categories">{renderCategories()}</div>
+          <div className="new-offer-categories-container">
+            <div className="new-offer-category-label text-bold">Category:</div>
+            <div className="new-offer-categories">{renderCategories()}</div>
+          </div>
         </div>
       </DialogContent>
       <DialogActions>
