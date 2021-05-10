@@ -2,9 +2,11 @@ import "./Card.scss";
 import {useHistory} from 'react-router-dom';
 function Card(props){
     const history = useHistory();
+
     function redirectTo(page){
         history.push(page);
     }
+    
     return(
         <div className="card-element" onClick={() => redirectTo(`/offers/${props.offerId}`)}>
             <div className="card-upper">
