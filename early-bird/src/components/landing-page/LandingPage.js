@@ -1,9 +1,11 @@
 import './LandingPage.scss';
 import logo from '../../illustrations/Saly-landing-page.svg';
+import {useHistory} from 'react-router-dom';
 
 function LandingPage() {
+    const history = useHistory();
     function redirectTo(page){
-        window.location.href = page;
+        history.push(page);
     }
     return (
         <div id="center-lp">
@@ -19,7 +21,7 @@ function LandingPage() {
                 </div>
             </div>
             <div id="logo-div" className="d-none d-md-flex justify-content-center align-items-center">
-                <img className="logo" src={logo}></img>
+                <img className="logo" src={logo} alt=""></img>
             </div>
         </div>
         </div>

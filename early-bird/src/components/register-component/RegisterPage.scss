@@ -1,0 +1,61 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+$pale-red-color: #ff999e;
+
+.center-register-page {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#forms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1em;
+}
+
+.register-page-logo {
+  width: 100%;
+}
+
+#register-logo-div {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.register-page-div {
+  width: 80%;
+}
+
+.register-button {
+  margin-top: 2.8em;
+  padding: 0.7em 3em;
+  max-width: 12em;
+}
+
+.register-role-option{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 1em;
+}
+
+.form-test{
+  max-width: 25em;
+
+}
+.register-text-title{
+  margin-bottom: 1em;
+}
+.form-test__label{
+  color:white !important;
+}
+

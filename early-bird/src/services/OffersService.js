@@ -1,7 +1,8 @@
 import axios from "axios";
 
 async function GetAllOffers(queryParams, offerStatus = 1) {
-    queryParams.offerStatus = offerStatus;
+    if(offerStatus !== null)
+        queryParams.offerStatus = offerStatus;
     let path = sessionStorage.getItem("server") + "/api/offers";
     try {
         let response = await axios.get(path, {
@@ -14,4 +15,16 @@ async function GetAllOffers(queryParams, offerStatus = 1) {
     }
 }
 
-export { GetAllOffers };
+async function GetOfferById(id){
+    let path = sessionStorage.getItem("server") + "/api/offers/" + id;
+    try {
+        let response = await axios.get(path, {
+            headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")},
+        });
+        return response.data;
+    } catch {
+        console.log("Error");
+    }
+}
+
+export { GetAllOffers, GetOfferById };

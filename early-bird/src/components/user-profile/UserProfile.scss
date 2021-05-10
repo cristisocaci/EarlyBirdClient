@@ -1,0 +1,71 @@
+.user-profile{
+    width: 80%;
+    display: flex;
+    height: 100%;
+
+    &--center{
+        width: 100%;
+        height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__card{
+        width:45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__reviews{
+        width: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__buttons{
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        width: 13em;
+    }
+}
+
+@media only screen and(min-width: 1120px) {
+    .user-profile{
+        width: 70%;
+    }
+}
+
+@media only screen and(max-width: 850px) {
+    .user-profile{
+        flex-direction: column;
+        align-items: center;
+
+        &__card{
+            flex-direction: row;
+            width: max-content;
+            margin: 2em 0;
+        }
+        &__buttons{
+            margin-left: 2em;
+        }
+        &__reviews{
+            width: 100%;
+            padding-bottom: 2em;
+        }
+
+    }
+}
+
+@media only screen and(max-width: 550px) {
+    .user-profile{
+        &__card{
+            flex-direction: column;
+        }
+        &__buttons{
+            margin-left: 0em;
+        }
+    }
+}

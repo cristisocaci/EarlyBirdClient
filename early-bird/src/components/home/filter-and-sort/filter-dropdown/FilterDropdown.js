@@ -6,7 +6,7 @@ function FilterDropdown(props) {
     let filterPressed = false;
     const filterRef = useRef();
     const btnRef = useRef();
-    const catRefs = useRef(new Array());
+    const catRefs = useRef([]);
 
     const [catPressed, setCatPressed] = useState([]);
 
@@ -75,7 +75,7 @@ function FilterDropdown(props) {
         <div className="fas-filter-dropdown" onClick={toggle}>
             <div className="fas-dropdown-display">
                 <p className="m-0" >Filter by</p>
-                <img src={arrowDown} className="fas-icon" ref={btnRef}></img>
+                <img src={arrowDown} className="fas-icon" ref={btnRef} alt=""></img>
             </div>
             <div className="fas-filter-content" ref={filterRef}>
                 <div className="divider"></div>

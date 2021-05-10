@@ -4,7 +4,8 @@ function GetText(role){
             return "Here are your offers";
         case "worker":
             return "Here are today’s offers";
-
+        default:
+            return "";
     }
 }
 function Hello(props){

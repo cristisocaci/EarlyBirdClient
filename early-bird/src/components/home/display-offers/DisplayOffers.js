@@ -15,7 +15,7 @@ function DisplayOffers(props){
                     categories={card.categories}
                     key={index}
                 />
-            )) : <div>Nemszobot</div>}
+            )) : <div></div>}
         </div>
     );
 }
