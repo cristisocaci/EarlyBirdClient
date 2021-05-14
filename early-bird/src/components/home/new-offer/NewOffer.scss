@@ -6,7 +6,10 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
-
+    width: 100%;
+}
+.new-offer-title-form{
+    max-width: 35em;
 }
 
 .new-offer-bottom-part{
@@ -19,6 +22,11 @@
     flex-direction: column;
     gap: 2em;
     margin-top: 2em;
+    width: 100%;
+}
+.new-offer-title-container{
+    max-width: 27em;
+    width: 100%;
 }
 
 .new-offer-categories-container{
@@ -26,23 +34,41 @@
     flex-direction: column;
     gap: 0.25em;
     margin-top: 1.75em;
+    width: 100%;
 }
 
 .new-offer-categories{
     display: grid;
-    grid-template-columns: auto auto auto;
-    column-gap: 15px;
-    row-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(7em, 8em));
+    gap: 1em;
     cursor: pointer;
 }
-
-#new-offer-description{
-    width: 25em;
-    height: 4em;
+.new-offer-description-container{
+    max-width: 55em;
+    #new-offer-description{
+        height: 4em;
+    }
 }
+
 .new-offer-dialog{
     width: 100%;
 }
 .new-offer-content{
     width: 100%;
+}
+
+.new-offer-category-pill{
+    white-space: nowrap;
+    border-radius: 2em;
+    padding: 0.3em 1em;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 666px){
+    .new-offer-bottom-part{
+        flex-direction: column;
+    }
 }

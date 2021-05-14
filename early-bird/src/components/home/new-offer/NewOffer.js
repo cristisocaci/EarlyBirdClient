@@ -35,7 +35,7 @@ export default function NewOffer(props) {
   function renderCategories() {
     if (category == null) return;
     return category.map((x, index) => (
-      <span key={index} className="bg-red text-white text-bold category-pill">
+      <span key={index} className="new-offer-category-pill text-bold bg-red text-white">
         {x.name}
       </span>
     ));
@@ -57,6 +57,8 @@ export default function NewOffer(props) {
 
   return (
     <Dialog
+      fullWidth
+      maxWidth="md"
       className="new-offer-dialog"
       ref={dialogRef}
       open={props.open}
@@ -64,24 +66,26 @@ export default function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
-        <h1>Publish a new offer</h1>
+        <span className="text-bold">Publish a new offer</span>
       </DialogTitle>
       <DialogContent className="new-offer-content">
         <div className="new-offer-top-forms">
-          <div className="new-offer-form-container">
+          <div className="new-offer-title-container">
             <div className="new-offer-label text-bold">Title:</div>
             <TextField
               id="new-offer-title"
               variant="outlined"
-              className="new-offer-form"
+              className="new-offer-title-form"
+              fullWidth
             />
           </div>
-          <div className="new-offer-form-container">
+          <div className="new-offer-description-container">
             <div className="new-offer-label text-bold">Description:</div>
             <TextField
               id="new-offer-description"
               variant="outlined"
               className="new-offer-description-form"
+              fullWidth
             />
           </div>
         </div>
@@ -93,6 +97,7 @@ export default function NewOffer(props) {
                 id="new-offer-prerequisites"
                 variant="outlined"
                 className="new-offer-form"
+                fullWidth
               />
             </div>
             <div className="new-offer-form-container">
@@ -101,6 +106,7 @@ export default function NewOffer(props) {
                 id="new-offer-location"
                 variant="outlined"
                 className="new-offer-form"
+                fullWidth
               />
             </div>
             <div className="new-offer-form-container">
