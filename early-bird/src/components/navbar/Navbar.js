@@ -1,15 +1,15 @@
 import './Navbar.scss';
 import {useHistory} from 'react-router-dom';
+import profileIcon from "../../illustrations/profile-icon-navbar.svg";
+import messagesIcon from "../../illustrations/message-icon-navbar.svg";
 
 function Navbar(props) {
 
     const history = useHistory();
-    function getContentLeft(page) {
+    function getContentLeft() {
         let content = [];
-        if (page === 'landing-page') {
             content.push(<a className="text-bold text-black m-0 mr-4 " key="1" href="/about">About</a>);
             content.push(<a className="text-bold text-black m-0" key="2" href="/contact">Contact</a>);
-        }
         return (
             <div id="links-left" className="col-md-4 col-0">
                 {content}
@@ -30,10 +30,12 @@ function Navbar(props) {
             content.push(<button id="signup" className="round bg-red text-white text-small px-3 py-1 btn-hover" key="2" onClick={() => redirectTo('/register')}>Sign up</button>);
         }
         else if(page === 'main'){
-            content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1 btn-hover" key="1" onClick={() => logout()}>Log out</button>)
+            content.push(<img className="messages-icon-navbar" key="1" src={messagesIcon} alt=""onClick={() => redirectTo('/test')}></img>);
+            content.push(<img className="profile-icon-navbar" key="2" src={profileIcon} alt="" onClick={() => redirectTo('/edit-profile')}></img>);
+            content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1 btn-hover" key="3" onClick={() => logout()}>Log out</button>)
         }
         return (
-            <div id="btn-right" className="col-md-4 col-6">
+            <div id="btn-right" className="col-md-4 col-9">
                 {content}
             </div>
         )
