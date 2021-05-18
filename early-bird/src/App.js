@@ -10,7 +10,7 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
-
+import EditProfilePage from './components/edit-profile-page/EditProfilePage';
 import Test from './components/test-component/test';
 
 import { IsUserLoggedIn } from "./services/AccountService";
@@ -46,6 +46,16 @@ function App() {
                   <Navbar page="register-page"></Navbar>
                   <RegisterPage></RegisterPage>
                 </div>
+            )} />
+
+              <Route path="/edit-profile" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <div>
+                <Navbar page="edit-user-page"></Navbar>
+                <EditProfilePage></EditProfilePage>
+              </div>
+                : <Redirect to='/login'></Redirect>
             )} />
 
 
