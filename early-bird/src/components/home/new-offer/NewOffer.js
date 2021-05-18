@@ -59,10 +59,12 @@ export default function NewOffer(props) {
     <Dialog
       fullWidth
       maxWidth="md"
-      className="new-offer-dialog"
       ref={dialogRef}
       open={props.open}
       onClose={handleClose}
+      classes={{
+        paper: "new-offer-dialog"
+      }}
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">

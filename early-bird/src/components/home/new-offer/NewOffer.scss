@@ -1,7 +1,10 @@
-.new-offer-dialog{
-    border-radius: 25%;
-}
 
+.new-offer-dialog{
+    padding: 2em;
+    .MuiPaper-rounded {
+        border-radius: 15px;
+    }
+}
 .new-offer-top-forms{
     display: flex;
     flex-direction: column;
@@ -48,10 +51,6 @@
     #new-offer-description{
         height: 4em;
     }
-}
-
-.new-offer-dialog{
-    width: 100%;
 }
 .new-offer-content{
     width: 100%;
