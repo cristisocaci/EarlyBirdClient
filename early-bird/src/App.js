@@ -10,7 +10,7 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
-import ChatPage from './components/chat-page/ChatPage';
+import ChatPage from './components/chat/ChatPage';
 
 import Test from './components/test-component/test';
 

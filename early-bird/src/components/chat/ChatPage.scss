@@ -1,0 +1,24 @@
+$red-color: #FB3640;
+
+.chat-container{
+    display: inline-block;
+    margin-left:15%;
+    margin-right: 15%;
+    height: 90vh;
+    width: 70%;
+    
+}
+
+.conversations{
+    width: 30%;
+    float: left;
+    height: 90vh;
+    background-color: #ff0000;
+}
+
+.messages{
+    width: 70%;
+    float: right;
+    height: 90vh;
+    background-color: #00ff00;
+}
