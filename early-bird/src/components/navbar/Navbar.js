@@ -1,5 +1,6 @@
 import './Navbar.scss';
 import {useHistory} from 'react-router-dom';
+import chat from '../../illustrations/chat-icon.svg';
 
 function Navbar(props) {
 
@@ -30,6 +31,7 @@ function Navbar(props) {
             content.push(<button id="signup" className="round bg-red text-white text-small px-3 py-1 btn-hover" key="2" onClick={() => redirectTo('/register')}>Sign up</button>);
         }
         else if(page === 'main'){
+            content.push(<img className="chat-icon" src={chat} alt="" onClick={() => redirectTo('/chat')}></img>)
             content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1 btn-hover" key="1" onClick={() => logout()}>Log out</button>)
         }
         return (

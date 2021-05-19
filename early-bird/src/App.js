@@ -10,6 +10,7 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
+import ChatPage from './components/chat-page/ChatPage';
 
 import Test from './components/test-component/test';
 
@@ -57,6 +58,16 @@ function App() {
                 : <div>
                   <Navbar page="main"></Navbar>
                   <Home></Home>
+                </div>
+            )} />
+
+          <Route path="/chat" exact
+            render={() => (
+              !IsUserLoggedIn()
+                ? <Redirect to='/'></Redirect>
+                : <div>
+                  <Navbar page="main"></Navbar>
+                  <ChatPage></ChatPage>
                 </div>
             )} />
 
