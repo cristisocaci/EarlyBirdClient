@@ -16,7 +16,7 @@ $pink-color:#FFEEEF;
     }
 
     &__header{
-        font-weight: bold;
+        font-weight: 800;
         margin-bottom: 1em;
     }
 
@@ -24,14 +24,14 @@ $pink-color:#FFEEEF;
         padding: 0.9em;
         border-radius: 50%;
         font-size: x-large;
-        font-weight: bold;
+        font-weight: 800;
         color: black;
         margin-bottom: 0.7em;
     }
 
     &__name{
         color: $red-color;
-        font-weight: bold;
+        font-weight: 800;
         margin-bottom: 0.7em;
     }
 
@@ -42,7 +42,7 @@ $pink-color:#FFEEEF;
         gap: 0.4em;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
+        font-weight: 800;
 
         &__dot{
             background: #C4C4C4;

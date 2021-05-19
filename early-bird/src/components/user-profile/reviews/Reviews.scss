@@ -18,13 +18,13 @@
         }
         &__title{
             font-size: large;
-            font-weight: bold;
+            font-weight: 800;
         }
     }
 
     &__title{
         font-size: large;
-        font-weight: bold;
+        font-weight: 800;
         margin-bottom: 1em;
     }
 }
@@ -45,7 +45,7 @@
         gap: 0.4em;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
+        font-weight: 800;
         margin-right: 1em;
 
         &__dot{
@@ -58,7 +58,7 @@
 
     &__rating{
         font-size: xx-large;
-        font-weight: bold;
+        font-weight: 800;
         margin-right: 2rem;
     }
 
