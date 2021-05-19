@@ -1,12 +1,15 @@
 import './LandingPage.scss';
 import logo from '../../illustrations/Saly-landing-page.svg';
 import {useHistory} from 'react-router-dom';
+import {pingAPI} from '../../services/PingService'
 
 function LandingPage() {
     const history = useHistory();
     function redirectTo(page){
         history.push(page);
     }
+    
+    pingAPI();
     return (
         <div id="center-lp">
         <div className="center-landing-page">
