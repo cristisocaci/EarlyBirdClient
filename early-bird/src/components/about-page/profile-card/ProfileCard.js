@@ -16,7 +16,7 @@ function ProfileCard(props) {
                     onClick={()=>{window.open(props.linkedin, "_blank")}} 
                     disabled={props.linkedin == null}>
                         <img src={linkedinLogo} className="profile-card__buttons__linkedin__btn__logo" alt=""></img>
-                        LinkediIn
+                        LinkedIn
                     </button>
                 </div>
                 <div className="profile-card__buttons__github">
