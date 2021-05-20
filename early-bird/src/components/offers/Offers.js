@@ -3,7 +3,7 @@ import AboutOffer from "./about-offer/AboutOffer";
 import {GetOfferById} from "../../services/OffersService";
 import {GetRole, GetUserId} from "../../services/AccountService";
 
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import UserCard from "../user-card/UserCard";
 
@@ -11,17 +11,18 @@ function Offers(){
     let {id} = useParams();
     const [role, setRole] = useState("")
     const [offer, setOffer] = useState({});
+    const history = useHistory();
 
     useEffect(()=>{
         async function fetchData(){
             let o = await GetOfferById(id);
             if(o == null){
-                window.location.href ="/404";
+                history.push('/404');
                 return;
             }
             let roleAux = GetRole();
             if (roleAux === "publisher" && o.publisherId !== GetUserId())
-                window.location.href = '/home'
+                history.push('/home');
             if (roleAux === "admin") roleAux = "worker";
             o.categories = o.categories.map(x=>x.category)
 
@@ -29,7 +30,7 @@ function Offers(){
             setOffer(o);
         }
         fetchData();
-    }, [id])
+    }, [id, history])
     return (
         <div className="center-offer">
             <div className="offer">
