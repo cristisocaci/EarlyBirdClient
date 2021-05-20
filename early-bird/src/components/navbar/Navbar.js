@@ -7,8 +7,14 @@ function Navbar(props) {
     function getContentLeft(page) {
         let content = [];
         if (page === 'landing-page') {
-            content.push(<a className="text-bold text-black m-0 mr-4 " key="1" href="/about">About</a>);
-            content.push(<a className="text-bold text-black m-0" key="2" href="/contact">Contact</a>);
+            content.push(<a className="text-bold text-black m-0 mr-4 " key="1" onClick={(e) => {
+                e.preventDefault()
+                redirectTo('/about')
+            }} href="/">About</a>);
+            content.push(<a className="text-bold text-black m-0" key="2" onClick={(e) =>{
+                e.preventDefault();
+                redirectTo('/contact')
+            }} href="/">Contact</a>);
         }
         return (
             <div id="links-left" className="col-md-4 col-0">

@@ -10,6 +10,7 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
+import AboutPage from './components/about-page/AboutPage';
 
 import Test from './components/test-component/test';
 
@@ -22,6 +23,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+
 
 function App() {
   return (
@@ -80,6 +82,14 @@ function App() {
                 </div>
             )} /> 
 
+          <Route path="/about" exact
+            render={() => (
+                  <div> 
+                  <Navbar page="landing-page"></Navbar>
+                  <AboutPage></AboutPage>
+                  </div>
+            )} />
+           
           <Route path="/test" exact><Test /></Route>
 
           <Route path="/" exact

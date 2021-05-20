@@ -28,7 +28,6 @@ function SortDropdown(props){
         if(items[0]) q.titleAscending = true;
         if(items[3]) q.costAscending = false;
         if(items[2]) q.costAscending = true;
-        console.log(q);
         props.setQuery(q);
     }
 
