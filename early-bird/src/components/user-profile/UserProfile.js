@@ -1,6 +1,6 @@
 import "./UserProfile.scss";
 import {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import {GetUserById} from "../../services/UsersService";
 import {GetUserId, GetRole} from "../../services/AccountService";
 import UserCard from "../user-card/UserCard";
@@ -10,12 +10,13 @@ function UserProfile(){
     const [user, setUser] = useState(null);
     const [view, setView] = useState("");
     let {id} = useParams();
+    const history = useHistory();
     
     useEffect(()=>{
         async function fetchData(){
             let u = await GetUserById(id);
             if(u == null) {
-                window.location.href = "/404"
+                history.push('/404');
                 return;
             }
             let loggedInUserId = GetUserId();
@@ -25,7 +26,7 @@ function UserProfile(){
                 setView("owner");
             else{
                 if(loggedInUserRole === getRole(u.role)){
-                    window.location.href="/404"
+                    history.push('/404');
                     return;
                 }
                 setView("viewer");
@@ -33,7 +34,7 @@ function UserProfile(){
             setUser(u);
         }
         fetchData();
-    }, [id]);
+    }, [id, history]);
 
     function getRole(nb){
         switch(nb){

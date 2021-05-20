@@ -1,6 +1,7 @@
 .home-center{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 3em;
 }
 .home-top{
@@ -8,6 +9,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     justify-content:space-between;
+    margin-bottom: 1.5em;
 }
 .home-publish-btn-div{
     display: flex;

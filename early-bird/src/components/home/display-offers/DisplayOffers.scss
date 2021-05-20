@@ -1,0 +1,11 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22em, 30em));
+    justify-content: center;
+    width: 80%;
+
+    .card-element {
+        height: 11em;
+        padding: 20px;
+    }
+}

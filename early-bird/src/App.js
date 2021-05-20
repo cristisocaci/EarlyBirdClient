@@ -5,7 +5,6 @@ import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
 import Offers from './components/offers/Offers';
 import UserProfile from './components/user-profile/UserProfile';
-
 import LoginPage from './components/login-component/LoginPage';
 import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
@@ -28,7 +27,6 @@ import {
 
 function App() {
   return (
-
     <div>
       <Router>
         <Switch>
@@ -116,8 +114,6 @@ function App() {
         </Switch>
       </Router>
     </div>
-
-
   );
 }
 

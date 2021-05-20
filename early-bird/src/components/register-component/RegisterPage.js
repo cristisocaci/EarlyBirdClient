@@ -7,8 +7,10 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
+import {useHistory} from 'react-router-dom';
 
 function RegisterPage() {
+  const history = useHistory();
   const [role, setRole] = useState("worker");
   const [textValue, setTextValue] = useState("");
   const [errorFlags, setErrorFlag] = useState([
@@ -123,7 +125,7 @@ function RegisterPage() {
       setUsernameError(message);
       setFlag(3);
     }
-    if (isRegisteredSuccesfully) window.location.href = "/home";
+    if (isRegisteredSuccesfully) history.push("/home");
   }
   return (
     <div className="center-register-page">

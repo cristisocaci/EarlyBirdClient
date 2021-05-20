@@ -1,16 +1,29 @@
 import "./Home.scss";
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
+import DisplayOffers from "./display-offers/DisplayOffers";
 import {GetFirstName, GetRole} from "../../services/AccountService";
+import {GetAllOffers} from "../../services/OffersService"
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 function Home(){
     const [offers, setOffers] = useState([]);
-    if(offers == null);
     let name = GetFirstName();
     let role = GetRole();
     if (role === "admin") role = "worker";
+
+    useEffect(() => {
+        if (role === "publisher") 
+            GetAllOffers({filterByCurrentUser: true}, null).then(result => {
+                setOffers(result);
+            })
+        else
+            GetAllOffers({filterByCurrentUser: false}).then(result => {
+                setOffers(result);
+            })
+    }, [role])
+
     return(
         <div className="home-center">
             <div className="home-top">
@@ -21,6 +34,7 @@ function Home(){
                     : <div className="home-publish-btn-div"><button className="bg-red text-white round btn-hover home-publish-btn">Publish a new offer</button></div>
                 }()}
             </div>
+            <DisplayOffers offers={offers} ></DisplayOffers>
         </div>
     );
 }

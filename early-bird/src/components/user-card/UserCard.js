@@ -1,7 +1,8 @@
 import "./UserCard.scss";
 import {useRef, useEffect} from "react";
-
+import {useHistory} from 'react-router-dom';
 function UserCard(props){
+    const history = useHistory();
     let avatarRef = useRef();
     let dotRefs = useRef([]);
 
@@ -38,7 +39,7 @@ function UserCard(props){
     } 
     
     function redirectTo(page){
-        window.location.href = page;
+        history.push(page);
     }
 
     useEffect(()=>{
