@@ -35,7 +35,7 @@ function App() {
               IsUserLoggedIn()
                 ? <Redirect to='/home'></Redirect>
                 : <div>
-                  <Navbar page="login-page"></Navbar>
+                  <Navbar></Navbar>
                   <LoginPage></LoginPage>
                 </div>
             )} />
@@ -45,7 +45,7 @@ function App() {
               IsUserLoggedIn()
                 ? <Redirect to='/home'></Redirect>
                 : <div>
-                  <Navbar page="register-page"></Navbar>
+                  <Navbar></Navbar>
                   <RegisterPage></RegisterPage>
                 </div>
             )} />
@@ -57,7 +57,7 @@ function App() {
               !IsUserLoggedIn()
                 ? <Redirect to='/'></Redirect>
                 : <div>
-                  <Navbar page="main"></Navbar>
+                  <Navbar></Navbar>
                   <Home></Home>
                 </div>
             )} />
@@ -67,7 +67,7 @@ function App() {
               !IsUserLoggedIn()
                 ? <Redirect to='/'></Redirect>
                 : <div>
-                  <Navbar page="main"></Navbar>
+                  <Navbar></Navbar>
                   <Offers></Offers>
                 </div>
             )} />
@@ -77,7 +77,7 @@ function App() {
               !IsUserLoggedIn()
                 ? <Redirect to='/'></Redirect>
                 : <div>
-                  <Navbar page="main"></Navbar>
+                  <Navbar></Navbar>
                   <UserProfile></UserProfile>
                 </div>
             )} /> 
@@ -85,7 +85,7 @@ function App() {
           <Route path="/about" exact
             render={() => (
                   <div> 
-                  <Navbar page="landing-page"></Navbar>
+                  <Navbar></Navbar>
                   <AboutPage></AboutPage>
                   </div>
             )} />
@@ -97,7 +97,7 @@ function App() {
               IsUserLoggedIn()
                 ? <Redirect to='/home'></Redirect>
                 : <div>
-                    <Navbar page="landing-page"></Navbar>
+                    <Navbar></Navbar>
                     <LandingPage></LandingPage>
                     <div id="HowItWorks"></div>
                     <HowItWorks></HowItWorks>
