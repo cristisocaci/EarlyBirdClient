@@ -50,11 +50,16 @@ function Navbar(props) {
     
 
     return (
-        <div id="navbar">
-            <div id="center-nav" className="row my-3">
-                {getContentLeft()}
-                <h3 id="title-center" className="col-md-4 col-sm-6 col-12 text-bold" onClick={() => redirectTo('/home')}>Early Bird</h3>
-                {getContentRight()}
+        <div className="sticky-top bg-white">
+            <div id="navbar">
+                <div id="center-nav" className="row my-3">
+                    {getContentLeft()}
+                    <h3 id="title-center" className="col-md-4 col-sm-6 col-12 text-bold" onClick={() => redirectTo('/home')}>Early Bird</h3>
+                    {getContentRight()}
+                </div>
+            </div>
+            <div className="nav-progress progress">
+                <div className="nav-progress-bar progress-bar"></div>
             </div>
         </div>
     );
