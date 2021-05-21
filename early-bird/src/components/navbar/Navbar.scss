@@ -67,6 +67,25 @@ $pink-color:#FFEEEF;
 }
 
 
+.nav-progress-bar{
+    width:0%; 
+    height: 100%;
+    animation-name: update;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-color: $red-color !important;
+}
+.nav-progress{
+    width: 100%;
+    height: 0.2rem !important;
+}
+
+@keyframes update{
+    from {width: 0%;}
+    to {width: 100%}
+}
+
+
 @media only screen and (max-width: 768px){
     #links-left{
         display: none;
