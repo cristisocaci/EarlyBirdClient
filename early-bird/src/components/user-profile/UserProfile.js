@@ -40,7 +40,7 @@ function UserProfile(){
             setUser(u);
         }
         fetchData();
-    }, [id, history]);
+    }, [id, history, dispatch]);
 
     function getRole(nb){
         switch(nb){

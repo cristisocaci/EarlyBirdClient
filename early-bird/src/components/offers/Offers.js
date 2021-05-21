@@ -36,7 +36,7 @@ function Offers(){
             dispatch(stopLoader());
         }
         fetchData();
-    }, [id, history])
+    }, [id, history, dispatch])
     return (
         <div className="center-offer">
             <div className="offer">

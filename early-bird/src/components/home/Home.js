@@ -28,7 +28,7 @@ function Home(){
                 setOffers(result);
                 dispatch(stopLoader());
             })
-    }, [role])
+    }, [role, dispatch])
 
     return(
         <div className="home-center">
