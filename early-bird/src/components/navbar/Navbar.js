@@ -42,7 +42,7 @@ function Navbar(props) {
             content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1 btn-hover" key="1" onClick={() => logout()}>Log out</button>)
         }
         return (
-            <div id="btn-right" className="col-md-4 col-6">
+            <div id="btn-right" className="col-md-4 col-sm-6 col-12 mt-sm-0 mt-2">
                 {content}
             </div>
         )
@@ -53,7 +53,7 @@ function Navbar(props) {
         <div id="navbar">
             <div id="center-nav" className="row my-3">
                 {getContentLeft()}
-                <h3 id="title-center" className="col-md-4 col-6 text-bold" onClick={() => redirectTo('/home')}>Early Bird</h3>
+                <h3 id="title-center" className="col-md-4 col-sm-6 col-12 text-bold" onClick={() => redirectTo('/home')}>Early Bird</h3>
                 {getContentRight()}
             </div>
         </div>
