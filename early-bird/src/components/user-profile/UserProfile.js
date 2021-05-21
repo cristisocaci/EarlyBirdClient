@@ -6,15 +6,21 @@ import {GetUserId, GetRole} from "../../services/AccountService";
 import UserCard from "../user-card/UserCard";
 import Reviews from "./reviews/Reviews";
 
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../redux/actions';
+
 function UserProfile(){
     const [user, setUser] = useState(null);
     const [view, setView] = useState("");
     let {id} = useParams();
     const history = useHistory();
+    const dispatch = useDispatch();
     
     useEffect(()=>{
         async function fetchData(){
+            dispatch(startLoader());
             let u = await GetUserById(id);
+            dispatch(stopLoader());
             if(u == null) {
                 history.push('/404');
                 return;

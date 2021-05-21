@@ -39,6 +39,10 @@ $pale-red-color: #ff999e;
   margin-top: 2.8em;
   padding: 0.7em 3em;
   max-width: 12em;
+  &:disabled{
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
 }
 
 .register-role-option{
