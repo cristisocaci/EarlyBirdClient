@@ -6,7 +6,10 @@
     transition-duration: 200ms;
     transition-property: box-shadow;
     transition-timing-function: ease;
-    
+    height: fit-content;
+    min-height: 12rem;
+    padding: 20px;
+
     &:hover {
         cursor: pointer;
         box-shadow: 4px 5px 14px 2px rgba(170, 170, 170, 0.514);
@@ -45,6 +48,10 @@
         &__categories-grid {
             margin-top: 0.3rem;
             margin-left: -0.3rem;
+            display: flex;
+            flex-wrap: wrap;
         }
     }
 }
+
+

@@ -22,7 +22,7 @@ function Card(props){
                 <div className="card-element__lower__categories-grid">
                     {
                         props.categories.map((category, index) => (
-                            <span className="bg-red round text-white px-2 py-1 m-1" key={index}>{category.category.name}</span>
+                            <div className="bg-red round text-white px-2 py-1 m-1" key={index}>{category.category.name}</div>
                         ))
                     }
                 </div>
