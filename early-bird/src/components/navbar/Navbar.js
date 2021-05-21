@@ -1,10 +1,12 @@
 import './Navbar.scss';
 import {useHistory} from 'react-router-dom';
 import {IsUserLoggedIn, GetUserId} from '../../services/AccountService';
+import {useSelector} from 'react-redux';
 
-function Navbar(props) {
+function Navbar() {
 
     const history = useHistory();
+    const loading = useSelector(state => state.loading);
 
     function redirectTo(page){
         history.push(page);
@@ -35,9 +37,9 @@ function Navbar(props) {
             content.push(<button id="signup" className="round bg-red text-white text-small px-3 py-1 btn-hover" key="2" onClick={() => redirectTo('/register')}>Sign up</button>);
         }
         else {
-            content.push(<div className="round navbar-messages-btn" onClick={() => redirectTo('/chat')}>
+            content.push(<div className="round navbar-messages-btn" key="3" onClick={() => redirectTo('/chat')}>
             </div>);
-            content.push(<div className="round navbar-profile-btn" onClick={() => redirectTo(`/users/${GetUserId()}`)}>
+            content.push(<div className="round navbar-profile-btn" key="2" onClick={() => redirectTo(`/users/${GetUserId()}`)}>
             </div>)
             content.push(<button id="logout" className="round bg-red text-white text-small px-4 py-1 btn-hover" key="1" onClick={() => logout()}>Log out</button>)
         }
@@ -58,9 +60,13 @@ function Navbar(props) {
                     {getContentRight()}
                 </div>
             </div>
-            <div className="nav-progress progress">
+            {
+            loading 
+            ? <div className="nav-progress progress">
                 <div className="nav-progress-bar progress-bar"></div>
             </div>
+            :<div></div>
+            }
         </div>
     );
 }
