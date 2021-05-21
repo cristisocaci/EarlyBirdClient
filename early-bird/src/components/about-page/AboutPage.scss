@@ -1,0 +1,46 @@
+$red-color: #FB3640;
+
+.center-about-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+    padding: 1em;
+}
+
+.title{
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.description{
+    font-size: 1.3rem;
+    align-items: center;
+    text-align: center;
+}
+
+.subtitle{
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+}
+
+.profile-card-grid{
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+
+}
+
+@media only screen and (max-width: 400px) {
+    .profile-card-grid{
+        width: 100%;
+    }
+}

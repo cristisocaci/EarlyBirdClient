@@ -9,10 +9,14 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import {useHistory} from 'react-router-dom';
 
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../redux/actions';
+
 function RegisterPage() {
   const history = useHistory();
   const [role, setRole] = useState("worker");
   const [textValue, setTextValue] = useState("");
+  const [btndisabled, setDisabeled] = useState(false);
   const [errorFlags, setErrorFlag] = useState([
     false,
     false,
@@ -21,8 +25,11 @@ function RegisterPage() {
     false,
     false,
   ]);
+  const dispatch = useDispatch();
+
   let errorFlagsAux = [...errorFlags];
   const [usernameError, setUsernameError] = useState("Cannot be empty!");
+
   function enterSubmit(event) {
     if (event.code === "Enter" || event.code === "NumpadEnter")
       register();
@@ -113,6 +120,9 @@ function RegisterPage() {
     });
 
     if (!success) return;
+
+    dispatch(startLoader());
+    setDisabeled(true);
     let [message, isRegisteredSuccesfully] = await Register(
       username,
       password,
@@ -121,6 +131,9 @@ function RegisterPage() {
       email,
       roleId
     );
+    dispatch(stopLoader());
+    setDisabeled(false);
+
     if (!isRegisteredSuccesfully && message !== "") {
       setUsernameError(message);
       setFlag(3);
@@ -238,6 +251,7 @@ function RegisterPage() {
           <button
             className="register-button round bg-red text-bold text-white"
             onClick={register}
+            disabled={btndisabled}
           >
             Sign Up
           </button>
