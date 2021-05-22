@@ -82,7 +82,10 @@ export async function GetLastNameFromDb(){
   let user = await GetUserById(GetUserId())
   return user.lastname;
 }
-
+export function GetFirstName(){
+  let jwt = DecodeJwt()
+  return jwt.firstName;
+}
 export function DecodeJwt(){
   return jwt_decode(localStorage.getItem("jwt"));
 }
