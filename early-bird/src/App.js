@@ -58,7 +58,7 @@ function App() {
                 <Navbar></Navbar>
                 <EditProfilePage></EditProfilePage>
               </div>
-                : <Redirect to='/login'></Redirect>
+                : <Redirect to='/'></Redirect>
             )} />
 
 
