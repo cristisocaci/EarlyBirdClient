@@ -24,6 +24,28 @@ export function NewOffer(props) {
     Date().toLocaleString()
   );
   const dialogRef = React.useRef(null);
+  const catRefs = useRef([]);
+  const [catPressed, setCatPressed] = useState([]);
+
+  function togglePressed(index) {
+      if (!catPressed[index])
+          catRefs.current[index].style.border = "1px solid red"
+      else
+          catRefs.current[index].style.border = "none"
+      let aux = [...catPressed];
+      aux[index] = !aux[index];
+      setCatPressed(aux);
+
+      let q = Object.assign({}, props.query);
+      let ids = [];
+      for (let i = 0; i < aux.length; ++i) {
+          if (aux[i])
+              ids.push(props.categories[i].id)
+      }
+      q.categoryIds = ids;
+      props.setQuery(q);
+  }
+
   useEffect(() => {
     async function fetchData() {
       let c = await GetAllCategories();
@@ -68,7 +90,7 @@ export function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
-        <span className="text-bold">Publish a new offer</span>
+        <h1>Publish a new offer</h1>
       </DialogTitle>
       <DialogContent className="new-offer-content">
         <div className="new-offer-top-forms">
@@ -137,12 +159,12 @@ export function NewOffer(props) {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <button className="bg-pink round btn-hover text-red px-3 py-2 text-bold" onClick={handleClose} color="primary">
           Cancel
-        </Button>
-        <Button onClick={handleClose} color="primary">
+        </button>
+        <button className="bg-red round btn-hover text-white px-3 py-2 text-bold" onClick={handleClose} color="primary">
           Publish
-        </Button>
+        </button>
       </DialogActions>
     </Dialog>
   );

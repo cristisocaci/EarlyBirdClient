@@ -44,7 +44,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(7em, 8em));
     gap: 1em;
-    cursor: pointer;
+   
 }
 .new-offer-description-container{
     max-width: 55em;
@@ -64,6 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 666px){

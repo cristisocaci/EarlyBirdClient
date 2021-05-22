@@ -27,4 +27,17 @@ async function GetOfferById(id){
     }
 }
 
+async function AddNewOffer(){
+    let path = sessionStorage.getItem("server") + "/api/offers";
+    let data = 1;
+    try {
+        let response = await axios.put(path, data, {
+            headers: {"Authorization":"Bearer " + localStorage.getItem("jwt")}
+        })
+    }
+    catch{
+
+    }
+}
+
 export { GetAllOffers, GetOfferById };
