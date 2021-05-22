@@ -1,7 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
-async function Login(username, password) {
+import {GetUserById} from './UsersService';
+export async function Login(username, password) {
   let path = sessionStorage.getItem("server") + "/api/Login";
   try {
     let response = await axios.post(path, {
@@ -15,7 +15,7 @@ async function Login(username, password) {
   }
 }
 
-async function Register(username, password, firstname, lastname, email, role) {
+export async function Register(username, password, firstname, lastname, email, role) {
   let path = sessionStorage.getItem("server") + "/api/Register";
   try {
     let response = await axios.post(path, {
@@ -37,7 +37,7 @@ async function Register(username, password, firstname, lastname, email, role) {
   }
 }
 
-function IsUserLoggedIn(){
+export function IsUserLoggedIn(){
   let jwt = localStorage.getItem("jwt");
   if(jwt === null)
     return false;
@@ -50,7 +50,7 @@ function IsUserLoggedIn(){
 }
 
 
-function GetRole(){
+export function GetRole(){
   let jwt = DecodeJwt()
   if(jwt === null)
     return null;
@@ -63,23 +63,27 @@ function GetRole(){
   return null;
 }
 
-function GetUserName(){
+export function GetUserName(){
   let jwt = DecodeJwt()
   return jwt.userName;
 }
 
-function GetUserId(){
+export function GetUserId(){
   let jwt = DecodeJwt()
   return jwt.sub;
 }
 
-function GetFirstName(){
-  let jwt = DecodeJwt()
-  return jwt.firstName;
+export async function GetFirstNameFromDb(){
+  let user = await GetUserById(GetUserId())
+  return user.firstname;
 }
 
-function DecodeJwt(){
+export async function GetLastNameFromDb(){
+  let user = await GetUserById(GetUserId())
+  return user.lastname;
+}
+
+export function DecodeJwt(){
   return jwt_decode(localStorage.getItem("jwt"));
 }
 
-export { Login, Register, IsUserLoggedIn, GetRole, GetUserName,GetUserId, GetFirstName };
