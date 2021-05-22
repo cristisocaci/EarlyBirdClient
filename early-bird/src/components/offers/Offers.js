@@ -57,9 +57,7 @@ function Offers(){
                 </div>
             </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Offers;

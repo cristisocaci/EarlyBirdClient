@@ -17,7 +17,7 @@ import { GetAllCategories } from "../../../services/CategoriesService";
 import { red } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-export default function NewOffer(props) {
+export function NewOffer(props) {
   
   const [category, setCategory] = useState(null);
   const [selectedDate, setSelectedDate] = React.useState(

@@ -4,7 +4,7 @@ import FilterAndSort from "./filter-and-sort/FilterAndSort";
 import DisplayOffers from "./display-offers/DisplayOffers";
 import {GetFirstName, GetRole} from "../../services/AccountService";
 import {GetAllOffers} from "../../services/OffersService"
-
+import {NewOffer} from "./new-offer/NewOffer"
 import {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
