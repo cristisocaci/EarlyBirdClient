@@ -33,7 +33,7 @@ function Reviews(props){
 
     function renderReviews(){
         if(reviews == null) return;
-        return reviews.map((review, index)=>(
+        return reviews.slice(0).reverse().map((review, index)=>(
             <div key={index} className="review-card">
                 <div className="review-card__dots">{renderRatingDots(review.rating)}</div>
                 <div className="review-card__rating">{review.rating}</div>

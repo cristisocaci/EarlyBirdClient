@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function GetReviewsForUser(id) {
+export async function GetReviewsForUser(id) {
   let path = sessionStorage.getItem("server") + "/api/reviews";
   try {
     let response = await axios.get(path, {
@@ -13,4 +13,14 @@ async function GetReviewsForUser(id) {
   }
 }
 
-export {GetReviewsForUser};
+export async function AddReview(data) {
+  let path = sessionStorage.getItem("server") + "/api/reviews";
+  try {
+    let response = await axios.post(path, data, {
+      headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")},
+    });
+    return response.data;
+  } catch  {
+    console.log("Error");
+  }
+}
