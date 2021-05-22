@@ -1,6 +1,5 @@
 import "./NewOffer.scss";
 import React from "react";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -16,6 +15,7 @@ import { useRef, useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
 import { red } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {AddNewOffer} from '../../../services/OffersService'
 
 export function NewOffer(props) {
   const [category, setCategory] = useState(null);
@@ -85,13 +85,15 @@ export function NewOffer(props) {
   });
 
   async function addNewOffer(){
-    let title = document.getElementById("register-firstname").value;
-    let lastname = document.getElementById("register-lastname").value;
-    let email = document.getElementById("register-email").value;
-    let username = document.getElementById("register-username").value;
-    let password = document.getElementById("register-password").value;
-    let confirmPassword = document.getElementById("register-confirm-password")
-      .value;
+    let title = document.getElementById("new-offer-title").value;
+    let description = document.getElementById("new-offer-description").value;
+    let prerequisites = document.getElementById("new-offer-prerequisites").value;
+    let location = {
+      cityName: document.getElementById("new-offer-city").value,
+      streetName: document.getElementById("new-offer-street").value,
+      streetNumber: document.getElementById("new-offer-street-number").value,
+    }
+    await AddNewOffer(title, description, 1, prerequisites, location, catIds);
 
   }
 
@@ -169,7 +171,7 @@ export function NewOffer(props) {
                     Street No. :
                   </div>
                   <TextField
-                    id="new-offer-number  "
+                    id="new-offer-street-number"
                     variant="outlined"
                     className="new-offer-form"
                   />
@@ -213,7 +215,7 @@ export function NewOffer(props) {
         </button>
         <button
           className="bg-red round btn-hover text-white px-3 py-2 text-bold"
-          onClick={handleClose}
+          onClick={addNewOffer}
           color="primary"
         >
           Publish

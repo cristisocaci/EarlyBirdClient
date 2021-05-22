@@ -26,14 +26,9 @@ async function GetOfferById(id) {
   }
 }
 
-async function AddNewOffer(title, description, cost, prerequisites, city, street, streetNumber, categoryIds) {
+async function AddNewOffer(title, description, cost, prerequisites, location, categoryIds) {
   let path = sessionStorage.getItem("server") + "/api/offers";
   let userId = GetUserId();
-  let location = {
-    cityName: city,
-    streetName: street,
-    streetNumber: streetNumber,
-  };
   let data = {
     title: title,
     description: description,
@@ -47,10 +42,10 @@ async function AddNewOffer(title, description, cost, prerequisites, city, street
   };
 
   try {
-    let response = await axios.put(path, data, {
+    let response = await axios.post(path, data, {
       headers: { Authorization: "Bearer " + localStorage.getItem("jwt") },
     });
   } catch {}
 }
 
-export { GetAllOffers, GetOfferById };
+export { GetAllOffers, GetOfferById, AddNewOffer};
