@@ -21,8 +21,8 @@ function EditProfilePage() {
   const [errorFlags, setErrorFlag] = useState([false, false, false, false]);
   let errorFlagsAux = [...errorFlags];
 
-  function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  function Alert(trigger) {
+    return <MuiAlert elevation={6} variant="filled" {...trigger} />;
   }
   
 
@@ -50,7 +50,7 @@ function EditProfilePage() {
   }
 
   function resetFlags() {
-    errorFlagsAux = [false, false, false, false, false, false];
+    errorFlagsAux = [false, false, false, false];
     setErrorFlag(errorFlagsAux);
   }
 

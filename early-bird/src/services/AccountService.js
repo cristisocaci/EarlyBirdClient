@@ -78,10 +78,6 @@ export async function GetFirstNameFromDb(){
   return user.firstname;
 }
 
-export async function GetLastNameFromDb(){
-  let user = await GetUserById(GetUserId())
-  return user.lastname;
-}
 export function GetFirstName(){
   let jwt = DecodeJwt()
   return jwt.firstName;

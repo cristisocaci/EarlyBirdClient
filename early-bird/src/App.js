@@ -55,7 +55,7 @@ function App() {
             render={() => (
               IsUserLoggedIn()
                 ? <div>
-                <Navbar page="edit-user-page"></Navbar>
+                <Navbar></Navbar>
                 <EditProfilePage></EditProfilePage>
               </div>
                 : <Redirect to='/login'></Redirect>
