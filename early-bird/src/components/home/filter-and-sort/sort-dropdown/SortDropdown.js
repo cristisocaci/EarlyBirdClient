@@ -4,31 +4,30 @@ import { useState, useRef } from "react";
 
 function SortDropdown(props){
     let sortPressed = false;
-    const [buttonPressed, setButtonPressed] = useState([false,false, false, false])
+    const [buttonPressed, setButtonPressed] = useState([false, false, false, false])
     const sortRef = useRef();
     const btnRef = useRef();
     const choicesRef = [useRef(), useRef(), useRef(), useRef()];
 
     function togglePressed(index){
+        for (let i = 0; i < 4; i++) {
+            choicesRef[i].current.style.border = "none"
+        }
+
         if(!buttonPressed[index])
             choicesRef[index].current.style.border = "1px solid red"
-        else
-            choicesRef[index].current.style.border = "none"
 
-        let items = [...buttonPressed];
-        items[index] = !items[index];
+        let items = [false, false, false, false];
+        items[index] = !buttonPressed[index];
         setButtonPressed(items);
 
         let q = Object.assign({}, props.query);
-        if(items[1])
-            q.titleAscending = false;
-        if(items[0])
-            q.titleAscending = true;
-        if(items[3])
-            q.costAscending = false;
-        if(items[2])
-            q.costAscending = true;
-
+        delete q.costAscending
+        delete q.titleAscending
+        if(items[1]) q.titleAscending = false;
+        if(items[0]) q.titleAscending = true;
+        if(items[3]) q.costAscending = false;
+        if(items[2]) q.costAscending = true;
         props.setQuery(q);
     }
 

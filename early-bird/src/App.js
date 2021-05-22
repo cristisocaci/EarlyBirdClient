@@ -10,6 +10,8 @@ import KeyFeatures from './components/key-features/KeyFeatures';
 import RegisterPage from './components/register-component/RegisterPage';
 import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
+import AboutPage from './components/about-page/AboutPage';
+
 import EditProfilePage from './components/edit-profile-page/EditProfilePage';
 import Test from './components/test-component/test';
 
@@ -23,6 +25,7 @@ import {
   Redirect
 } from "react-router-dom";
 
+
 function App() {
   return (
     <div>
@@ -33,7 +36,7 @@ function App() {
               IsUserLoggedIn()
                 ? <Redirect to='/home'></Redirect>
                 : <div>
-                  <Navbar page="login-page"></Navbar>
+                  <Navbar></Navbar>
                   <LoginPage></LoginPage>
                 </div>
             )} />
@@ -43,7 +46,7 @@ function App() {
               IsUserLoggedIn()
                 ? <Redirect to='/home'></Redirect>
                 : <div>
-                  <Navbar page="register-page"></Navbar>
+                  <Navbar></Navbar>
                   <RegisterPage></RegisterPage>
                 </div>
             )} />
@@ -65,7 +68,7 @@ function App() {
               !IsUserLoggedIn()
                 ? <Redirect to='/'></Redirect>
                 : <div>
-                  <Navbar page="main"></Navbar>
+                  <Navbar></Navbar>
                   <Home></Home>
                 </div>
             )} />
@@ -75,7 +78,7 @@ function App() {
               !IsUserLoggedIn()
                 ? <Redirect to='/'></Redirect>
                 : <div>
-                  <Navbar page="main"></Navbar>
+                  <Navbar></Navbar>
                   <Offers></Offers>
                 </div>
             )} />
@@ -85,11 +88,19 @@ function App() {
               !IsUserLoggedIn()
                 ? <Redirect to='/'></Redirect>
                 : <div>
-                  <Navbar page="main"></Navbar>
+                  <Navbar></Navbar>
                   <UserProfile></UserProfile>
                 </div>
             )} /> 
 
+          <Route path="/about" exact
+            render={() => (
+                  <div> 
+                  <Navbar></Navbar>
+                  <AboutPage></AboutPage>
+                  </div>
+            )} />
+           
           <Route path="/test" exact><Test /></Route>
 
           <Route path="/" exact
@@ -97,7 +108,7 @@ function App() {
               IsUserLoggedIn()
                 ? <Redirect to='/home'></Redirect>
                 : <div>
-                    <Navbar page="landing-page"></Navbar>
+                    <Navbar></Navbar>
                     <LandingPage></LandingPage>
                     <div id="HowItWorks"></div>
                     <HowItWorks></HowItWorks>

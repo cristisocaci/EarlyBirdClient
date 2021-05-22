@@ -1,3 +1,6 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+
 #navbar{
     width: 100%;
     box-shadow: 0px 1px 0px #E5E9F2;
@@ -26,12 +29,33 @@
     }
 }
 #btn-right{
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: end;
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
-    #signup{
-        margin-left: 1em;
+    gap:1rem;
+
+    .navbar-messages-btn{
+        mask: url("../../illustrations/navbar/message.svg") no-repeat center;
+        mask-size: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        background-color: #898989;
+        &:hover{
+            background-color: $red-color;
+            cursor: pointer;
+        }
+    }
+
+    .navbar-profile-btn{
+        mask: url("../../illustrations/navbar/profile.svg") no-repeat center;
+        mask-size: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        background-color: #898989;
+        &:hover{
+            background-color: $red-color;
+            cursor: pointer;
+        }
     }
 }
 .text-black{
@@ -47,6 +71,25 @@
 }
 
 
+.nav-progress-bar{
+    width:0%; 
+    height: 100%;
+    animation-name: update;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-color: $red-color !important;
+}
+.nav-progress{
+    width: 100%;
+    height: 0.2rem !important;
+}
+
+@keyframes update{
+    from {width: 0%;}
+    to {width: 100%}
+}
+
+
 @media only screen and (max-width: 768px){
     #links-left{
         display: none;
@@ -55,15 +98,7 @@
         justify-content: left;
         padding-left: 0;
     }
-}
-@media only screen and (max-width: 489px){
     #btn-right{
-        grid-template-columns: auto;
-        grid-template-rows: auto auto;
-        #signup{
-            margin-left:0;
-            margin-top:0.5em;
-        }
+        gap:1rem;
     }
-    
 }
