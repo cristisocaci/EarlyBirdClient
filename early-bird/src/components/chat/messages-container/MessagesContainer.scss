@@ -1,0 +1,17 @@
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.receiver {
+    height: 10%;
+}
+
+.messages {
+    height: 80%;
+}
+
+.send-message {
+    height: 10%;
+}

@@ -1,4 +1,5 @@
 import "./ChatPage.scss";
+import MessagesContainer from "./messages-container/MessagesContainer.js"
 
 function ChatPage() {
     return(
@@ -8,9 +9,9 @@ function ChatPage() {
         <h3>here conversation component</h3>
      </div>
 
-     <div className="messages">
-          <h3>here message components</h3>
-     </div>
+     <MessagesContainer 
+         
+     />
        
      </div>
    

@@ -5,10 +5,14 @@ import FilterDropdown from "./filter-dropdown/FilterDropdown";
 import SortDropdown from "./sort-dropdown/SortDropdown";
 import {GetAllCategories } from "../../../services/CategoriesService.js";
 
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../../redux/actions';
+
 
 function FilterAndSort(props) {
     const [query, setQuery] = useState({});
     const [categories, setCategories] = useState([]);
+    const dispatch = useDispatch();
 
     function saveText(event) {
         let q = Object.assign({}, query);
@@ -16,8 +20,10 @@ function FilterAndSort(props) {
         setQuery(q);
     }
     async function getOffers(){
+        dispatch(startLoader());
         let offers = await GetAllOffers(query);
         props.setOffers(offers);
+        dispatch(stopLoader());
     }
 
     useEffect(()=>{

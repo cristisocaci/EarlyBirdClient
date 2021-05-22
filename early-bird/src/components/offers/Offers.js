@@ -7,14 +7,19 @@ import {useParams, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import UserCard from "../user-card/UserCard";
 
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../redux/actions';
+
 function Offers(){
     let {id} = useParams();
     const [role, setRole] = useState("")
     const [offer, setOffer] = useState({});
     const history = useHistory();
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         async function fetchData(){
+            dispatch(startLoader());
             let o = await GetOfferById(id);
             if(o == null){
                 history.push('/404');
@@ -28,9 +33,10 @@ function Offers(){
 
             setRole(roleAux)
             setOffer(o);
+            dispatch(stopLoader());
         }
         fetchData();
-    }, [id, history])
+    }, [id, history, dispatch])
     return (
         <div className="center-offer">
             <div className="offer">
