@@ -34,7 +34,7 @@ function MessagesContainer(props){
                 receiverName={props.name}
 
             />
-            <div className="messages">
+            <div className="messages-view">
 
             </div>
             <SendMessage 
