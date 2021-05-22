@@ -1,0 +1,114 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+.profile-card{
+    width: 19rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    min-height: 25rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 4px 5px 14px 2px rgba(170, 170, 170, 0.514);
+    border-radius: 8px;
+
+    &__divimg{
+        margin-top:2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &__img{
+            object-fit: cover;
+            width:10rem;
+            height: 10rem;
+            border-radius: 50%;
+        }
+    }
+
+    &__name{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+
+
+    &__buttons{
+        display: flex;
+        margin: 2rem 0rem;
+
+        &__linkedin{
+            margin-right: 1rem;
+            &__btn{
+                background-color: white;
+                color: blue;
+                padding: 0.5rem 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 3rem;
+                border:1px solid blue;
+                width: 7rem;
+
+                &__logo{
+                    max-width: 1.2rem;
+                    margin-right: 0.2rem;
+                }
+
+                &:hover{
+                    box-shadow: 0 0 5px blue;
+                    box-shadow: 0 0 4px blue inset;
+                }
+                &:disabled{
+                    opacity: 0.8;
+                    cursor: not-allowed;
+                    box-shadow: 0 0 0;
+                }
+                
+                
+            }
+        }
+        &__github{
+            &__btn{
+                background-color: black;
+                color: white;
+                padding: 0.5rem 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height:3rem;
+                width: 7rem;
+                
+                &__logo{
+                    max-width: 1.2rem;
+                    margin-right: 0.5rem;
+                }
+                &:hover{
+                    box-shadow: 0 0 5px black;
+                    box-shadow: 0 0 6px white inset;
+                }
+                &:disabled{
+                    opacity: 0.8;
+                    cursor: not-allowed;
+                    box-shadow: 0 0 0;
+                }
+            }
+        }
+    }
+
+    
+    &__bg{
+        position: absolute;
+        top:0;
+        left:0;
+        width: 67.5rem;
+        height: 15rem;
+        z-index: -1;
+        background: rgb(214,18,18);
+        background: linear-gradient(90deg, rgba(214,18,18,1) 0%, rgba(251,54,64,1) 7%);
+        -webkit-mask: url("../Images/wave.svg") no-repeat center;
+        mask: url("../Images/wave.svg") no-repeat center;
+        
+    }
+}
