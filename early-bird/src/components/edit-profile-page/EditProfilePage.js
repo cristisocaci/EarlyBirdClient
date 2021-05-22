@@ -156,6 +156,7 @@ function EditProfilePage() {
                 <h4 className="edit-page-form-label">New Password</h4>
                 <TextField
                   id="edit-password"
+                  type="password"
                   variant="outlined"
                   className="edit-form-test"
                   onChange={(x) => setPassword(x.target.value)}
@@ -173,6 +174,7 @@ function EditProfilePage() {
                 <h4 className="edit-page-form-label">Confirm New Password</h4>
                 <TextField
                   id="edit-confirm-password"
+                  type="password"
                   variant="outlined"
                   className="edit-form-test"
                   onChange={(x) => setConfirmPassword(x.target.value)}
