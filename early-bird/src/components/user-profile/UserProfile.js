@@ -16,6 +16,10 @@ function UserProfile(){
     const history = useHistory();
     const dispatch = useDispatch();
     
+    function redirectTo(page){
+        history.push(page);
+    }
+
     useEffect(()=>{
         async function fetchData(){
             dispatch(startLoader());
@@ -69,7 +73,7 @@ function UserProfile(){
                                     <button className="round bg-pink text-red btn-hover px-3 py-2 w-100">Contact this user</button>
                                     <button className="round bg-red text-white btn-hover px-3 py-2 mt-3 w-100">Write a review</button>
                                     </div>
-                                : <button className="round bg-red text-white btn-hover px-3 py-2 w-100">Edit profile</button>
+                                : <button className="round bg-red text-white btn-hover px-3 py-2 w-100" onClick={() => redirectTo('/edit-profile')}>Edit profile</button>
                             }()}
 
                     </div>

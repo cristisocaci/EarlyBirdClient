@@ -78,7 +78,6 @@ function EditProfilePage() {
   function validateConfirmPassword(password, confirmPassword) {
     if(password === "") password = null;
     if (password !== null) {
-      console.log(password);
       if (password !== confirmPassword) return 3;
     }
     return null;
@@ -194,7 +193,7 @@ function EditProfilePage() {
             Save
           </button>
 
-          <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleClose}>
+          <Snackbar open={openSnack} autoHideDuration={4000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
               Changes saved succesfully!
             </Alert>
