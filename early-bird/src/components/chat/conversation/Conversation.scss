@@ -1,14 +1,64 @@
+$red-color: #FB3640;
 .conv-item{
-    text-align: left;
-    padding: 10%;
-    height: 10%;
+    padding: 5%;
+    height: 6%;
+    width: 100%;
     border: 1px solid #E5E9F2;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    &__name{
+        font-size: x-large;
+        font-weight: bold;
+        align-self: end;
+        margin:0;
+    }
+
+    &__new-mess{
+        font-size: medium;
+        font-weight: bold;
+        margin:0;
+        &__no{
+            font-weight: 400;
+            margin:0;
+        }
+    }
+
+    &:hover{
+        cursor: pointer;
+        box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.2);
+        transition-duration: 200ms;
+        transition-property: box-shadow;
+        transition-timing-function: ease;
+    }
+
+    &__avatar{
+        height: 4.5rem;
+        width: 4.5rem;
+        border-radius: 50%;
+        font-size: x-large;
+        font-weight: 800;
+        color: black;
+        background-color: $red-color;
+        margin: 2%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__info{
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .messages-subtitle{
     text-align: left;
     padding: 10%;
     height: 10%;
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: bold;
 }
