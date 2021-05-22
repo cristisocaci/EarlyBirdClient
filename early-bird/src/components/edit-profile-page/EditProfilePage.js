@@ -187,7 +187,7 @@ function EditProfilePage() {
           )}
 
           <button
-            className="edit-button round bg-red text-bold text-white"
+            className="edit-button btn-hover round bg-red text-bold text-white"
             onClick={update}
           >
             Save
