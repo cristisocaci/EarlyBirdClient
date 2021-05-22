@@ -19,18 +19,12 @@
     align-items: center;
     margin: 0;
 }
-.f-icons{
+.f-aboutus{
 
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap:0.5em;
-}
-.f-icon{
-    background-color:rgb(41, 40, 40);
-    width:2em;
-    padding: 0.5em;
-    border-radius: 50%;
 }
 
 @media only screen and (max-width:768px){
@@ -38,8 +32,8 @@
         margin-top: 0.5em;
         justify-content: start;
     }
-    .f-icons{
-        margin-top: 0.7em;
+    .f-aboutus{
+        margin-top: 0.5em;
         justify-content: start;
     }
 

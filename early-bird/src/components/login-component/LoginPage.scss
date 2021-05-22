@@ -33,6 +33,10 @@ $pale-red-color: #ff999e;
 .login-button{
     margin-top: 2.8em;
     padding: .7em 3em;
+    &:disabled{
+        opacity: 0.8;
+        cursor:not-allowed;
+    }
 }
 
 .invalid-login{

@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import $ from 'jquery';
 import Popper from 'popper.js';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 if($==null);
 if(Popper == null);
@@ -15,7 +17,9 @@ sessionStorage.setItem('server', 'https://early-bird-api.herokuapp.com')
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}> 
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
