@@ -44,6 +44,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(7em, 8em));
     gap: 1em;
+
+    
    
 }
 .new-offer-description-container{
@@ -54,6 +56,12 @@
 }
 .new-offer-content{
     width: 100%;
+}
+
+.new-offer-location-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
 }
 
 .new-offer-category-pill{
