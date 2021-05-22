@@ -1,21 +1,28 @@
 import "./UserProfile.scss";
 import {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import {GetUserById} from "../../services/UsersService";
 import {GetUserId, GetRole} from "../../services/AccountService";
 import UserCard from "../user-card/UserCard";
 import Reviews from "./reviews/Reviews";
 
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../redux/actions';
+
 function UserProfile(){
     const [user, setUser] = useState(null);
     const [view, setView] = useState("");
     let {id} = useParams();
+    const history = useHistory();
+    const dispatch = useDispatch();
     
     useEffect(()=>{
         async function fetchData(){
+            dispatch(startLoader());
             let u = await GetUserById(id);
+            dispatch(stopLoader());
             if(u == null) {
-                window.location.href = "/404"
+                history.push('/404');
                 return;
             }
             let loggedInUserId = GetUserId();
@@ -25,7 +32,7 @@ function UserProfile(){
                 setView("owner");
             else{
                 if(loggedInUserRole === getRole(u.role)){
-                    window.location.href="/404"
+                    history.push('/404');
                     return;
                 }
                 setView("viewer");
@@ -33,7 +40,7 @@ function UserProfile(){
             setUser(u);
         }
         fetchData();
-    }, [id]);
+    }, [id, history, dispatch]);
 
     function getRole(nb){
         switch(nb){

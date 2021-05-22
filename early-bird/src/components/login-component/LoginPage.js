@@ -4,13 +4,26 @@ import { Login } from "../../services/AccountService.js";
 import { useState } from "react";
 import {useHistory} from 'react-router-dom';
 
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../redux/actions';
+
 function LoginPage() {
   const [fail, setFail] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+  const [btndisabled, setDisabeled] = useState(false);
+
   async function login() {
+    console.log("asd");
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
+
+    dispatch(startLoader());
+    setDisabeled(true);
     let isLoggedIn = await Login(username, password);
+    dispatch(stopLoader());
+    setDisabeled(false);
+
     if(isLoggedIn)
       history.push("/home");
     else
@@ -56,6 +69,7 @@ function LoginPage() {
           <button
             className="login-button round bg-red text-bold text-white btn-hover"
             onClick={login}
+            disabled={btndisabled}
           >
             Log In
           </button>

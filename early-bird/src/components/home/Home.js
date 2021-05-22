@@ -5,14 +5,30 @@ import DisplayOffers from "./display-offers/DisplayOffers";
 import { GetFirstNameFromDb, GetRole } from "../../services/AccountService";
 import { GetAllOffers } from "../../services/OffersService";
 
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
+import {useDispatch} from 'react-redux';
+import {startLoader, stopLoader} from '../../redux/actions';
 
-function Home() {
-  const [offers, setOffers] = useState([]);
-  const [name, setName] = useState("");
+function Home(){
+    const [offers, setOffers] = useState([]);
+    const dispatch = useDispatch();
+    let name = GetFirstName();
+    let role = GetRole();
+    if (role === "admin") role = "worker";
 
-  let role = GetRole();
-  if (role === "admin") role = "worker";
+    useEffect(() => {
+        dispatch(startLoader());
+        if (role === "publisher") 
+            GetAllOffers({filterByCurrentUser: true}, null).then(result => {
+                setOffers(result);
+                dispatch(stopLoader());
+            })
+        else
+            GetAllOffers({filterByCurrentUser: false}).then(result => {
+                setOffers(result);
+                dispatch(stopLoader());
+            })
+    }, [role, dispatch])
 
   useEffect(() => {
     GetFirstNameFromDb().then((result) => {
