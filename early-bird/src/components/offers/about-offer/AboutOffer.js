@@ -1,10 +1,13 @@
 import "./AboutOffer.scss";
 import {useHistory} from 'react-router-dom';
 import {CreateConversation} from "../../../services/ChatService"
+import { GetUserId } from "../../../services/AccountService";
+import { GetUserById } from "../../../services/UsersService";
 
 function AboutOffer(props){
 
     const history = useHistory();
+    let userId = GetUserId();
 
     function redirectTo(page){
         history.push(page);
@@ -24,10 +27,23 @@ function AboutOffer(props){
     }
 
     function contactPublisher(){
+        let publisherToBeContacted;
+
         CreateConversation(props.publisher.id).then(result => {
-            redirectTo('/chat')
+            publisherToBeContacted = userId === result.firstId ? result.secondId : result.firstId
+            let publisherToBeContactedName = props.publisher.firstname + " " + props.publisher.lastname;
+
+            let conversation = {
+                id: result.id,
+                newMessage: false,
+                receiverId: publisherToBeContacted,
+                name: publisherToBeContactedName
+              };
+              
+            sessionStorage.setItem("conversationRedirect", JSON.stringify(conversation))
+            
+            redirectTo('/chat/true')
         })
-        console.log(props.publisher.id);
     }
 
     return (
