@@ -18,7 +18,7 @@ function Home(){
 
     function openDialog(){
         setOpen(true);
-    }    let name = GetFirstName();
+    }
     let role = GetRole();
     if (role === "admin") role = "worker";
 
