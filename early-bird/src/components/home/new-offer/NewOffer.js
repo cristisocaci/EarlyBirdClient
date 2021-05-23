@@ -14,7 +14,6 @@ import {
 } from "../../../services/OffersService";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 import { createUseStyles } from "react-jss";
-import {useHistory} from 'react-router-dom';
 
 const useStyles = createUseStyles({
   categorySelected: { color: "white", background: "red" },
@@ -22,7 +21,6 @@ const useStyles = createUseStyles({
 });
 
 export function NewOffer(props) {
-  const history = useHistory();
   const classes = useStyles();
   const [category, setCategory] = useState(null);
   const dialogRef = React.useRef(null);
