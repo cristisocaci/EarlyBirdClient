@@ -41,6 +41,7 @@ function Offers(){
         <div className="center-offer">
             <div className="offer">
                 <AboutOffer
+                    id = {offer.id}
                     title = {offer.title}
                     categories = {offer.categories}
                     cost = {offer.cost}

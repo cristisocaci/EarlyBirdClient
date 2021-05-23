@@ -1,6 +1,9 @@
 import "./AboutOffer.scss";
+import {NewOffer} from '../../home/new-offer/NewOffer'
+import {useState} from "react";
 
 function AboutOffer(props){
+    const [open, setOpen] = useState(false);
     function renderCategories(){
         if(props.categories==null) return;
         return props.categories.map((x,index) =>
@@ -47,7 +50,7 @@ function AboutOffer(props){
                 <div className="offer-buttons">
                     {function(){
                             return props.role === "publisher"
-                            ? <button className="bg-red round btn-hover text-white px-4 py-2">Edit this offer</button>
+                            ? <button className="bg-red round btn-hover text-white px-4 py-2" onClick={() => setOpen(true)}>Edit this offer</button>
                             : <div className="worker-offer-btns">
                                 <button className="bg-pink round btn-hover text-red px-3 py-2 text-bold">Contact publisher</button>
                                 <button className="bg-red round btn-hover text-white px-3 py-2">Apply for this job</button>
@@ -55,6 +58,7 @@ function AboutOffer(props){
                         }()}
                 </div>
             </div>
+            <NewOffer open={open} setOpen={setOpen} editOffer={true} id={props.id}></NewOffer>
         </div>
     );
 }

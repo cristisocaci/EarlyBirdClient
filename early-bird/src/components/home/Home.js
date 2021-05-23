@@ -51,7 +51,7 @@ function Home(){
                         </div>
                 }()}
             </div>
-            <NewOffer open={open} setOpen={setOpen}></NewOffer>
+            <NewOffer open={open} setOpen={setOpen} editOffer={false}></NewOffer>
             <DisplayOffers offers={offers} ></DisplayOffers>
         </div>
     );

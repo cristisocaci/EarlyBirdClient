@@ -9,16 +9,15 @@ import { useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
 import { AddNewOffer } from "../../../services/OffersService";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  categorySelected: {color: 'white', background: 'red'},
-  category: {color: 'red', background: "#FFEEEF"}
+  categorySelected: { color: "white", background: "red" },
+  category: { color: "red", background: "#FFEEEF" },
 });
 
 export function NewOffer(props) {
   const classes = useStyles();
-  let editOffer = true;
   const [category, setCategory] = useState(null);
   const dialogRef = React.useRef(null);
   const [catPressed, setCatPressed] = useState([false]);
@@ -111,8 +110,7 @@ export function NewOffer(props) {
 
     let aux = [...catPressed];
     aux[index] = !aux[index];
-    if(onlyToggleOff)
-      aux[index] = false;
+    if (onlyToggleOff) aux[index] = false;
 
     setCatPressed(aux);
     let ids = [];
@@ -140,7 +138,9 @@ export function NewOffer(props) {
     return category.map((x, index) => (
       <span
         key={index}
-        className={`new-offer-category-pill text-bold ${catPressed[index] ? classes.categorySelected : classes.category}`}
+        className={`new-offer-category-pill text-bold ${
+          catPressed[index] ? classes.categorySelected : classes.category
+        }`}
         onClick={() => togglePressed(index)}
       >
         {x.name}
@@ -173,7 +173,7 @@ export function NewOffer(props) {
       city: location.cityName,
       street: location.streetName,
       streetNo: location.streetNumber,
-      price: cost
+      price: cost,
     });
 
     if (!success) return;
@@ -200,10 +200,10 @@ export function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
-        {editOffer ? (
-          <div className="new-offer-modal-title">Publish a new offer</div>
-        ) : (
+        {props.editOffer ? (
           <div className="new-offer-modal-title">Edit offer</div>
+        ) : (
+          <div className="new-offer-modal-title">Publish a new offer</div>
         )}
       </DialogTitle>
       <DialogContent className="new-offer-content">
@@ -234,7 +234,9 @@ export function NewOffer(props) {
         <div className="new-offer-bottom-part">
           <div className="new-offer-bottom-forms">
             <div className="new-offer-form-container">
-              <div className="new-offer-label text-bold">Prerequisites {'(optional)'}:</div>
+              <div className="new-offer-label text-bold">
+                Prerequisites {"(optional)"}:
+              </div>
               <TextField
                 id="new-offer-prerequisites"
                 variant="outlined"
@@ -292,8 +294,15 @@ export function NewOffer(props) {
           </div>
           <div className="new-offer-categories-container">
             <div className="new-offer-categories-tags">
-            <div className="new-offer-category-label text-bold">Category:</div>
-            {errorFlags[6] && <div className="new-offer-category-label text-bold text-red"> Pick atleast one!</div>}
+              <div className="new-offer-category-label text-bold">
+                Category:
+              </div>
+              {errorFlags[6] && (
+                <div className="new-offer-category-label text-bold text-red">
+                  {" "}
+                  Pick atleast one!
+                </div>
+              )}
             </div>
             <div className="new-offer-categories">{renderCategories()}</div>
           </div>
