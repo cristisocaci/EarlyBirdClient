@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
 import {
   AddNewOffer,
@@ -22,7 +22,9 @@ const useStyles = createUseStyles({
 
 export function NewOffer(props) {
   const classes = useStyles();
+  const categoryRef = useRef(null);
   const [category, setCategory] = useState(null);
+  categoryRef.current = category;
   const dialogRef = React.useRef(null);
   const [catPressed, setCatPressed] = useState([false]);
   const [catIds, setCatIds] = useState([]);
@@ -35,7 +37,6 @@ export function NewOffer(props) {
     false,
     false,
   ]);
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [prerequisites, setPrerequisites] = useState("");
@@ -139,15 +140,17 @@ export function NewOffer(props) {
 
   function initCategories(categoryIds) {
     let auxCat = [];
-    if (category == null) return;
-    for (let i = 0; i < category.length; i++) {
-      auxCat.push(categoryIds.includes(category[i].id));
+    if (categoryRef.current == null) return;
+    for (let i = 0; i < categoryRef.current.length; i++) {
+      auxCat.push(categoryIds.includes(categoryRef.current[i].id));
     }
     setCatPressed(auxCat);
   }
 
   useEffect(() => {
+    
     async function fetchData() {
+      console.log('t');
       let c = await GetAllCategories();
       setCategory(c);
       if (props.editOffer) {
