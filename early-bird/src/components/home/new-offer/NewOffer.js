@@ -96,7 +96,6 @@ export function NewOffer(props) {
       validatePrice(fields.price),
       validateCategory(fields.categories),
     ];
-    console.log(errorFlags);
     setFlags(indexList);
     return !indexList.some((x) => Number.isInteger(x));
   }
