@@ -4,7 +4,7 @@ function AboutOffer(props){
     function renderCategories(){
         if(props.categories==null) return;
         return props.categories.map((x,index) =>
-            <span key={index} className="bg-red text-white category-pill">{x.name}</span>
+            <span key={index} className="about-offer-pill bg-red text-white category-pill">{x.name}</span>
         )
     }
 

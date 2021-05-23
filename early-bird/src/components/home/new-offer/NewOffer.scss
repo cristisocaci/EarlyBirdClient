@@ -1,4 +1,8 @@
 
+.new-offer-modal-title{
+    font-size: xx-large;
+}
+
 .new-offer-dialog{
     padding: 2em;
     .MuiPaper-rounded {
@@ -37,6 +41,7 @@
     flex-direction: column;
     gap: 0.25em;
     margin-top: 1.75em;
+
     width: 100%;
 }
 
@@ -44,7 +49,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(7em, 8em));
     gap: 1em;
-
+    margin-top: 0.75em;
     
    
 }
@@ -62,6 +67,7 @@
     display: flex;
     flex-direction: row;
     gap: 1em;
+    margin-top: 0.75em;
 }
 
 .new-offer-category-pill{
@@ -73,10 +79,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    width: fit-content;
 }
 
 @media only screen and (max-width: 666px){
     .new-offer-bottom-part{
         flex-direction: column;
     }
+
+    .new-offer-location-container{
+        display: flex;
+        flex-direction: column;
+    }
+    
 }

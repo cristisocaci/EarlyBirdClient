@@ -5,59 +5,50 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
-import "date-fns";
 import { useRef, useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
-import { red } from "@material-ui/core/colors";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import {AddNewOffer} from '../../../services/OffersService'
+import { AddNewOffer } from "../../../services/OffersService";
+import CurrencyTextField from '@unicef/material-ui-currency-textfield'
 
 export function NewOffer(props) {
   const [category, setCategory] = useState(null);
-  const [selectedDate, setSelectedDate] = React.useState(
-    Date().toLocaleString()
-  );
   const dialogRef = React.useRef(null);
   const catRefs = useRef([]);
   const [catPressed, setCatPressed] = useState([false]);
   const [catIds, setCatIds] = useState([]);
 
   function togglePressed(index) {
-    if (!catPressed[index]){
+    let catFlag = false;
+    if (catIds.length >= 3) catFlag = true;
+    if (!catPressed[index]) {
+      if (catFlag) return;
       catRefs.current[index].style.background = "red";
-      catRefs.current[index].style.color = "white"
-    }
-    else {
+      catRefs.current[index].style.color = "white";
+    } else {
       catRefs.current[index].style.background = "#FFEEEF";
-      catRefs.current[index].style.color = "red"
+      catRefs.current[index].style.color = "red";
     }
     let aux = [...catPressed];
     aux[index] = !aux[index];
     setCatPressed(aux);
     let ids = [];
     for (let i = 0; i < aux.length; ++i) {
-      if (aux[i])
-          ids.push(category[i].id)
-  }
-  setCatIds(ids);
+      if (aux[i]) ids.push(category[i].id);
+    }
+    setCatIds(ids);
   }
 
   useEffect(() => {
     async function fetchData() {
       let c = await GetAllCategories();
       setCategory(c);
-      
     }
     fetchData();
   }, []);
 
   function renderCategories() {
     if (category == null) return;
+    console.log(catIds);
     return category.map((x, index) => (
       <span
         key={index}
@@ -74,27 +65,19 @@ export function NewOffer(props) {
     props.setOpen(false);
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const defaultMaterialTheme = createMuiTheme({
-    palette: {
-      primary: red,
-    },
-  });
-
-  async function addNewOffer(){
+  async function addNewOffer() {
     let title = document.getElementById("new-offer-title").value;
     let description = document.getElementById("new-offer-description").value;
-    let prerequisites = document.getElementById("new-offer-prerequisites").value;
+    let prerequisites = document.getElementById(
+      "new-offer-prerequisites"
+    ).value;
     let location = {
       cityName: document.getElementById("new-offer-city").value,
       streetName: document.getElementById("new-offer-street").value,
       streetNumber: document.getElementById("new-offer-street-number").value,
-    }
-    await AddNewOffer(title, description, 1, prerequisites, location, catIds);
-
+    };
+    let cost = Math.abs(document.getElementById("new-offer-cost").value);
+    await AddNewOffer(title, description, cost, prerequisites, location, catIds);
   }
 
   return (
@@ -110,7 +93,7 @@ export function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
-        <h1>Publish a new offer</h1>
+        <div className="new-offer-modal-title">Publish a new offer</div>
       </DialogTitle>
       <DialogContent className="new-offer-content">
         <div className="new-offer-top-forms">
@@ -145,58 +128,43 @@ export function NewOffer(props) {
               />
             </div>
             <div className="new-offer-form-container">
+              <div className="new-offer-label text-bold">Adress:</div>
               <div className="new-offer-location-container">
                 <div>
-                  <div className="new-offer-label text-bold">
-                    City:
-                  </div>
                   <TextField
                     id="new-offer-city"
                     variant="outlined"
+                    label="City"
                     className="new-offer-form"
                   />
                 </div>
                 <div>
-                  <div className="new-offer-label text-bold">
-                    Street:
-                  </div>
                   <TextField
                     id="new-offer-street"
+                    label="Street"
                     variant="outlined"
                     className="new-offer-form"
                   />
                 </div>
                 <div>
-                  <div className="new-offer-label text-bold">
-                    Street No. :
-                  </div>
                   <TextField
                     id="new-offer-street-number"
                     variant="outlined"
+                    label="No."
                     className="new-offer-form"
                   />
                 </div>
               </div>
             </div>
             <div className="new-offer-form-container">
-              <ThemeProvider theme={defaultMaterialTheme}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <div className="new-offer-category-label text-bold">
-                    Deadline:
-                  </div>
-                  <KeyboardDatePicker
-                    variant="outlined"
-                    format="dd/MM/yyyy"
-                    id="date-picker-inline"
-                    className="calendar"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                  />
-                </MuiPickersUtilsProvider>
-              </ThemeProvider>
+              <div className="new-offer-label text-bold">Price:</div>
+              <CurrencyTextField
+                id="new-offer-cost"
+                variant="outlined"
+                currencySymbol="$"
+                maximumValue='999'
+                outputFormat="number"
+              />
             </div>
           </div>
           <div className="new-offer-categories-container">
