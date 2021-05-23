@@ -10,12 +10,17 @@ import {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 
-function Home(){
+function Home(props){
+    
     const [offers, setOffers] = useState(null);
     const dispatch = useDispatch();
     let name = GetFirstName();
     let role = GetRole();
     if (role === "admin") role = "worker";
+
+    useEffect(() => {
+        props.setUserLoggedIn(true);
+    },[props])
 
     useEffect(() => {
         dispatch(startLoader());

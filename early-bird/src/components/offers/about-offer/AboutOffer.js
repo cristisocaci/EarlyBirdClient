@@ -2,7 +2,6 @@ import "./AboutOffer.scss";
 import {useHistory} from 'react-router-dom';
 import {CreateConversation} from "../../../services/ChatService"
 import { GetUserId } from "../../../services/AccountService";
-import { GetUserById } from "../../../services/UsersService";
 
 function AboutOffer(props){
 

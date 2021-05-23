@@ -1,8 +1,7 @@
 import "./ChatPage.scss";
 import noConversationIllustration from "../../illustrations/Saly-messaging.svg"
-import { HubConnectionBuilder } from '@microsoft/signalr';
-import { useEffect, useState } from "react";
-import { GetConversations, GetMessages } from "../../services/ChatService";
+import { useEffect, useState, useRef} from "react";
+import { GetConversations } from "../../services/ChatService";
 import { GetUserId } from "../../services/AccountService";
 import { GetUserById } from "../../services/UsersService";
 import MessagesContainer from "./messages-container/MessagesContainer.js"
@@ -12,64 +11,48 @@ import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 import {useParams} from "react-router-dom";
 
-function ChatPage() {
+function ChatPage(props) {
   const {isRedirect} = useParams();
   const [convFromChild, setConvFromChild] = useState(null);
   const [conversations, setConversations] = useState(null);
-  const [connection, setConnection] = useState(null);
   const [messages, setMessages] = useState([]);
+  const messagesRef = useRef(null);
+  const conversationsRef = useRef(null);
+  messagesRef.current = messages;
+  conversationsRef.current = conversations;
 
   let userId = GetUserId();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const newConnection = new HubConnectionBuilder()
-        .withUrl(sessionStorage.getItem("server") + '/chat',{
-            accessTokenFactory: () =>localStorage.getItem("jwt")
-        })
-        .withAutomaticReconnect()
-        .build();
-
-    setConnection(newConnection);
-}, []);
-
-  useEffect(() => {
-    if (connection) {
-      connection.start()
-        .then((result) => {
-          console.log("Connected!");
-
-          connection.on("ReceiveMessage", (message) => {
-            let convAux = [...conversations];
-            for(let i=0; i<convAux.length; i++){
-              console.log();
-              if(convAux[i].id === message.conversationId){
-                convAux[i].newMessage = true; 
-                setConversations(convAux);
-                break;
-              }
-            }
-
-            if(convFromChild.id === message.conversationId){
-              let messAux = {
-                senderId: convFromChild.receiverId,
-                content: message.message,
-              }
-              setMessages([messAux,...messages]);
-            }
-
-          });
-        })
-        .catch((e) => console.log("Connection failed: ", e));
+    if (props.connection) {
+      props.connection.on("ReceiveMessage", (message) => {
+        let convAux = [...conversationsRef.current];
+        for (let i = 0; i < convAux.length; i++) {
+          console.log();
+          if (convAux[i].id === message.conversationId) {
+            convAux[i].newMessage = true;
+            setConversations(convAux);
+            break;
+          }
+        }
+        if (convFromChild.id === message.conversationId) {
+          let messAux = {
+            senderId: convFromChild.receiverId,
+            content: message.message,
+          };
+          setMessages([messAux, ...messagesRef.current]);
+        }
+      });
     }
-  }, [connection]);
+  }, [props.connection, convFromChild]);
 
   useEffect(() => {
       if (isRedirect === "true") {
         let currentConv = JSON.parse(sessionStorage.getItem("conversationRedirect"))
         setConvFromChild(currentConv);
       }
-  }, [])
+  }, [isRedirect])
 
   useEffect(() => {
     async function createUsersList() {
@@ -96,7 +79,7 @@ function ChatPage() {
   }, [userId, dispatch]);
 
   function newMessageUpdate(conv){
-    let convAux = [...conversations];
+    let convAux = [...conversationsRef.current];
     for(let i =0; i<convAux.length; i++){
       if(convAux[i].id === conv.id){
         convAux[i].newMessage = false; 
@@ -121,7 +104,7 @@ function ChatPage() {
         <MessagesContainer 
             currentUserID={userId}
             conversation={convFromChild}
-            connection={connection}
+            connection={props.connection}
             messages = {messages}
             setMessages = {setMessages}
         /> :

@@ -9,15 +9,10 @@ import ScrollToBottom from "react-scroll-to-bottom";
 function MessagesContainer(props) {
 
   useEffect(() => {
-      getMessages();
-  }, [props.conversation.id]);
-
-  function getMessages(){
-    
     GetMessages(props.conversation.id).then((result) => {
-        props.setMessages(result)
+      props.setMessages(result)
     });
-  }
+  }, [props]);
 
   return (
 

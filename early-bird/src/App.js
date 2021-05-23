@@ -1,4 +1,6 @@
 import './App.scss';
+import { useEffect, useState} from "react";
+import { HubConnectionBuilder } from '@microsoft/signalr';
 import LandingPage from './components/landing-page/LandingPage';
 import HowItWorks from './components/how-it-works/HowItWorks';
 import Navbar from './components/navbar/Navbar';
@@ -13,8 +15,6 @@ import Footer from './components/footer/Footer';
 import AboutPage from './components/about-page/AboutPage';
 import ChatPage from './components/chat/ChatPage';
 
-import Test from './components/test-component/test';
-
 import { IsUserLoggedIn } from "./services/AccountService";
 
 import React from "react";
@@ -27,6 +27,31 @@ import {
 
 
 function App() {
+  const [connection, setConnection] = useState(null);
+  const [isUserLoggedIn, setUserLoggedIn] = useState(IsUserLoggedIn());
+
+  useEffect(() => {
+    if(!isUserLoggedIn) return;
+    const newConnection = new HubConnectionBuilder()
+        .withUrl(sessionStorage.getItem("server") + '/chat',{
+            accessTokenFactory: () =>localStorage.getItem("jwt")
+        })
+        .withAutomaticReconnect()
+        .build();
+
+    setConnection(newConnection);
+}, [isUserLoggedIn]);
+
+useEffect(() => {
+  if (connection) {
+  connection.start().then(() => {
+    console.log("Connected!");
+  })
+  .catch((e) => console.log("Connection failed: ", e));
+  }
+
+}, [connection]);
+
   return (
     <div>
       <Router>
@@ -59,7 +84,7 @@ function App() {
                 ? <Redirect to='/'></Redirect>
                 : <div>
                   <Navbar></Navbar>
-                  <Home></Home>
+                  <Home setUserLoggedIn={setUserLoggedIn}></Home>
                 </div>
             )} />
 
@@ -69,7 +94,7 @@ function App() {
                 ? <Redirect to='/'></Redirect>
                 : <div>
                   <Navbar page="main"></Navbar>
-                  <ChatPage></ChatPage>
+                  <ChatPage connection={connection}></ChatPage>
                 </div>
             )} />
 
@@ -79,7 +104,7 @@ function App() {
                 ? <Redirect to='/'></Redirect>
                 : <div>
                   <Navbar page="main"></Navbar>
-                  <ChatPage></ChatPage>
+                  <ChatPage connection={connection}></ChatPage>
                 </div>
             )} />
 
@@ -111,7 +136,6 @@ function App() {
                   </div>
             )} />
            
-          <Route path="/test" exact><Test /></Route>
 
           <Route path="/" exact
             render={() => (
