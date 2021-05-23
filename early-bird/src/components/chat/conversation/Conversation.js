@@ -1,16 +1,15 @@
 import "./Conversation.scss";
 
-function Conversation(props) {
+function Conversation({conversations, convToParent}) {
   
  function renderConversations(){
-    if(props.conversations===null) return;
-     console.log(props.conversations);
+    if(conversations===null) return;
+     console.log(conversations);
 
-
-     let convSort = props.conversations.sort(x => x.newMessage ? -1:1)
+     let convSort = conversations.sort(x => x.newMessage ? -1:1)
 
      return convSort.map((conv) => (
-      <div key={conv.id} className="conv-item">
+      <div key={conv.id} className="conv-item" onClick={() => convToParent(conv)}>
         
           <div className="conv-item__avatar" >{renderInitials(conv.name)}</div>
             <div className="conv-item__info">
