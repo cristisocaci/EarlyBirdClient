@@ -1,6 +1,15 @@
 import "./AboutOffer.scss";
+import {useHistory} from 'react-router-dom';
+import {CreateConversation} from "../../../services/ChatService"
 
 function AboutOffer(props){
+
+    const history = useHistory();
+
+    function redirectTo(page){
+        history.push(page);
+    }
+
     function renderCategories(){
         if(props.categories==null) return;
         return props.categories.map((x,index) =>
@@ -13,6 +22,14 @@ function AboutOffer(props){
         return <p>{props.location.streetName} {props.location.streetNumber}, {props.location.cityName}</p>
 
     }
+
+    function contactPublisher(){
+        CreateConversation(props.publisher.id).then(result => {
+            redirectTo('/chat')
+        })
+        console.log(props.publisher.id);
+    }
+
     return (
         <div className="about-offer">
             <div className="ao-upper">
@@ -49,8 +66,7 @@ function AboutOffer(props){
                             return props.role === "publisher"
                             ? <button className="bg-red round btn-hover text-white px-4 py-2">Edit this offer</button>
                             : <div className="worker-offer-btns">
-                                <button className="bg-pink round btn-hover text-red px-3 py-2 text-bold">Contact publisher</button>
-                                <button className="bg-red round btn-hover text-white px-3 py-2">Apply for this job</button>
+                                <button className="bg-red round btn-hover text-white px-3 py-2 text-bold" onClick={contactPublisher}>Contact publisher</button>
                             </div>
                         }()}
                 </div>

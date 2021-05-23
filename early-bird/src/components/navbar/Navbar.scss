@@ -6,6 +6,7 @@ $pink-color:#FFEEEF;
     box-shadow: 0px 1px 0px #E5E9F2;
     display: flex;
     justify-content: center;
+    height: 10vh;
 }
 #center-nav{
     display: flex;
@@ -98,8 +99,15 @@ $pink-color:#FFEEEF;
     #title-center{
         justify-content: left;
         padding-left: 0;
+        margin-bottom: -3px;
     }
     #btn-right{
         gap:1rem;
+    }
+}
+
+@media only screen and (max-width: 576px){
+    #navbar {
+        height: min-content;
     }
 }
