@@ -4,7 +4,7 @@ import FilterAndSort from "./filter-and-sort/FilterAndSort";
 import DisplayOffers from "./display-offers/DisplayOffers";
 import {GetFirstNameFromDb, GetRole} from "../../services/AccountService";
 import {GetAllOffers} from "../../services/OffersService"
-
+import {NewOffer} from "./new-offer/NewOffer"
 import {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
@@ -13,8 +13,12 @@ function Home(){
     const [offers, setOffers] = useState([]);
     const [name, setName] = useState("");
     const dispatch = useDispatch();
-    
 
+    const [open, setOpen] = useState(false);
+
+    function openDialog(){
+        setOpen(true);
+    }
     let role = GetRole();
     if (role === "admin") role = "worker";
 
@@ -42,9 +46,12 @@ function Home(){
                 {function(){
                     return role === "worker"
                     ? <FilterAndSort setOffers={setOffers}></FilterAndSort>
-                    : <div className="home-publish-btn-div"><button className="bg-red text-white round btn-hover home-publish-btn">Publish a new offer</button></div>
+                    : <div className="home-publish-btn-div">
+                        <button className="bg-red text-white round btn-hover home-publish-btn" onClick={openDialog}>Publish a new offer</button>
+                        </div>
                 }()}
             </div>
+            <NewOffer open={open} setOpen={setOpen} editOffer={false}></NewOffer>
             <DisplayOffers offers={offers} ></DisplayOffers>
         </div>
     );
