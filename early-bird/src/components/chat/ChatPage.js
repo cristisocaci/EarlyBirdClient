@@ -31,6 +31,30 @@ function ChatPage() {
 }, []);
 
   useEffect(() => {
+    if (connection) {
+      connection.start()
+        .then((result) => {
+          console.log("Connected!");
+
+          connection.on("ReceiveMessage", (message) => {
+            let convAux = [...conversations];
+            for(let i=0; i<convAux.length; i++){
+              if(convAux[i].id === message.conversationId){
+                console.log();
+                convAux[i].newMessage = true; 
+                setConversations(convAux);
+                break;
+              }
+            }
+          });
+        })
+        .catch((e) => console.log("Connection failed: ", e));
+    }
+  }, [connection]);
+
+
+
+  useEffect(() => {
     console.log(userId);
     async function createUsersList() {
       dispatch(startLoader());
@@ -55,12 +79,24 @@ function ChatPage() {
     
   }, [userId, dispatch]);
 
+  function newMessageUpdate(conv){
+    let convAux = [...conversations];
+    for(let i =0; i<convAux.length; i++){
+      if(convAux[i].id === conv.id){
+        convAux[i].newMessage = false; 
+        setConversations(convAux);
+        break;
+      }
+    }
+    setConvFromChild(conv);
+  }
+
   return (
     <div className="chat-container">
       <div className="conversations">
         <Conversation 
             conversations={conversations} 
-            convToParent={conv => setConvFromChild(conv)}
+            convToParent={conv => newMessageUpdate(conv)}
         />
         {console.log(convFromChild)}
       </div>

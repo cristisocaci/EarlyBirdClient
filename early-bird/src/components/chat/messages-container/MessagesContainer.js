@@ -10,39 +10,54 @@ function MessagesContainer(props) {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (props.connection) {
-      props.connection
-        .start()
-        .then((result) => {
-          console.log("Connected!");
+    getMessages(1);
+  }, [props.conversation.id]);
 
+
+  useEffect(() => {
+    if (props.connection) {
+      console.log("asdas")
           props.connection.on("ReceiveMessage", (message) => {
-            // const updatedChat = [...latestChat.current];
-            // updatedChat.push(message);
-            // setChat(updatedChat);
+              let messAux = [message,...messages];
+              setMessages(messAux);
           });
-        })
-        .catch((e) => console.log("Connection failed: ", e));
     }
   }, [props.connection]);
 
-  useEffect(() => {
+
+  function getMessages(page){
     let query = {
       pageSize: 10,
-      pageNumber: 1,
+      pageNumber: page,
     };
 
     GetMessages(props.conversation.id, query).then((result) => {
-      setMessages(result);
+      if(page === 1){
+        setMessages(result)
+      }
+      else {
+        setMessages([...messages, ...result]);
+      }
     });
-  }, [props.conversation.id]);
+  }
 
-  console.log(props.currentUserId);
+  const retrieveMoreEvent = (e) => {
+		//var top = e.target.scrollHeight - e.target.scrollBottom - e.target.clientHeight < 50;
+    
+    if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) 
+        var top = true;
+		if(top){
+      let pg = page+1;
+			setPage(pg);
+			getMessages(pg);
+		}
+	}
+
   return (
     <div className="messages-container">
       <Receiver className="receiver" receiverName={props.conversation.name} />
 
-      <div className="messages-view">
+      <div className="messages-view" onScroll={retrieveMoreEvent}>
         {messages.length !== 0
           ? messages.slice(0).reverse().map((message) => (
               <Message

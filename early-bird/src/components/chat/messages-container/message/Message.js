@@ -2,7 +2,6 @@ import "./Message.scss";
 import { GetUserId } from "../../../../services/AccountService";
 
 function Message(props){
-    console.log(props);
     let currentUserId = GetUserId();
     return(
         <div className="message" key={props.message.id}>
