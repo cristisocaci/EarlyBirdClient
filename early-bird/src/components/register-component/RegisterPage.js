@@ -249,7 +249,7 @@ function RegisterPage() {
           </FormControl>
 
           <button
-            className="register-button round bg-red text-bold text-white"
+            className="register-button btn-hover round bg-red text-bold text-white"
             onClick={register}
             disabled={btndisabled}
           >
