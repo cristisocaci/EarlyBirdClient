@@ -48,6 +48,7 @@ function Offers(){
                     description = {offer.description}
                     prerequisites = {offer.prerequisites}
                     location = {offer.location}
+                    publisher = {offer.publisher}
                     role = {role}
                 />
                 <div className="center-user-card-offer">

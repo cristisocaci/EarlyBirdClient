@@ -1,9 +1,20 @@
 import "./AboutOffer.scss";
 import {NewOffer} from '../../home/new-offer/NewOffer'
 import {useState} from "react";
+import {useHistory} from 'react-router-dom';
+import {CreateConversation} from "../../../services/ChatService"
+import { GetUserId } from "../../../services/AccountService";
 
 function AboutOffer(props){
     const [open, setOpen] = useState(false);
+
+    const history = useHistory();
+    let userId = GetUserId();
+
+    function redirectTo(page){
+        history.push(page);
+    }
+
     function renderCategories(){
         if(props.categories==null) return;
         return props.categories.map((x,index) =>
@@ -16,6 +27,27 @@ function AboutOffer(props){
         return <p>{props.location.streetName} {props.location.streetNumber}, {props.location.cityName}</p>
 
     }
+
+    function contactPublisher(){
+        let publisherToBeContacted;
+
+        CreateConversation(props.publisher.id).then(result => {
+            publisherToBeContacted = userId === result.firstId ? result.secondId : result.firstId
+            let publisherToBeContactedName = props.publisher.firstname + " " + props.publisher.lastname;
+
+            let conversation = {
+                id: result.id,
+                newMessage: false,
+                receiverId: publisherToBeContacted,
+                name: publisherToBeContactedName
+              };
+              
+            sessionStorage.setItem("conversationRedirect", JSON.stringify(conversation))
+            
+            redirectTo('/chat/true')
+        })
+    }
+
     return (
         <div className="about-offer">
             <div className="ao-upper">
@@ -52,8 +84,7 @@ function AboutOffer(props){
                             return props.role === "publisher"
                             ? <button className="bg-red round btn-hover text-white px-4 py-2" onClick={() => setOpen(true)}>Edit this offer</button>
                             : <div className="worker-offer-btns">
-                                <button className="bg-pink round btn-hover text-red px-3 py-2 text-bold">Contact publisher</button>
-                                <button className="bg-red round btn-hover text-white px-3 py-2">Apply for this job</button>
+                                <button className="bg-red round btn-hover text-white px-3 py-2 text-bold" onClick={contactPublisher}>Contact publisher</button>
                             </div>
                         }()}
                 </div>

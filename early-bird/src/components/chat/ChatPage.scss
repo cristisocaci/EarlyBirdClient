@@ -1,0 +1,44 @@
+$red-color: #FB3640;
+
+.chat-container{
+    display: inline-block;
+    height: 91vh;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+
+.conversations{
+    width: 30%;
+    float: left;
+    height: 91vh;
+    background-color: white;
+    border:1px solid #E5E9F2;
+    overflow-y: scroll;
+}
+
+.messages {
+    width: 70%;
+    float: right;
+    height: 100%;
+    display: flex;
+    border:1px solid #E5E9F2;
+
+    .no-conversation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+
+        .illustration {
+            width: 75%;
+        }
+
+        .text {
+            margin-top: 2rem;
+            align-self: center;
+            font-weight: 700;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+$red-color: #FB3640;
+$pink-color:#FFEEEF;
+
+.messages-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.sent-message {
+    float: right;
+    height: max-content;
+    width: max-content;
+    max-width: 50%;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    background-color: #E5E9F2;
+    
+    padding: 1rem;
+    margin-right: 2rem;
+    margin-top: 0.8rem;
+    border-radius: 8px;
+}
+
+.received-message {
+    height: max-content;
+    width: max-content;
+    max-width: 50%;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    background-color: $pink-color;
+    
+    padding: 1rem;
+    margin-left: 2rem;
+    margin-top: 0.8rem;
+    border-radius: 8px;
+}

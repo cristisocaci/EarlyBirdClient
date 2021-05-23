@@ -14,7 +14,6 @@ function LoginPage() {
   const [btndisabled, setDisabeled] = useState(false);
 
   async function login() {
-    console.log("asd");
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
