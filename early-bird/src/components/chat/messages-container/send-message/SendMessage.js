@@ -1,23 +1,24 @@
 import "./SendMessage.scss";
 import React, { useState } from 'react';
+import {CreateMessage} from "../../../../services/ChatService"
 
 
 function SendMessage(props){
     const [message, setMessage] = useState('');
-    const user = props.user;
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        const isUserProvided = user && user !== '';
         const isMessageProvided = message && message !== '';
 
-        if (isUserProvided && isMessageProvided) {
-            props.sendMessage(user, message);
+        if (isMessageProvided) {
+            console.log(message);
+            CreateMessage(props.conversationId, props.user, message);
         } 
         else {
             alert('Please insert a message.');
         }
+        setMessage('');
     }
 
     const onMessageUpdate = (e) => {
@@ -30,6 +31,7 @@ function SendMessage(props){
                 type="text"
                 className="message-input"
                 placeholder="Write a new message..."
+                value={message}
                 onChange={onMessageUpdate}
             />
             <div className="send-message-input">

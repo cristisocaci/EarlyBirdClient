@@ -4,7 +4,6 @@ function Conversation({conversations, convToParent}) {
   
  function renderConversations(){
     if(conversations===null) return;
-     console.log(conversations);
 
      let convSort = conversations.sort(x => x.newMessage ? -1:1)
 

@@ -31,32 +31,30 @@ async function CreateConversation(senderId) {
   let path = sessionStorage.getItem("server") + "/api/chat/conversations";
   try {
     let response = await axios.post(path, {
-      data:{
         firstId: userId,
         secondId: senderId
       },
-      headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")},
-    });
+      {headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")}},
+    );
     return response.data; 
   } catch  {
     console.log('Error retrieving conversations');
   }
 }
 
-async function SendMessage(id, receiverId, message) {
+async function CreateMessage(id, receiverId, message) {
   let path = sessionStorage.getItem("server") + "/api/chat/conversations/"+ id +"/messages";
   try {
     let response = await axios.post(path, {
-      data:{
         message: message,
         receiverId: receiverId
       },
-      headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")},
-    });
+      {headers: {"Authorization":"Bearer "+localStorage.getItem("jwt")}}
+    );
     return response.data; 
   } catch  {
     console.log('Error sending message');
   }
 }
 
-  export {GetConversations, GetMessages, CreateConversation, SendMessage};
+  export {GetConversations, GetMessages, CreateConversation, CreateMessage};

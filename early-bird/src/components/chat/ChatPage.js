@@ -1,5 +1,6 @@
 import "./ChatPage.scss";
 import noConversationIllustration from "../../illustrations/Saly-messaging.svg"
+import { HubConnectionBuilder } from '@microsoft/signalr';
 import { useEffect, useState } from "react";
 import { GetConversations, GetMessages } from "../../services/ChatService";
 import { GetUserId } from "../../services/AccountService";
@@ -11,13 +12,26 @@ import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 
 function ChatPage() {
-  const [convFromChild, setConvFromChild] = useState([]);
+  const [convFromChild, setConvFromChild] = useState(null);
   const [conversations, setConversations] = useState(null);
+  const [connection, setConnection] = useState(null);
+
   let userId = GetUserId();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
+    const newConnection = new HubConnectionBuilder()
+        .withUrl(sessionStorage.getItem("server") + '/chat',{
+            accessTokenFactory: () =>localStorage.getItem("jwt")
+        })
+        .withAutomaticReconnect()
+        .build();
+
+    setConnection(newConnection);
+}, []);
+
+  useEffect(() => {
+    console.log(userId);
     async function createUsersList() {
       dispatch(startLoader());
       let convAux = [];
@@ -41,21 +55,22 @@ function ChatPage() {
     
   }, [userId, dispatch]);
 
-  let selectedConversation = 'a';
-
   return (
     <div className="chat-container">
       <div className="conversations">
-        <Conversation conversations={conversations} 
-        convToParent={conv => setConvFromChild(conv)}></Conversation>
+        <Conversation 
+            conversations={conversations} 
+            convToParent={conv => setConvFromChild(conv)}
+        />
         {console.log(convFromChild)}
       </div>
 
       <div className="messages">
-      {selectedConversation ? 
+      {convFromChild ? 
         <MessagesContainer 
-            // currentUserID={userId}
-            // interlocutorName={conversations.name}
+            currentUserID={userId}
+            conversation={convFromChild}
+            connection={connection}
         /> :
         <div className="no-conversation">
             <img className="illustration" src={noConversationIllustration} alt="no-conversation-illustration" />
