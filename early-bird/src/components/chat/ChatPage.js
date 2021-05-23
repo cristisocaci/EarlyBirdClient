@@ -15,6 +15,7 @@ function ChatPage() {
   const [convFromChild, setConvFromChild] = useState(null);
   const [conversations, setConversations] = useState(null);
   const [connection, setConnection] = useState(null);
+  const [messages, setMessages] = useState([]);
 
   let userId = GetUserId();
   const dispatch = useDispatch();
@@ -39,13 +40,22 @@ function ChatPage() {
           connection.on("ReceiveMessage", (message) => {
             let convAux = [...conversations];
             for(let i=0; i<convAux.length; i++){
+              console.log();
               if(convAux[i].id === message.conversationId){
-                console.log();
                 convAux[i].newMessage = true; 
                 setConversations(convAux);
                 break;
               }
             }
+
+            if(convFromChild.id === message.conversationId){
+              let messAux = {
+                senderId: convFromChild.receiverId,
+                content: message.message,
+              }
+              setMessages([messAux,...messages]);
+            }
+
           });
         })
         .catch((e) => console.log("Connection failed: ", e));
@@ -55,7 +65,6 @@ function ChatPage() {
 
 
   useEffect(() => {
-    console.log(userId);
     async function createUsersList() {
       dispatch(startLoader());
       let convAux = [];
@@ -98,7 +107,6 @@ function ChatPage() {
             conversations={conversations} 
             convToParent={conv => newMessageUpdate(conv)}
         />
-        {console.log(convFromChild)}
       </div>
 
       <div className="messages">
@@ -107,6 +115,8 @@ function ChatPage() {
             currentUserID={userId}
             conversation={convFromChild}
             connection={connection}
+            messages = {messages}
+            setMessages = {setMessages}
         /> :
         <div className="no-conversation">
             <img className="illustration" src={noConversationIllustration} alt="no-conversation-illustration" />
