@@ -2,14 +2,19 @@ import "./NewOffer.scss";
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
-import { AddNewOffer } from "../../../services/OffersService";
+import {
+  AddNewOffer,
+  DeleteOffer,
+  GetOfferById,
+  UpdateOffer,
+} from "../../../services/OffersService";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 import { createUseStyles } from "react-jss";
+import {useHistory} from 'react-router-dom';
 
 const useStyles = createUseStyles({
   categorySelected: { color: "white", background: "red" },
@@ -17,6 +22,7 @@ const useStyles = createUseStyles({
 });
 
 export function NewOffer(props) {
+  const history = useHistory();
   const classes = useStyles();
   const [category, setCategory] = useState(null);
   const dialogRef = React.useRef(null);
@@ -31,6 +37,14 @@ export function NewOffer(props) {
     false,
     false,
   ]);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [prerequisites, setPrerequisites] = useState("");
+  const [city, setCity] = useState("");
+  const [street, setStreet] = useState("");
+  const [streetNo, setStreetNo] = useState("");
+  const [price, setPrice] = useState("");
   //#region validations
   let errorFlagsAux = [...errorFlags];
   function setFlags(indexList) {
@@ -76,7 +90,7 @@ export function NewOffer(props) {
     return null;
   }
   function validatePrice(price) {
-    if (price === 0) {
+    if (price === "") {
       return 5;
     }
     return null;
@@ -125,13 +139,38 @@ export function NewOffer(props) {
     setCatIds([]);
   }
 
+  function initCategories(categoryIds) {
+    let auxCat = [];
+    if (category == null) return;
+    for (let i = 0; i < category.length; i++) {
+      auxCat.push(categoryIds.includes(category[i].id));
+    }
+    setCatPressed(auxCat);
+  }
+
   useEffect(() => {
     async function fetchData() {
       let c = await GetAllCategories();
       setCategory(c);
+      if (props.editOffer) {
+        if (props.id === undefined) return;
+        GetOfferById(props.id).then((result) => {
+          if (result === undefined) return;
+          setTitle(result.title);
+          setDescription(result.description);
+          setPrerequisites(result.prerequisites);
+          setCity(result.location.cityName);
+          setStreet(result.location.streetName);
+          setStreetNo(result.location.streetNumber);
+          setPrice(result.cost);
+          let categoryIds = result.categories.map((x) => x.categoryId);
+          setCatIds(categoryIds);
+          initCategories(categoryIds);
+        });
+      }
     }
     fetchData();
-  }, [props.open]);
+  }, [props.id, props.editOffer]);
 
   function renderCategories() {
     if (category == null) return;
@@ -155,36 +194,67 @@ export function NewOffer(props) {
 
   async function addNewOffer() {
     resetFlags();
-    let title = document.getElementById("new-offer-title").value;
-    let description = document.getElementById("new-offer-description").value;
-    let prerequisites =
-      document.getElementById("new-offer-prerequisites").value === null
-        ? ""
-        : document.getElementById("new-offer-prerequisites").value;
-    let location = {
-      cityName: document.getElementById("new-offer-city").value,
-      streetName: document.getElementById("new-offer-street").value,
-      streetNumber: document.getElementById("new-offer-street-number").value,
-    };
-    let cost = Math.abs(document.getElementById("new-offer-cost").value);
     let success = validateAllFields({
       title: title,
       description: description,
-      city: location.cityName,
-      street: location.streetName,
-      streetNo: location.streetNumber,
-      price: cost,
+      city: city,
+      street: street,
+      streetNo: streetNo,
+      price: price,
     });
+    let location = {
+      cityName: city,
+      streetName: street,
+      streetNumber: streetNo,
+    };
 
     if (!success) return;
     await AddNewOffer(
       title,
       description,
-      cost,
+      price,
       prerequisites,
       location,
       catIds
     );
+    window.location.reload();
+    handleClose();
+  }
+
+  async function updateOffer() {
+    resetFlags();
+    let success = validateAllFields({
+      title: title,
+      description: description,
+      city: city,
+      street: street,
+      streetNo: streetNo,
+      price: price,
+    });
+    let location = {
+      cityName: city,
+      streetName: street,
+      streetNumber: streetNo,
+    };
+
+    if (!success) return;
+    await UpdateOffer(
+      props.id,
+      title,
+      description,
+      price,
+      prerequisites,
+      location,
+      catIds
+    );
+    window.location.reload();
+    handleClose();
+  }
+
+  async function deleteOffer(){
+    await DeleteOffer(props.id);
+    window.location.reload();
+    handleClose();
   }
 
   return (
@@ -214,6 +284,8 @@ export function NewOffer(props) {
               id="new-offer-title"
               variant="outlined"
               className="new-offer-title-form"
+              defaultValue={props.editOffer ? title : ""}
+              onChange={(x) => setTitle(x.target.value)}
               error={errorFlags[0]}
               helperText={errorFlags[0] ? "Cannot be empty!" : " "}
               fullWidth
@@ -225,6 +297,8 @@ export function NewOffer(props) {
               id="new-offer-description"
               variant="outlined"
               className="new-offer-description-form"
+              defaultValue={props.editOffer ? description : ""}
+              onChange={(x) => setDescription(x.target.value)}
               error={errorFlags[1]}
               helperText={errorFlags[1] ? "Cannot be empty!" : " "}
               fullWidth
@@ -241,6 +315,8 @@ export function NewOffer(props) {
                 id="new-offer-prerequisites"
                 variant="outlined"
                 className="new-offer-form"
+                defaultValue={props.editOffer ? prerequisites : ""}
+                onChange={(x) => setPrerequisites(x.target.value)}
                 fullWidth
               />
             </div>
@@ -253,6 +329,8 @@ export function NewOffer(props) {
                     variant="outlined"
                     label="City"
                     className="new-offer-form"
+                    defaultValue={props.editOffer ? city : ""}
+                    onChange={(x) => setCity(x.target.value)}
                     error={errorFlags[2]}
                     helperText={errorFlags[2] ? "Cannot be empty!" : " "}
                   />
@@ -263,6 +341,8 @@ export function NewOffer(props) {
                     label="Street"
                     variant="outlined"
                     className="new-offer-form"
+                    defaultValue={props.editOffer ? street : ""}
+                    onChange={(x) => setStreet(x.target.value)}
                     error={errorFlags[3]}
                     helperText={errorFlags[3] ? "Cannot be empty!" : " "}
                   />
@@ -273,6 +353,8 @@ export function NewOffer(props) {
                     variant="outlined"
                     label="No."
                     className="new-offer-form"
+                    defaultValue={props.editOffer ? streetNo : ""}
+                    onChange={(x) => setStreetNo(x.target.value)}
                     error={errorFlags[4]}
                     helperText={errorFlags[4] ? "Cannot be empty!" : " "}
                   />
@@ -287,6 +369,8 @@ export function NewOffer(props) {
                 currencySymbol="$"
                 maximumValue="999"
                 outputFormat="number"
+                value={props.editOffer ? price : ""}
+                onChange={(x) => setPrice(x.target.value)}
                 error={errorFlags[5]}
                 helperText={errorFlags[5] ? "Cannot be empty!" : " "}
               />
@@ -308,22 +392,49 @@ export function NewOffer(props) {
           </div>
         </div>
       </DialogContent>
-      <DialogActions>
-        <button
-          className="bg-pink round btn-hover text-red px-3 py-2 text-bold"
-          onClick={handleClose}
-          color="primary"
-        >
-          Cancel
-        </button>
-        <button
-          className="bg-red round btn-hover text-white px-3 py-2 text-bold"
-          onClick={addNewOffer}
-          color="primary"
-        >
-          Publish
-        </button>
-      </DialogActions>
+      <div className="offer-modal-buttons">
+        <div>
+          {props.editOffer && (
+            <button
+              className="bg-pink round btn-hover text-red px-3 py-2 text-bold"
+              onClick={deleteOffer}
+              color="primary"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="offer-left-buttons">
+          <div>
+            <button
+              className="bg-pink round btn-hover text-red px-3 py-2 text-bold"
+              onClick={handleClose}
+              color="primary"
+            >
+              Cancel
+            </button>
+          </div>
+          <div>
+            {props.editOffer ? (
+              <button
+                className="bg-red round btn-hover text-white px-3 py-2 text-bold"
+                onClick={updateOffer}
+                color="primary"
+              >
+                Save
+              </button>
+            ) : (
+              <button
+                className="bg-red round btn-hover text-white px-3 py-2 text-bold"
+                onClick={addNewOffer}
+                color="primary"
+              >
+                Publish
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </Dialog>
   );
 }

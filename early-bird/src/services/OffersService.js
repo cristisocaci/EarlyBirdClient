@@ -48,4 +48,34 @@ async function AddNewOffer(title, description, cost, prerequisites, location, ca
   } catch {}
 }
 
-export { GetAllOffers, GetOfferById, AddNewOffer};
+async function UpdateOffer(id, title, description, cost, prerequisites, location, categoryIds) {
+  let path = sessionStorage.getItem("server") + "/api/offers/" + id;
+  let userId = GetUserId();
+  let data = {
+    title: title,
+    description: description,
+    cost: cost,
+    status: 1,
+    publisherId: userId,
+    location: location,
+    prerequisites: prerequisites,
+    notes: "",
+    categoryIds: categoryIds,
+  };
+
+  try {
+        await axios.put(path, data, {
+      headers: { Authorization: "Bearer " + localStorage.getItem("jwt") },
+    });
+  } catch {}
+}
+
+async function DeleteOffer(id){
+  let path = sessionStorage.getItem("server") + "/api/offers/" + id;
+  try {
+    await axios.delete(path, {
+  headers: { Authorization: "Bearer " + localStorage.getItem("jwt") },
+});
+} catch {}
+}
+export { GetAllOffers, GetOfferById, AddNewOffer, UpdateOffer, DeleteOffer};
