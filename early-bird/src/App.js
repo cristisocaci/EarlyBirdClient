@@ -12,6 +12,7 @@ import CallToAction from './components/call-to-action/CallToAction';
 import Footer from './components/footer/Footer';
 import AboutPage from './components/about-page/AboutPage';
 
+import EditProfilePage from './components/edit-profile-page/EditProfilePage';
 import Test from './components/test-component/test';
 
 import { IsUserLoggedIn } from "./services/AccountService";
@@ -48,6 +49,16 @@ function App() {
                   <Navbar></Navbar>
                   <RegisterPage></RegisterPage>
                 </div>
+            )} />
+
+              <Route path="/edit-profile" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <div>
+                <Navbar></Navbar>
+                <EditProfilePage></EditProfilePage>
+              </div>
+                : <Redirect to='/'></Redirect>
             )} />
 
 

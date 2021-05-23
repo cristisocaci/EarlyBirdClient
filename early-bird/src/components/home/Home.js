@@ -2,7 +2,7 @@ import "./Home.scss";
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
 import DisplayOffers from "./display-offers/DisplayOffers";
-import {GetFirstName, GetRole} from "../../services/AccountService";
+import {GetFirstNameFromDb, GetRole} from "../../services/AccountService";
 import {GetAllOffers} from "../../services/OffersService"
 import {NewOffer} from "./new-offer/NewOffer"
 import {useState, useEffect} from "react";
@@ -11,6 +11,7 @@ import {startLoader, stopLoader} from '../../redux/actions';
 
 function Home(){
     const [offers, setOffers] = useState([]);
+    const [name, setName] = useState("");
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
@@ -23,6 +24,9 @@ function Home(){
 
     useEffect(() => {
         dispatch(startLoader());
+        GetFirstNameFromDb().then((result) => {
+            setName(result);
+          });
         if (role === "publisher") 
             GetAllOffers({filterByCurrentUser: true}, null).then(result => {
                 setOffers(result);

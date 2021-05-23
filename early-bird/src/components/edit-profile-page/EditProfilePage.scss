@@ -1,0 +1,58 @@
+.center-edit-page {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-page-div {
+    width: 80%;
+}
+
+.edit-page-logo {
+    width: 100%;
+}
+#edit-logo-div {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+#edit-forms-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.edit-forms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4em;
+}
+.edit-text-title{
+    margin-bottom: 1em;
+}
+.edit-button {
+    margin-top: 0.8em;
+    padding: 0.7em 3em;
+    max-width: 12em;
+  }
+
+  @media only screen and(max-width: 1125px){
+    .edit-forms {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    #edit-forms-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 20em;
+        padding: 2em;
+    }
+
+
+}
