@@ -150,7 +150,6 @@ export function NewOffer(props) {
   useEffect(() => {
     
     async function fetchData() {
-      console.log('t');
       let c = await GetAllCategories();
       setCategory(c);
       if (props.editOffer) {
