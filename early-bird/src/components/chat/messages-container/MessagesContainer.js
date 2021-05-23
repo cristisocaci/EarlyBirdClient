@@ -50,7 +50,7 @@ function MessagesContainer(props) {
                 key={index}
               />
             ))
-          : "No content"}
+          : <></>}
       </div>
 
       <SendMessage

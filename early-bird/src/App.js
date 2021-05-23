@@ -73,6 +73,16 @@ function App() {
                 </div>
             )} />
 
+          <Route path="/chat/:isRedirect" exact
+            render={() => (
+              !IsUserLoggedIn()
+                ? <Redirect to='/'></Redirect>
+                : <div>
+                  <Navbar page="main"></Navbar>
+                  <ChatPage></ChatPage>
+                </div>
+            )} />
+
           <Route path="/offers/:id" exact
             render={() => (
               !IsUserLoggedIn()

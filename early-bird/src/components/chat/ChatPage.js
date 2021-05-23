@@ -10,8 +10,10 @@ import Conversation from "./conversation/Conversation";
 
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
+import {useParams} from "react-router-dom";
 
 function ChatPage() {
+  const {isRedirect} = useParams();
   const [convFromChild, setConvFromChild] = useState(null);
   const [conversations, setConversations] = useState(null);
   const [connection, setConnection] = useState(null);
@@ -62,7 +64,12 @@ function ChatPage() {
     }
   }, [connection]);
 
-
+  useEffect(() => {
+      if (isRedirect === "true") {
+        let currentConv = JSON.parse(sessionStorage.getItem("conversationRedirect"))
+        setConvFromChild(currentConv);
+      }
+  }, [])
 
   useEffect(() => {
     async function createUsersList() {
@@ -87,6 +94,7 @@ function ChatPage() {
     createUsersList();
     
   }, [userId, dispatch]);
+  console.log(convFromChild);
 
   function newMessageUpdate(conv){
     let convAux = [...conversations];
