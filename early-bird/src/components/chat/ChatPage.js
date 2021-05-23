@@ -1,7 +1,7 @@
 import "./ChatPage.scss";
 import Conversation from "./conversation/Conversation";
 import { useEffect, useState } from "react";
-import { GetConversations } from "../../services/ChatService";
+import { GetConversations, GetMessages } from "../../services/ChatService";
 import { GetUserId } from "../../services/AccountService";
 import { GetUserById } from "../../services/UsersService";
 
@@ -9,12 +9,13 @@ import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 
 function ChatPage() {
+  const [convFromChild, setConvFromChild] = useState([]);
   const [conversations, setConversations] = useState(null);
   let userId = GetUserId();
   const dispatch = useDispatch();
 
   useEffect(() => {
-
+    
     async function createUsersList() {
       dispatch(startLoader());
       let convAux = [];
@@ -24,7 +25,9 @@ function ChatPage() {
         let interlocutorId = item.firstId === userId ? item.secondId : item.firstId;
         let interlocutor = await GetUserById(interlocutorId);
         let newConv = {
-          ...item,
+          id: item.id,
+          newMessage: item.newMessage,
+          receiverId: interlocutorId,
           name: interlocutor.firstname + " " + interlocutor.lastname,
         };
         convAux.push(newConv);
@@ -39,7 +42,9 @@ function ChatPage() {
   return (
     <div className="chat-container">
       <div className="conversations">
-        <Conversation conversations={conversations}></Conversation>
+        <Conversation conversations={conversations} 
+        convToParent={conv => setConvFromChild(conv)}></Conversation>
+        {console.log(convFromChild)}
       </div>
 
       <div className="messages">
