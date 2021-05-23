@@ -9,13 +9,21 @@ import Reviews from "./reviews/Reviews";
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 
+import Modal from '@material-ui/core/Modal';
+import LeaveAReview from "./leave-a-review/LeaveAReview";
+
 function UserProfile(){
     const [user, setUser] = useState(null);
     const [view, setView] = useState("");
     let {id} = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
     
+    function redirectTo(page){
+        history.push(page);
+    }
+
     useEffect(()=>{
         async function fetchData(){
             dispatch(startLoader());
@@ -67,9 +75,9 @@ function UserProfile(){
                                 return view === "viewer"
                                 ? <div className="w-100">
                                     <button className="round bg-pink text-red btn-hover px-3 py-2 w-100">Contact this user</button>
-                                    <button className="round bg-red text-white btn-hover px-3 py-2 mt-3 w-100">Write a review</button>
+                                    <button className="round bg-red text-white btn-hover px-3 py-2 mt-3 w-100" onClick={()=>setOpen(true)}>Write a review</button>
                                     </div>
-                                : <button className="round bg-red text-white btn-hover px-3 py-2 w-100">Edit profile</button>
+                                : <button className="round bg-red text-white btn-hover px-3 py-2 w-100" onClick={() => redirectTo('/edit-profile')}>Edit profile</button>
                             }()}
 
                     </div>
@@ -80,6 +88,12 @@ function UserProfile(){
                     />
                 </div>
             </div>
+            <Modal 
+                open={open}
+                onClose={()=>setOpen(false)}
+            >
+                <LeaveAReview userId={id}></LeaveAReview>
+            </Modal>
         </div>
     );
 }

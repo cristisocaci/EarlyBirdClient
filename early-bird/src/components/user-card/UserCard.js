@@ -23,7 +23,7 @@ function UserCard(props){
 
     function renderRating(){
         if(props.user == null) return;
-        return props.user.avgRating;
+        return parseFloat(props.user.avgRating).toFixed(1);
     }
 
     function renderRatingDots(){

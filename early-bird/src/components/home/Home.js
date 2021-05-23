@@ -3,18 +3,23 @@ import noOffersIllustration from "../../illustrations/Saly-no-offers.svg"
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
 import DisplayOffers from "./display-offers/DisplayOffers";
-import {GetFirstName, GetRole} from "../../services/AccountService";
+import {GetFirstNameFromDb, GetRole} from "../../services/AccountService";
 import {GetAllOffers} from "../../services/OffersService"
-
+import {NewOffer} from "./new-offer/NewOffer"
 import {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 
 function Home(props){
-    
     const [offers, setOffers] = useState(null);
+    const [name, setName] = useState("");
     const dispatch = useDispatch();
-    let name = GetFirstName();
+
+    const [open, setOpen] = useState(false);
+
+    function openDialog(){
+        setOpen(true);
+    }
     let role = GetRole();
     if (role === "admin") role = "worker";
 
@@ -24,6 +29,9 @@ function Home(props){
 
     useEffect(() => {
         dispatch(startLoader());
+        GetFirstNameFromDb().then((result) => {
+            setName(result);
+          });
         if (role === "publisher") 
             GetAllOffers({filterByCurrentUser: true}, null).then(result => {
                 setOffers(result);
@@ -50,10 +58,13 @@ function Home(props){
                 {function(){
                     return role === "worker"
                     ? <FilterAndSort setOffers={setOffers}></FilterAndSort>
-                    : <div className="home-publish-btn-div"><button className="bg-red text-white round btn-hover home-publish-btn">Publish a new offer</button></div>
+                    : <div className="home-publish-btn-div">
+                        <button className="bg-red text-white round btn-hover home-publish-btn" onClick={openDialog}>Publish a new offer</button>
+                        </div>
                 }()}
             </div>
             {renderOffers()}
+            <NewOffer open={open} setOpen={setOpen} editOffer={false}></NewOffer>
         </div>
     );
 }
