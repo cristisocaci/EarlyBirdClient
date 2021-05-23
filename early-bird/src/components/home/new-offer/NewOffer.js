@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { useRef, useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
 import { AddNewOffer } from "../../../services/OffersService";
-import CurrencyTextField from '@unicef/material-ui-currency-textfield'
+import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 
 export function NewOffer(props) {
   let editOffer = false;
@@ -17,6 +17,90 @@ export function NewOffer(props) {
   const catRefs = useRef([]);
   const [catPressed, setCatPressed] = useState([false]);
   const [catIds, setCatIds] = useState([]);
+
+  const [errorFlags, setErrorFlag] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  //#region validations
+  let errorFlagsAux = [...errorFlags];
+  function setFlags(indexList) {
+    indexList.forEach((index) => {
+      if (index !== null) errorFlagsAux[index] = true;
+    });
+    setErrorFlag(errorFlagsAux);
+  }
+
+  function resetFlags() {
+    errorFlagsAux = [false, false, false, false, false, false, false];
+    setErrorFlag(errorFlagsAux);
+  }
+
+  function validateTitle(title) {
+    if (title === "") {
+      return 0;
+    }
+    return null;
+  }
+  function validateDescription(description) {
+    if (description === "") {
+      return 1;
+    }
+    return null;
+  }
+  function validateCity(city) {
+    if (city === "") {
+      return 2;
+    }
+    return null;
+  }
+  function validateStreetName(streetName) {
+    if (streetName === "") {
+      return 3;
+    }
+    return null;
+  }
+  function validateStreetNumber(streetNo) {
+    if (streetNo === "") {
+      return 4;
+    }
+    return null;
+  }
+  function validatePrice(price) {
+    if (price === 0) {
+      return 5;
+    }
+    return null;
+  }
+
+  function validateCategory() {
+    console.log(typeof(catIds));
+    if (catIds.length === 0) {
+      return 6;
+    }
+    return null;
+  }
+
+  function validateAllFields(fields) {
+    let indexList = [
+      validateTitle(fields.title),
+      validateDescription(fields.description),
+      validateCity(fields.city),
+      validateStreetName(fields.street),
+      validateStreetNumber(fields.streetNo),
+      validatePrice(fields.price),
+      validateCategory(fields.categories),
+    ];
+    console.log(errorFlags);
+    setFlags(indexList);
+    return !indexList.some((x) => Number.isInteger(x));
+  }
+  //#endregion
 
   function togglePressed(index) {
     let catFlag = false;
@@ -39,7 +123,7 @@ export function NewOffer(props) {
     setCatIds(ids);
   }
 
-  function resetStates(){
+  function resetStates() {
     setCatPressed([false]);
     setCatIds([]);
   }
@@ -48,15 +132,12 @@ export function NewOffer(props) {
     async function fetchData() {
       let c = await GetAllCategories();
       setCategory(c);
-      
     }
-    console.log('t');
     fetchData();
   }, [props.open]);
 
   function renderCategories() {
     if (category == null) return;
-    console.log(catIds);
     return category.map((x, index) => (
       <span
         key={index}
@@ -75,18 +156,37 @@ export function NewOffer(props) {
   };
 
   async function addNewOffer() {
+    resetFlags();
     let title = document.getElementById("new-offer-title").value;
     let description = document.getElementById("new-offer-description").value;
-    let prerequisites = document.getElementById(
-      "new-offer-prerequisites"
-    ).value;
+    let prerequisites =
+      document.getElementById("new-offer-prerequisites").value === null
+        ? ""
+        : document.getElementById("new-offer-prerequisites").value;
     let location = {
       cityName: document.getElementById("new-offer-city").value,
       streetName: document.getElementById("new-offer-street").value,
       streetNumber: document.getElementById("new-offer-street-number").value,
     };
     let cost = Math.abs(document.getElementById("new-offer-cost").value);
-    await AddNewOffer(title, description, cost, prerequisites, location, catIds);
+    let success = validateAllFields({
+      title: title,
+      description: description,
+      city: location.cityName,
+      street: location.streetName,
+      streetNo: location.streetNumber,
+      price: cost
+    });
+
+    if (!success) return;
+    await AddNewOffer(
+      title,
+      description,
+      cost,
+      prerequisites,
+      location,
+      catIds
+    );
   }
 
   return (
@@ -102,12 +202,11 @@ export function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
-        {editOffer ?
-        <div className="new-offer-modal-title">Publish a new offer</div>
-        :
-        <div className="new-offer-modal-title">Edit offer</div>
-      }
-        
+        {editOffer ? (
+          <div className="new-offer-modal-title">Publish a new offer</div>
+        ) : (
+          <div className="new-offer-modal-title">Edit offer</div>
+        )}
       </DialogTitle>
       <DialogContent className="new-offer-content">
         <div className="new-offer-top-forms">
@@ -117,6 +216,8 @@ export function NewOffer(props) {
               id="new-offer-title"
               variant="outlined"
               className="new-offer-title-form"
+              error={errorFlags[0]}
+              helperText={errorFlags[0] ? "Cannot be empty!" : " "}
               fullWidth
             />
           </div>
@@ -126,6 +227,8 @@ export function NewOffer(props) {
               id="new-offer-description"
               variant="outlined"
               className="new-offer-description-form"
+              error={errorFlags[1]}
+              helperText={errorFlags[1] ? "Cannot be empty!" : " "}
               fullWidth
             />
           </div>
@@ -133,7 +236,7 @@ export function NewOffer(props) {
         <div className="new-offer-bottom-part">
           <div className="new-offer-bottom-forms">
             <div className="new-offer-form-container">
-              <div className="new-offer-label text-bold">Prerequisites:</div>
+              <div className="new-offer-label text-bold">Prerequisites {'(optional)'}:</div>
               <TextField
                 id="new-offer-prerequisites"
                 variant="outlined"
@@ -150,6 +253,8 @@ export function NewOffer(props) {
                     variant="outlined"
                     label="City"
                     className="new-offer-form"
+                    error={errorFlags[2]}
+                    helperText={errorFlags[2] ? "Cannot be empty!" : " "}
                   />
                 </div>
                 <div>
@@ -158,6 +263,8 @@ export function NewOffer(props) {
                     label="Street"
                     variant="outlined"
                     className="new-offer-form"
+                    error={errorFlags[3]}
+                    helperText={errorFlags[3] ? "Cannot be empty!" : " "}
                   />
                 </div>
                 <div>
@@ -166,6 +273,8 @@ export function NewOffer(props) {
                     variant="outlined"
                     label="No."
                     className="new-offer-form"
+                    error={errorFlags[4]}
+                    helperText={errorFlags[4] ? "Cannot be empty!" : " "}
                   />
                 </div>
               </div>
@@ -176,13 +285,18 @@ export function NewOffer(props) {
                 id="new-offer-cost"
                 variant="outlined"
                 currencySymbol="$"
-                maximumValue='999'
+                maximumValue="999"
                 outputFormat="number"
+                error={errorFlags[5]}
+                helperText={errorFlags[5] ? "Cannot be empty!" : " "}
               />
             </div>
           </div>
           <div className="new-offer-categories-container">
+            <div className="new-offer-categories-tags">
             <div className="new-offer-category-label text-bold">Category:</div>
+            {errorFlags[6] && <div className="new-offer-category-label text-bold text-red"> Pick atleast one!</div>}
+            </div>
             <div className="new-offer-categories">{renderCategories()}</div>
           </div>
         </div>

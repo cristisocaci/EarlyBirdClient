@@ -62,6 +62,12 @@
 .new-offer-content{
     width: 100%;
 }
+.new-offer-categories-tags
+{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
 
 .new-offer-location-container{
     display: flex;
