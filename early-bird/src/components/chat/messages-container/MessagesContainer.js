@@ -68,7 +68,7 @@ function MessagesContainer(props) {
                 key={message.id}
               />
             ))
-          : "No content"}
+          : <></>}
       </div>
 
       <SendMessage
