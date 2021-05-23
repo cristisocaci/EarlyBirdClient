@@ -2,28 +2,13 @@ import "./MessagesContainer.scss";
 import Receiver from "./receiver/Receiver.js";
 import Message from "./message/Message.js";
 import SendMessage from "./send-message/SendMessage.js";
-import { useEffect, useState, useRef  } from "react";
+import { useEffect} from "react";
 import { GetMessages } from "../../../services/ChatService";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 function MessagesContainer(props) {
-  const divRef = useRef(null)
 
   useEffect(() => {
-
-
-    const scrollToBottom= async ()=>{
-      document.getElementById('scroll-div').scrollIntoView();
-    }
-    scrollToBottom();
-        // divRef.current.scrollIntoView(
-    //   {
-    //     behavior: 'smooth',
-    //     block: 'end',
-    //     inline: 'nearest'
-    //   })
-    // var div = document.getElementById('scroll-div');
-    // div.scrollTop = div.scrollHeight - div.clientHeight;
-    //div.scrollTop = div.lastChild.offsetTop
       getMessages();
   }, [props.conversation.id]);
 
@@ -39,7 +24,7 @@ function MessagesContainer(props) {
     <div id="ceva" className="messages-container">
       <Receiver className="receiver" receiverName={props.conversation.name} />
 
-      <div id="scroll-div" className="messages-view">
+      <ScrollToBottom  className="messages-view">
         {props.messages.length !== 0
           ? props.messages.slice(0).reverse().map((message, index) => (
               <Message
@@ -51,10 +36,11 @@ function MessagesContainer(props) {
               />
             ))
           : <></>}
-      </div>
-
+      </ScrollToBottom>
       <SendMessage
         className="send-message"
+        messages ={props.messages}
+        setMessages ={props.setMessages}
         user={props.conversation.receiverId}
         conversationId={props.conversation.id}
       />

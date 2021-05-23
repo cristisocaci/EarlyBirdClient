@@ -1,7 +1,8 @@
 import "./Conversation.scss";
 
+
 function Conversation({conversations, convToParent}) {
-  
+
  function renderConversations(){
     if(conversations===null) return;
 

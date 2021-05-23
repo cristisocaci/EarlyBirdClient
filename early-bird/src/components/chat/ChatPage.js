@@ -94,7 +94,6 @@ function ChatPage() {
     createUsersList();
     
   }, [userId, dispatch]);
-  console.log(convFromChild);
 
   function newMessageUpdate(conv){
     let convAux = [...conversations];
