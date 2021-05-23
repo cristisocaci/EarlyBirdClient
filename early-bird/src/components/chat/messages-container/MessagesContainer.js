@@ -16,7 +16,6 @@ function MessagesContainer(props) {
 
   useEffect(() => {
     if (props.connection) {
-      console.log("asdas")
           props.connection.on("ReceiveMessage", (message) => {
               let messAux = [message,...messages];
               setMessages(messAux);

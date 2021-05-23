@@ -12,7 +12,6 @@ function SendMessage(props){
         const isMessageProvided = message && message !== '';
 
         if (isMessageProvided) {
-            console.log(message);
             CreateMessage(props.conversationId, props.user, message);
         } 
         else {
