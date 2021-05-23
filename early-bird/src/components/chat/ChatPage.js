@@ -38,7 +38,7 @@ function ChatPage() {
     
   }, [userId, dispatch]);
 
-  let selectedConversation = '';
+  let selectedConversation = 'a';
 
   return (
     <div className="chat-container">
@@ -49,8 +49,8 @@ function ChatPage() {
       <div className="messages">
       {selectedConversation ? 
         <MessagesContainer 
-            currentUserID={userId}
-            interlocutorName={conversations.name}
+            // currentUserID={userId}
+            // interlocutorName={conversations.name}
         /> :
         <div className="no-conversation">
             <img className="illustration" src={noConversationIllustration} alt="no-conversation-illustration" />
