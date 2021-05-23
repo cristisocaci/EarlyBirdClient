@@ -23,7 +23,6 @@ function Home(){
             GetAllOffers({filterByCurrentUser: true}, null).then(result => {
                 setOffers(result);
                 dispatch(stopLoader());
-                console.log(result);
             })
         else
             GetAllOffers({filterByCurrentUser: false}).then(result => {

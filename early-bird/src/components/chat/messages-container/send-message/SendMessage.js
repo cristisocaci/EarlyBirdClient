@@ -9,7 +9,7 @@ function SendMessage(props){
 
     const onSubmit = () => {
         const isMessageProvided = message && message !== '';
-        
+
         if (isMessageProvided) {
             let messAux = {
                 senderId: GetUserId(),
