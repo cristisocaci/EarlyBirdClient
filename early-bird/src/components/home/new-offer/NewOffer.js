@@ -11,6 +11,7 @@ import { AddNewOffer } from "../../../services/OffersService";
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
 
 export function NewOffer(props) {
+  let editOffer = false;
   const [category, setCategory] = useState(null);
   const dialogRef = React.useRef(null);
   const catRefs = useRef([]);
@@ -38,13 +39,20 @@ export function NewOffer(props) {
     setCatIds(ids);
   }
 
+  function resetStates(){
+    setCatPressed([false]);
+    setCatIds([]);
+  }
+
   useEffect(() => {
     async function fetchData() {
       let c = await GetAllCategories();
       setCategory(c);
+      
     }
+    console.log('t');
     fetchData();
-  }, []);
+  }, [props.open]);
 
   function renderCategories() {
     if (category == null) return;
@@ -62,6 +70,7 @@ export function NewOffer(props) {
   }
 
   const handleClose = () => {
+    resetStates();
     props.setOpen(false);
   };
 
@@ -93,7 +102,12 @@ export function NewOffer(props) {
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle ref={dialogRef} id="form-dialog-title">
+        {editOffer ?
         <div className="new-offer-modal-title">Publish a new offer</div>
+        :
+        <div className="new-offer-modal-title">Edit offer</div>
+      }
+        
       </DialogTitle>
       <DialogContent className="new-offer-content">
         <div className="new-offer-top-forms">
