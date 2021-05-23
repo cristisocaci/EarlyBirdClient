@@ -5,19 +5,24 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GetAllCategories } from "../../../services/CategoriesService";
 import { AddNewOffer } from "../../../services/OffersService";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
+import { createUseStyles } from 'react-jss'
+
+const useStyles = createUseStyles({
+  categorySelected: {color: 'white', background: 'red'},
+  category: {color: 'red', background: "#FFEEEF"}
+});
 
 export function NewOffer(props) {
-  let editOffer = false;
+  const classes = useStyles();
+  let editOffer = true;
   const [category, setCategory] = useState(null);
   const dialogRef = React.useRef(null);
-  const catRefs = useRef([]);
   const [catPressed, setCatPressed] = useState([false]);
   const [catIds, setCatIds] = useState([]);
-
   const [errorFlags, setErrorFlag] = useState([
     false,
     false,
@@ -79,7 +84,6 @@ export function NewOffer(props) {
   }
 
   function validateCategory() {
-    console.log(typeof(catIds));
     if (catIds.length === 0) {
       return 6;
     }
@@ -102,18 +106,14 @@ export function NewOffer(props) {
   //#endregion
 
   function togglePressed(index) {
-    let catFlag = false;
-    if (catIds.length >= 3) catFlag = true;
-    if (!catPressed[index]) {
-      if (catFlag) return;
-      catRefs.current[index].style.background = "red";
-      catRefs.current[index].style.color = "white";
-    } else {
-      catRefs.current[index].style.background = "#FFEEEF";
-      catRefs.current[index].style.color = "red";
-    }
+    let onlyToggleOff = false;
+    if (catIds.length === 3) onlyToggleOff = true;
+
     let aux = [...catPressed];
     aux[index] = !aux[index];
+    if(onlyToggleOff)
+      aux[index] = false;
+
     setCatPressed(aux);
     let ids = [];
     for (let i = 0; i < aux.length; ++i) {
@@ -140,9 +140,8 @@ export function NewOffer(props) {
     return category.map((x, index) => (
       <span
         key={index}
+        className={`new-offer-category-pill text-bold ${catPressed[index] ? classes.categorySelected : classes.category}`}
         onClick={() => togglePressed(index)}
-        ref={(element) => catRefs.current.push(element)}
-        className="new-offer-category-pill text-bold bg-pink text-red"
       >
         {x.name}
       </span>

@@ -42,7 +42,7 @@ async function AddNewOffer(title, description, cost, prerequisites, location, ca
   };
 
   try {
-    let response = await axios.post(path, data, {
+        await axios.post(path, data, {
       headers: { Authorization: "Bearer " + localStorage.getItem("jwt") },
     });
   } catch {}
