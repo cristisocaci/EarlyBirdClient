@@ -7,10 +7,10 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import {useDispatch} from 'react-redux';
-import {startLoader, stopLoader} from '../../redux/actions';
+import { useDispatch } from "react-redux";
+import { startLoader, stopLoader } from "../../redux/actions";
 
 function RegisterPage() {
   const history = useHistory();
@@ -24,30 +24,24 @@ function RegisterPage() {
     false,
     false,
     false,
+    false,
   ]);
   const dispatch = useDispatch();
 
   let errorFlagsAux = [...errorFlags];
-  const [usernameError, setUsernameError] = useState("Cannot be empty!");
 
   function enterSubmit(event) {
-    if (event.code === "Enter" || event.code === "NumpadEnter")
-      register();
-  }
-  function setFlag(index) {
-    errorFlagsAux[index] = true;
-    setErrorFlag(errorFlagsAux);
+    if (event.code === "Enter" || event.code === "NumpadEnter") register();
   }
   function setFlags(indexList) {
     indexList.forEach((index) => {
       if (index !== null) errorFlagsAux[index] = true;
     });
     setErrorFlag(errorFlagsAux);
-    
   }
 
   function resetFlags() {
-    errorFlagsAux = [false, false, false, false, false, false];
+    errorFlagsAux = [false, false, false, false, false, false, false];
     setErrorFlag(errorFlagsAux);
   }
 
@@ -65,7 +59,6 @@ function RegisterPage() {
     return null;
   }
 
-  
   function validateEmail(email) {
     if (!(email.includes(".com") && email.includes("@"))) {
       return 2;
@@ -73,8 +66,8 @@ function RegisterPage() {
     return null;
   }
 
-  function validateUsername(userName){
-    if (userName === ""){
+  function validateUsername(userName) {
+    if (userName === "") {
       return 3;
     }
     return null;
@@ -98,7 +91,7 @@ function RegisterPage() {
       validatePasswordFields(fields.password, fields.confirmPassword),
     ];
     setFlags(indexList);
-    return !indexList.some(x => Number.isInteger(x));
+    return !indexList.some((x) => Number.isInteger(x));
   }
   async function register() {
     resetFlags();
@@ -107,8 +100,9 @@ function RegisterPage() {
     let email = document.getElementById("register-email").value;
     let username = document.getElementById("register-username").value;
     let password = document.getElementById("register-password").value;
-    let confirmPassword = document.getElementById("register-confirm-password")
-      .value;
+    let confirmPassword = document.getElementById(
+      "register-confirm-password"
+    ).value;
     let roleId = role === "worker" ? 2 : 3;
     let success = validateAllFields({
       firstname: firstname,
@@ -131,13 +125,12 @@ function RegisterPage() {
       email,
       roleId
     );
-    dispatch(stopLoader());
-    setDisabeled(false);
 
     if (!isRegisteredSuccesfully && message !== "") {
-      setUsernameError(message);
-      setFlag(3);
+      setFlags([6]);
     }
+    dispatch(stopLoader());
+    setDisabeled(false);
     if (isRegisteredSuccesfully) history.push("/home");
   }
   return (
@@ -187,8 +180,14 @@ function RegisterPage() {
               label="Username"
               variant="outlined"
               className="form-test"
-              error={errorFlags[3]}
-              helperText={errorFlags[3] ? usernameError : " "}
+              error={errorFlags[3] || errorFlags[6]}
+              helperText={
+                errorFlags[3]
+                  ? "Cannot be empty!"
+                  : errorFlags[6]
+                  ? "Username already taken"
+                  : ""
+              }
               onKeyPress={enterSubmit}
             />
 
