@@ -30,7 +30,7 @@ function MessagesContainer(props) {
                 key={index}
               />
             ))
-          : <></>}
+          : <div></div>}
       </ScrollToBottom>
       <SendMessage
         className="send-message"
