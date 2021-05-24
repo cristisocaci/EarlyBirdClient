@@ -1,12 +1,9 @@
 import "./Footer.scss";
-import {useHistory} from 'react-router-dom';
 
 function Footer(){
 
-    const history = useHistory();
-
     function redirectTo(page){
-        history.push(page);
+        window.location.href = page
     }
 
     return (
