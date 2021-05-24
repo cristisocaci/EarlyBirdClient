@@ -5,9 +5,6 @@
 
 .new-offer-dialog{
     padding: 2em;
-    .MuiPaper-rounded {
-        border-radius: 15px;
-    }
 }
 .new-offer-top-forms{
     display: flex;
@@ -95,6 +92,7 @@
 }
 .offer-modal-buttons{
     display: flex;
+    margin-top: 1.5em;
     justify-content: space-between;
 
 }
@@ -109,6 +107,13 @@
         flex-direction: column;
     }
     .offer-left-buttons{
-        flex-direction: column;
+        gap: 0.5em;
+    }
+    .offer-modal-buttons{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5em;
+
     }
 }

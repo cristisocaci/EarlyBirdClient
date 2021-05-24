@@ -27,7 +27,7 @@ export async function Register(username, password, firstname, lastname, email, r
       role: role
     });
     localStorage.setItem("jwt", response.data["token"]);
-    return ['', true]; 
+    return ["", true]; 
   } catch (err) {
     console.log(err, err.response);
     if(err.response.status === 403)
