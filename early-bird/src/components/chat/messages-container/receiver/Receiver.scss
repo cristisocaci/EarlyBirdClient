@@ -1,3 +1,5 @@
+$red-color: #FB3640;
+
 .receiver {
     display: flex;
     flex-direction: row;
@@ -5,10 +7,11 @@
 
     .receiver-name {
         padding-left: 2rem;
-        font-weight: 800;
+        font-weight: 700;
         
         &:hover {
             cursor: pointer;
+            color: $red-color;
         }
     }
 }
