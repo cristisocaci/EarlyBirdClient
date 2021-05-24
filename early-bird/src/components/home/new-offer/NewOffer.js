@@ -396,7 +396,7 @@ export function NewOffer(props) {
         <div>
           {props.editOffer && (
             <button
-              className="bg-pink round btn-hover text-red px-3 py-2 text-bold"
+              className="bg-pink round btn-hover text-red px-md-3 py-md-2 px-2 py-1 text-bold"
               onClick={deleteOffer}
               color="primary"
             >
@@ -407,7 +407,7 @@ export function NewOffer(props) {
         <div className="offer-left-buttons">
           <div>
             <button
-              className="bg-pink round btn-hover text-red px-3 py-2 text-bold"
+              className="bg-pink round btn-hover text-red px-md-3 py-md-2 px-2 py-1 text-bold"
               onClick={handleClose}
               color="primary"
             >
@@ -417,7 +417,7 @@ export function NewOffer(props) {
           <div>
             {props.editOffer ? (
               <button
-                className="bg-red round btn-hover text-white px-3 py-2 text-bold"
+                className="bg-red round btn-hover text-white px-md-3 py-md-2 px-2 py-1 text-bold"
                 onClick={updateOffer}
                 color="primary"
               >
@@ -425,7 +425,7 @@ export function NewOffer(props) {
               </button>
             ) : (
               <button
-                className="bg-red round btn-hover text-white px-3 py-2 text-bold"
+                className="bg-red round btn-hover text-white px-md-3 py-md-2 px-2 py-1 text-bold"
                 onClick={addNewOffer}
                 color="primary"
               >
