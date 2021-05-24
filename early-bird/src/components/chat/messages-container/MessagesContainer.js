@@ -17,7 +17,10 @@ function MessagesContainer(props) {
   return (
 
     <div id="ceva" className="messages-container">
-      <Receiver className="receiver" receiverName={props.conversation.name} />
+      <Receiver className="receiver" 
+        receiverName={props.conversation.name} 
+        receiverId={props.conversation.receiverId}
+      />
 
       <ScrollToBottom  className="messages-view">
         {props.messages.length !== 0
