@@ -5,7 +5,7 @@ function DisplayOffers(props){
 
     return(
         <div className="card-grid">
-            {props.offers ? props.offers.map ((card, index) => (
+            {props.offers ? props.offers.slice(0).reverse().map ((card, index) => (
                 <Card 
                     className="card-element"
                     offerId={card.id}
