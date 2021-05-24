@@ -61,10 +61,10 @@ function SortDropdown(props){
                 </div>
                 <div className="fas-sort-content"  ref={sortRef}>
                     <div className="divider"></div>
-                    <button onClick={()=>togglePressed(0)} ref={choicesRef[0]}>Title A-Z</button>
-                    <button onClick={()=>togglePressed(1)} ref={choicesRef[1]}>Title Z-A</button>
-                    <button onClick={()=>togglePressed(2)} ref={choicesRef[2]}>Price ascending</button>
-                    <button onClick={()=>togglePressed(3)} ref={choicesRef[3]}>Price decending </button>
+                    <button onClick={()=>togglePressed(1)} ref={choicesRef[1]}>Title A-Z</button>
+                    <button onClick={()=>togglePressed(0)} ref={choicesRef[0]}>Title Z-A</button>
+                    <button onClick={()=>togglePressed(3)} ref={choicesRef[3]}>Price ascending</button>
+                    <button onClick={()=>togglePressed(2)} ref={choicesRef[2]}>Price decending </button>
                 </div>
             </div>
     );
