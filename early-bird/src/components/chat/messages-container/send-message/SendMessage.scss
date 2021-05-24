@@ -1,0 +1,44 @@
+$red-color: #FB3640;
+$pink-color: #FFEEEF;
+
+.send-message {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    .message-input {
+        width: 85%;
+        height: 90%;
+        border-radius: 0px;
+        border: 1px solid #E5E9F2;
+        padding-left: 1.2rem;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .send-message-input {
+        border: 1px solid #E5E9F2;
+        height: 90%;
+        width: 15%;
+        margin-left: -1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .send-message-button {
+            mask: url("../../../../illustrations/navbar/message.svg") no-repeat center;
+            mask-size: 2rem;
+            width: 2rem;
+            height: 2rem;
+            background-color: #898989;
+            margin-right: 0.5rem;
+            &:hover{
+                background-color: $red-color;
+                cursor: pointer;
+            }
+        }
+    }
+    
+}

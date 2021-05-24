@@ -24,7 +24,6 @@
 @media only screen and (max-width:1068px) {
     .home-top{
         grid-template-columns: 1fr 1fr;
-
     }
 }
 
@@ -36,4 +35,10 @@
     .home-publish-btn-div{
         margin-top: 2em;
     }
+}
+
+.no-offers-illustration {
+    width: 75%;
+    bottom: 0;
+    position: fixed;
 }

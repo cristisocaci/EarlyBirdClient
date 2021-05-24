@@ -1,4 +1,5 @@
 import "./Home.scss";
+import noOffersIllustration from "../../illustrations/Saly-no-offers.svg"
 import Hello from "./hello/Hello";
 import FilterAndSort from "./filter-and-sort/FilterAndSort";
 import DisplayOffers from "./display-offers/DisplayOffers";
@@ -9,8 +10,8 @@ import {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {startLoader, stopLoader} from '../../redux/actions';
 
-function Home(){
-    const [offers, setOffers] = useState([]);
+function Home(props){
+    const [offers, setOffers] = useState(null);
     const [name, setName] = useState("");
     const dispatch = useDispatch();
 
@@ -21,6 +22,10 @@ function Home(){
     }
     let role = GetRole();
     if (role === "admin") role = "worker";
+
+    useEffect(() => {
+        props.setUserLoggedIn(true);
+    },[props])
 
     useEffect(() => {
         dispatch(startLoader());
@@ -39,6 +44,13 @@ function Home(){
             })
     }, [role, dispatch])
 
+    function renderOffers() {
+        if (offers == null) return
+
+        return offers.length !== 0 ? 
+        <DisplayOffers offers={offers} ></DisplayOffers> :
+        <img className="no-offers-illustration" src={noOffersIllustration} alt="no-offers-illustration" />
+    }
     return(
         <div className="home-center">
             <div className="home-top">
@@ -51,8 +63,8 @@ function Home(){
                         </div>
                 }()}
             </div>
+            {renderOffers()}
             <NewOffer open={open} setOpen={setOpen} editOffer={false}></NewOffer>
-            <DisplayOffers offers={offers} ></DisplayOffers>
         </div>
     );
 }
