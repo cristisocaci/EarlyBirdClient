@@ -2,7 +2,7 @@ import "./AboutPage.scss";
 import ProfileCard from "./profile-card/ProfileCard";
 import CristiS from "./Images/CristiS.jpg";
 import Varga from "./Images/Varga.jpeg";
-import CristiN from "./Images/CristiN.jpeg";
+import CristiN from "./Images/CristiN.jpg";
 import Flaviu from "./Images/Flaviu.jpeg";
 import Popica from "./Images/Popica.jpeg";
 
