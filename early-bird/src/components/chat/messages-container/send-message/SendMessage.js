@@ -22,7 +22,8 @@ function SendMessage(props){
     }
 
     const onMessageUpdate = (e) => {
-        setMessage(e.target.value);
+        if(e.target.value.length < 1000)
+            setMessage(e.target.value);
     }
 
     function enterSubmit(event) {
